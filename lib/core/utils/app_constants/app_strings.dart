@@ -9,6 +9,8 @@ part 'app_constants.dart';
 
 part 'app_localization.dart';
 
+part 'hero_tags.dart';
+
 abstract final class AppStrings {
   //#region App default texts
   static const String noData = 'no_data';

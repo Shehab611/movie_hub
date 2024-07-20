@@ -14,7 +14,20 @@ abstract final class AppStrings {
   static const String noData = 'no_data';
   static const String en = 'en';
   static const String ar = 'ar';
-
+  static const String login = 'login';
+  static const String logout = 'logout';
+  static const String register = 'register';
+  static const String email = 'email';
+  static const String password = 'password';
+  static const String recentPassword = 'recent_password';
+  static const String newPassword = 'new_password';
+  static const String confirmNewPassword = 'confirm_new_password';
+  static const String forgetPassword = 'forget_password';
+  static const String noAccount = 'don\'t_have_account';
+  static const String haveAccount = 'have_account';
+  static const String confirmPassword = 'confirm_password';
+  static const String firstName = 'first_name';
+  static const String lastName = 'last_name';
 
   //#endregion
 

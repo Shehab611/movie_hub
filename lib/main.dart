@@ -5,7 +5,11 @@ import 'core/utils/app_constants/app_strings.dart';
 import 'core/utils/app_routes_utils/app_router.dart';
 import 'core/utils/design_utils/app_theme.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await initServicesLocator();
+  await sl<AppLanguage>().fetchLocale();
+  await sl<AppTheme>().fetchTheme();
   runApp(const MyApp());
 }
 
@@ -35,7 +39,7 @@ class MyApp extends StatelessWidget {
                     routes: AppRouter.routes,
                     theme: appThemeData.lightTheme(),
                     darkTheme: appThemeData.darkTheme(),
-                    themeMode: appTheme.themeMode,
+                    themeMode: ThemeMode.light, //appTheme.themeMode
                     initialRoute: AppPathName.kOpenScreen,
                     locale: appLanguage.appLocal,
                     supportedLocales: AppConstants.supportedLocales.values,

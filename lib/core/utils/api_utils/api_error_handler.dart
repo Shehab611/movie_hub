@@ -53,7 +53,7 @@ abstract final class ApiChecker {
     } else if (error is ErrorResponse) {
       ErrorResponse errorResponse = error;
       switch (errorResponse.errorCode) {
-        case AppStrings.apiKeyDisabled:
+/*        case AppStrings.apiKeyDisabled:
           return AppStrings.apiKeyDisabledMessage;
         case AppStrings.apiKeyExhausted:
           return AppStrings.apiKeyExhaustedMessage;
@@ -72,7 +72,7 @@ abstract final class ApiChecker {
         case AppStrings.sourceDoesNotExist:
           return AppStrings.sourceDoesNotExistMessage;
         case AppStrings.unexpectedErrorApi:
-          return AppStrings.unexpectedErrorApiMessage;
+          return AppStrings.unexpectedErrorApiMessage;*/
         default:
           return 'Error badResponse can not handled';
       }

@@ -9,13 +9,35 @@ part 'app_constants.dart';
 
 part 'app_localization.dart';
 
+part 'app_restoration_scopes.dart';
+
 part 'hero_tags.dart';
 
 abstract final class AppStrings {
+  //#region Required parameters keys
+  static const String requiredEmail = 'email_is_required';
+  static const String requiredPassword = 'password_is_required';
+  static const String requiredConfirmPassword = 'confirm_password_required';
+  static const String requiredFirstName = 'first_name_required';
+  static const String requiredLastName = 'last_name_required';
+  static const String requiredCompanyName = 'company_name_required';
+  static const String requiredPhoneNumber = 'phone_number_required';
+  static const String requiredMoneyAmount = 'money_amount_required';
+  static const String requiredCashAmount = 'cash_amount_required';
+  static const String requiredWalletName = 'wallet_name_required';
+  static const String requiredWalletNumber = 'wallet_number_required';
+
+  //#endregion
+
+  //#region Successful Strings
+  static const String logoutSuccessful = 'logout_successful';
+  static const String accountCreatedSuccess = 'account_created_success';
+  static const String userDeleteSuccessfully = 'user_delete_successful';
+
+  //#endregion
+
   //#region App default texts
-  static const String noData = 'no_data';
-  static const String en = 'en';
-  static const String ar = 'ar';
+  static const String welcome = 'welcome';
   static const String login = 'login';
   static const String logout = 'logout';
   static const String register = 'register';
@@ -30,6 +52,36 @@ abstract final class AppStrings {
   static const String confirmPassword = 'confirm_password';
   static const String firstName = 'first_name';
   static const String lastName = 'last_name';
+  static const String companyName = 'company_name';
+  static const String cancel = 'cancel';
+  static const String continueText = 'continue';
+  static const String resend = 'resend';
+  static const String confirm = 'confirm';
+  static const String language = 'language';
+  static const String noData = 'no_data';
+  static const String tryAgain = 'try_again';
+  static const String seeAll = 'see_all';
+  static const String sync = 'sync';
+  static const String syncSuccess = 'sync_success';
+  static const String syncFailed = 'sync_failed';
+  static const String clear = 'clear';
+  static const String from = 'from';
+  static const String to = 'to';
+  static const String choose = 'choose';
+  static const String changePassword = 'change_password';
+  static const String passwordChangedSuccessful = 'password_changed_success';
+
+  //#endregion
+
+  //#region Screens Name
+
+  //#endregion
+
+  //#region Invalid strings keys
+  static const String invalidEmail = 'invalid_email_address';
+  static const String invalidPhoneNumber = 'invalid_phone_number';
+  static const String invalidPassword = 'password_chars_is_not_valid';
+  static const String invalidConfirmPassword = 'confirm_password_not_matched';
 
   //#endregion
 
@@ -45,13 +97,34 @@ abstract final class AppStrings {
   static const String unknownError = 'unknown_error';
   static const String unexpectedError = 'unexpected_error';
 
-  //#endregion
+//#endregion
 
-  //#region Api Error Codes
+  //#region Firebase Auth
+  static const String authenticationError = 'auth_error';
+
+  //#region Firebase Auth Error Codes
+  static const String invalidEmailCode = 'invalid-email';
+  static const String emailInUseCode = 'email-already-in-use';
+  static const String userDisabledCode = 'user-disabled';
+  static const String userNotFoundCode = 'user-not-found';
+  static const String wrongPasswordCode = 'wrong-password';
+  static const String accountExistCode =
+      'account-exists-with-different-credential';
+  static const String invalidCredentialCode = 'invalid-credential';
+  static const String credentialInUseCode = 'credential-already-in-use';
 
 //#endregion
 
-//#region Api Error Messages
+  //#region Firebase Auth Translated Error messages
+  static const String invalidEmailError = 'invalid_email_error';
+  static const String userDisabledError = 'user_disabled_error';
+  static const String userNotFoundError = 'user_not_found_error';
+  static const String wrongPasswordError = 'wrong_password_error';
+  static const String accountExistError = 'account_exist_error';
+  static const String invalidCredentialError = 'invalid_credential_error';
+  static const String credentialInUseError = 'credential_in_use_error';
+  static const String emailInUseError = 'email_in_use_error';
+//#endregion
 
 //#endregion
 }

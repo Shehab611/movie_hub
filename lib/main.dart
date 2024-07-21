@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
                     textScaler: const TextScaler.linear(1.15),
                   ),
                   child: MaterialApp(
+                    restorationScopeId: AppRestorationIds.rootId,
                     title: 'Movie Hub',
                     debugShowCheckedModeBanner: false,
                     routes: AppRouter.routes,
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
                     darkTheme: appThemeData.darkTheme(),
                     themeMode: ThemeMode.light, //appTheme.themeMode
                     initialRoute: AppPathName.kOpenScreen,
-                    locale: appLanguage.appLocal,
+                    locale: appLanguage.appLocale,
                     supportedLocales: AppConstants.supportedLocales.values,
                     localizationsDelegates: AppConstants.delegates,
                   ));

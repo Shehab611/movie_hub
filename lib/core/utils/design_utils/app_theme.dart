@@ -23,6 +23,9 @@ final class AppThemeData {
     ),
     scaffoldBackgroundColor: colorScheme.surface,
     canvasColor: colorScheme.surface,
+    appBarTheme: const AppBarTheme(
+      centerTitle: true,
+    ),
   );
 
   static ColorScheme _lightScheme() {

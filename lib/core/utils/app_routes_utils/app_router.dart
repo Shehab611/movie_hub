@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_hub/features/authentication/login/presentation/login_screen.dart';
-import 'package:movie_hub/features/authentication/register/presentation/register_screen.dart';
+import 'package:movie_hub/features/authentication/login/presentation/views/login_screen.dart';
+import 'package:movie_hub/features/authentication//register/presentation/views/register_screen.dart';
 import 'package:movie_hub/features/open_screen/presentation/view/open_screen.dart';
 
 part 'app_navigator.dart';

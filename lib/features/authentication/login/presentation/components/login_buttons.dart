@@ -58,7 +58,7 @@ class RegisterButton extends StatelessWidget {
           TextSpan(
             text: AppLocalizations.of(context).translate(AppStrings.register),
             style: TextStyle(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {

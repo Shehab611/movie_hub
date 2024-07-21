@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_hub/core/components/custom_components/custom_slide_transition.dart';
+import 'package:movie_hub/core/components/custom_components/custom_components.dart';
 import 'package:movie_hub/core/service_locator.dart';
 import 'package:movie_hub/core/utils/design_utils/app_images.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';

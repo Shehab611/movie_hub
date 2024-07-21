@@ -1,26 +1,6 @@
 part of 'app_theme.dart';
 
 abstract final class AppSizes {
-  /// font size 10
-  static const double fontSizeExtraSmall = 10.0;
-
-  /// font size 12
-  static const double fontSizeSmall = 12.0;
-
-  /// font size 14
-  static const double fontSizeDefault = 14.0;
-
-  static const double fontSizeFifteen = 15.0;
-
-  /// font size 16
-  static const double fontSizeLarge = 16.0;
-
-  /// font size 18
-  static const double fontSizeExtraLarge = 18.0;
-
-  /// font size 24
-  static const double fontSizeOverLarge = 24.0;
-
   /// padding size 2
   static const double paddingSizeExtraExtraSmall = 2.0;
 

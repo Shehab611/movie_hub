@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'custom_components.dart';
 
 class HeroTextAnimation extends StatelessWidget {
   const HeroTextAnimation({super.key, required this.tag, required this.child});

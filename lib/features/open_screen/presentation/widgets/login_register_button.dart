@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_hub/core/components/custom_components/hero_text_animation.dart';
+import 'package:movie_hub/core/components/custom_components/custom_components.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';

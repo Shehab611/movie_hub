@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
+part of 'custom_components.dart';
 
 class CustomShimmer extends StatelessWidget {
   const CustomShimmer(

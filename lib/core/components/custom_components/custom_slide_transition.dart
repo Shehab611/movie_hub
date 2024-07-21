@@ -1,5 +1,5 @@
 
-import 'package:flutter/material.dart';
+part of 'custom_components.dart';
 
 class CustomSlideTransition extends StatefulWidget {
   final Widget child;

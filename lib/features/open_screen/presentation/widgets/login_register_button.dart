@@ -13,9 +13,17 @@ class LoginRegisterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Stack(
+    return Stack(
+      key: Key('Stack $key'),
       alignment: Alignment.centerRight,
-      children: [LoginButton(), RegisterButton()],
+      children: [
+        LoginButton(
+          key: Key('Login Button $key'),
+        ),
+        RegisterButton(
+          key: Key('Register Button $key'),
+        )
+      ],
     );
   }
 }

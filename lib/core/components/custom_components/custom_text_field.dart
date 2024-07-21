@@ -2,7 +2,6 @@ part of 'custom_components.dart';
 
 class CustomTextField extends StatefulWidget {
   final String? hintText;
-  final String? titleText;
   final String? labelText;
   final TextAlign textAlign;
   final TextEditingController? controller;
@@ -13,7 +12,6 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final bool isRequiredFill;
   final bool readOnly;
-  final bool filled;
   final void Function()? onTap;
   final void Function()? suffixOnTap;
   final Function(String text)? onChanged;
@@ -36,7 +34,6 @@ class CustomTextField extends StatefulWidget {
     this.hintText,
     this.controller,
     this.focusNode,
-    this.titleText,
     this.nextFocus,
     this.isEnabled = true,
     this.inputType = TextInputType.text,
@@ -53,7 +50,6 @@ class CustomTextField extends StatefulWidget {
     this.isRequiredFill = false,
     this.showLabelText = true,
     this.showBorder = false,
-    this.filled = true,
     this.borderRadius = 8,
     this.prefixHeight = 50,
     this.validator,
@@ -73,99 +69,88 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (widget.titleText != null)
-          RichText(
-              text: TextSpan(
-                  text: widget.titleText ?? "",
-                  //style: AppTextStyles.defaultTextStyle,
-                  children: [
-                if (widget.isRequiredFill)
-                  TextSpan(
-                      text: " *",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: Colors.red))
-              ])),
-        if (widget.titleText != null) const SizedBox(height: 8),
-        TextFormField(
-          maxLines: widget.maxLines,
-          controller: widget.controller,
-          focusNode: widget.focusNode,
-          validator: widget.validator,
-          textAlign: widget.textAlign,
-          readOnly: widget.readOnly,
-          onTap: widget.onTap,
-          textInputAction: widget.inputAction,
-          keyboardType: widget.inputType,
-          textCapitalization: widget.capitalization,
-          enabled: widget.isEnabled,
-          autofocus: false,
-          autofillHints: widget.inputType == TextInputType.name
-              ? [AutofillHints.name]
-              : widget.inputType == TextInputType.emailAddress
-                  ? [AutofillHints.email]
-                  : widget.inputType == TextInputType.phone
-                      ? [AutofillHints.telephoneNumber]
-                      : widget.inputType == TextInputType.streetAddress
-                          ? [AutofillHints.fullStreetAddress]
-                          : widget.inputType == TextInputType.url
-                              ? [AutofillHints.url]
-                              : widget.inputType ==
-                                      TextInputType.visiblePassword
-                                  ? [AutofillHints.password]
-                                  : null,
-          obscureText: widget.isPassword ? _obscureText : false,
-          inputFormatters: widget.inputType == TextInputType.phone
-              ? <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9+]'))
-                ]
-              : [
-                  ...?widget.inputFormatters,
-                  if (widget.inputType != TextInputType.emailAddress &&
-                      !widget.isPassword)
-                    UpperCaseTextFormatter()
-                ],
-          decoration: InputDecoration(
-              labelText: widget.showLabelText ? widget.labelText : null,
-              hintText: widget.hintText,
-              prefixIcon: widget.prefixIcon != null
-                  ? Container(
-                      width: widget.prefixHeight,
-                      padding: const EdgeInsets.all(1),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(widget.borderRadius),
-                              bottomLeft:
-                                  Radius.circular(widget.borderRadius))),
-                      child: Center(child: Icon(widget.prefixIcon!)))
-                  : null,
-              suffixIcon: widget.isPassword
-                  ? IconButton(
-                      icon: Icon(
-                        _obscureText ? Icons.visibility_off : Icons.visibility,
-                      ),
-                      onPressed: _toggle)
-                  : widget.suffixIcon != null
-                      ? SizedBox(
-                          width: 20,
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.all(AppSizes.paddingSizeSmall),
-                            child: Icon(
-                              widget.suffixIcon!,
-                            ),
-                          ))
-                      : null),
-          onFieldSubmitted: (text) => widget.nextFocus != null
-              ? FocusScope.of(context).requestFocus(widget.nextFocus)
+    return TextFormField(
+      key: widget.key,
+      maxLines: widget.maxLines,
+      controller: widget.controller,
+      focusNode: widget.focusNode,
+      validator: widget.validator,
+      textAlign: widget.textAlign,
+      readOnly: widget.readOnly,
+      onTap: widget.onTap,
+      textInputAction: widget.inputAction,
+      keyboardType: widget.inputType,
+      textCapitalization: widget.capitalization,
+      enabled: widget.isEnabled,
+      autofocus: false,
+      autofillHints: widget.inputType == TextInputType.name
+          ? [AutofillHints.name]
+          : widget.inputType == TextInputType.emailAddress
+              ? [AutofillHints.email]
+              : widget.inputType == TextInputType.phone
+                  ? [AutofillHints.telephoneNumber]
+                  : widget.inputType == TextInputType.streetAddress
+                      ? [AutofillHints.fullStreetAddress]
+                      : widget.inputType == TextInputType.url
+                          ? [AutofillHints.url]
+                          : widget.inputType == TextInputType.visiblePassword
+                              ? [AutofillHints.password]
+                              : null,
+      obscureText: widget.isPassword ? _obscureText : false,
+      inputFormatters: widget.inputType == TextInputType.phone
+          ? <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9+]'))
+            ]
+          : [
+              ...?widget.inputFormatters,
+              if (widget.inputType != TextInputType.emailAddress &&
+                  !widget.isPassword)
+                UpperCaseTextFormatter()
+            ],
+      decoration: InputDecoration(
+          labelText: widget.showLabelText ? widget.labelText : null,
+          hintText: widget.hintText,
+          prefixIcon: widget.prefixIcon != null
+              ? Container(
+                  key: Key("Prefix Icon Container Key ${widget.key}"),
+                  width: widget.prefixHeight,
+                  padding: const EdgeInsets.all(1),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(widget.borderRadius),
+                          bottomLeft: Radius.circular(widget.borderRadius))),
+                  child: Center(
+                      key: Key("Prefix Icon Center Key ${widget.key}"),
+                      child: Icon(
+                          key: Key("Prefix Icon Key ${widget.key}"),
+                          widget.prefixIcon!)))
               : null,
-          onChanged: widget.onChanged,
-        ),
-      ],
+          suffixIcon: widget.isPassword
+              ? IconButton(
+                  key: Key("Suffix Icon Button Key ${widget.key}"),
+                  icon: Icon(
+                    key: Key("Suffix Icon Key ${widget.key}"),
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: _toggle)
+              : widget.suffixIcon != null
+                  ? SizedBox(
+                      key: Key("Suffix Icon Sized box Key ${widget.key}"),
+                      width: 20,
+                      child: Padding(
+                        key: Key("Suffix Icon padding Key ${widget.key}"),
+                        padding:
+                            const EdgeInsets.all(AppSizes.paddingSizeSmall),
+                        child: Icon(
+                          key: Key("Suffix Icon Key ${widget.key}"),
+                          widget.suffixIcon!,
+                        ),
+                      ))
+                  : null),
+      onFieldSubmitted: (text) => widget.nextFocus != null
+          ? FocusScope.of(context).requestFocus(widget.nextFocus)
+          : null,
+      onChanged: widget.onChanged,
     );
   }
 

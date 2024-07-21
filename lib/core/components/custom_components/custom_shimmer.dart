@@ -16,6 +16,7 @@ class CustomShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return applyShimmer
         ? Shimmer.fromColors(
+            key: key,
             baseColor:
                 baseColor ?? Theme.of(context).colorScheme.inversePrimary,
             highlightColor:

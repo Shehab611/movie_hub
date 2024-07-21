@@ -9,9 +9,9 @@ part 'app_paths.dart';
 
 abstract final class AppRouter {
   static final Map<String, WidgetBuilder> routes = {
-    AppPathName.kOpenScreen: (BuildContext context) => const OpenScreen(),
-    AppPathName.kLoginScreen: (BuildContext context) => const LoginScreen(),
+    AppPathName.kOpenScreen: (BuildContext context) => const OpenScreen(key: Key('Open Screen')),
+    AppPathName.kLoginScreen: (BuildContext context) => const LoginScreen(key: Key('Login Screen'),),
     AppPathName.kRegisterScreen: (BuildContext context) =>
-        const RegisterScreen(),
+        const RegisterScreen(key: Key('Register Screen')),
   };
 }

@@ -51,10 +51,15 @@ class RegisterButton extends StatelessWidget {
       key: Key('Rich Text $key'),
       text: TextSpan(
         text: AppLocalizations.of(context).translate(AppStrings.noAccount),
-        style: const TextStyle(color: Colors.black),
+        style: TextStyle(
+            color: Theme.of(context).textTheme.bodyLarge!.color,
+            fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize),
         children: [
           TextSpan(
             text: AppLocalizations.of(context).translate(AppStrings.register),
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 AppNavigator.navigateToRegisterScreen(context);

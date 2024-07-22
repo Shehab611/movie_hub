@@ -1,4 +1,4 @@
-part of '../views/login_screen.dart';
+part of '../view/login_screen.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({
@@ -55,6 +55,7 @@ class _LoginBodyState extends State<LoginBody>
           ),
           BigActionButton(
             key: Key("Login button ${widget.key}"),
+            text: AppStrings.login,
           )
         ],
       ),
@@ -89,7 +90,9 @@ class ForgotPasswordButton extends StatelessWidget {
           .9)!,
       child: TextButton(
         key: Key('Text Button $key'),
-        onPressed: () {},
+        onPressed: () {
+          AppNavigator.navigateToForgetPasswordScreen(context);
+        },
         child: Text(
           key: Key('Text $key'),
           AppLocalizations.of(context).translate(AppStrings.forgetPassword),

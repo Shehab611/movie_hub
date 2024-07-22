@@ -7,18 +7,15 @@ class LogoComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      key: Key('Image Semantics $key'),
-      label:
-          AppLocalizations.of(context).translate(AppStrings.logoSemanticLabel),
-      child: HeroAnimation(
-        key: Key("Hero $key"),
-        tag: AppTags.logoTag,
-        child: Image.asset(
-          key: Key("Image $key"),
-          AppImages.logo,
-          height: size.height * 0.22,
-        ),
+    return HeroAnimation(
+      key: Key("Hero $key"),
+      tag: AppTags.logoTag,
+      child: Image.asset(
+        key: Key("Image $key"),
+        semanticLabel: AppLocalizations.of(context)
+            .translate(AppStrings.logoSemanticLabel),
+        AppImages.logo,
+        height: size.height * 0.22,
       ),
     );
   }

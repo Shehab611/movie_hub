@@ -1,11 +1,10 @@
 part of 'shared_components.dart';
 
 class BigActionButton extends StatelessWidget {
-  const BigActionButton({super.key, this.onPressed, this.isLogin = true});
+  const BigActionButton({super.key, this.onPressed, required this.text});
 
   final void Function()? onPressed;
-  final bool isLogin;
-
+  final String text;
   @override
   Widget build(BuildContext context) {
     return CustomShimmer(
@@ -21,8 +20,7 @@ class BigActionButton extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             key: Key('Text $key'),
-            AppLocalizations.of(context)
-                .translate(isLogin ? AppStrings.login : AppStrings.register),
+            AppLocalizations.of(context).translate(text),
           ),
         ),
       ),

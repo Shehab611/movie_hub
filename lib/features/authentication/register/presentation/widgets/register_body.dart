@@ -1,4 +1,4 @@
-part of '../views/register_screen.dart';
+part of '../view/register_screen.dart';
 
 class RegisterBody extends StatefulWidget {
   const RegisterBody({
@@ -67,7 +67,7 @@ class _RegisterBodyState extends State<RegisterBody>
           ),
           BigActionButton(
             key: Key("Register button ${widget.key}"),
-            isLogin: false,
+            text: AppStrings.register,
           )
         ],
       ),

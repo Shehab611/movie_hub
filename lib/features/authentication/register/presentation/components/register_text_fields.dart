@@ -1,4 +1,4 @@
-part of '../views/register_screen.dart';
+part of '../view/register_screen.dart';
 
 class ConfirmPasswordTextField extends StatelessWidget {
   const ConfirmPasswordTextField(

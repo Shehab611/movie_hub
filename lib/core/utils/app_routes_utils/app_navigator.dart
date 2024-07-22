@@ -8,4 +8,8 @@ abstract final class AppNavigator {
   static navigateToRegisterScreen(BuildContext context) {
     Navigator.pushNamed(context, AppPathName.kRegisterScreen);
   }
+
+  static navigateToForgetPasswordScreen(BuildContext context) {
+    Navigator.pushNamed(context, AppPathName.kForgetPasswordScreen);
+  }
 }

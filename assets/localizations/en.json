@@ -1,5 +1,5 @@
 {
-  "welcome": "Welcome",
+  "welcome": "Welcome Back",
   "request_cancelled": "Request to API server was cancelled",
   "connection_time_out": "Connection timeout with API server",
   "receive_time_out": "Receive timeout with API server",
@@ -69,5 +69,7 @@
   "confirm_new_password": "Confirm New Password",
   "logo_semantic_label": "This is the Movie Hub App Logo",
   "open_screen_scaffold_semantic_label": "This is the screen where you to choose to login or register",
-  "login_screen_scaffold_semantic_label": "This is the screen where you suppose to enter your email and password to login and if you don't have an account you can go to register screen and also you can go to forget password screen if you forgets your password"
+  "login_screen_scaffold_semantic_label": "This is the screen where you suppose to enter your email and password to login and if you don't have an account you can go to register screen and also you can go to forget password screen if you forgets your password",
+  "login_with_email_or": "Login With Your Email Or",
+  "google_button_semantic_label": "Sign In With Google Button"
 }

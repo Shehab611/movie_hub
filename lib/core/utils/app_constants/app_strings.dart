@@ -70,6 +70,8 @@ abstract final class AppStrings {
   static const String choose = 'choose';
   static const String changePassword = 'change_password';
   static const String passwordChangedSuccessful = 'password_changed_success';
+  static const String loginWithEmailOr = 'login_with_email_or';
+
 
   //#endregion
 
@@ -77,6 +79,7 @@ abstract final class AppStrings {
   static const String logoSemanticLabel = 'logo_semantic_label';
   static const String openScreenScaffoldSemanticLabel = 'open_screen_scaffold_semantic_label';
   static const String loginScaffoldSemanticLabel = 'login_screen_scaffold_semantic_label';
+  static const String googleButtonSemanticLabel = 'google_button_semantic_label';
 
   //#endregion
 

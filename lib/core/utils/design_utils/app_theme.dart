@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-part 'app_colors.dart';
-
 part 'app_sizes.dart';
 
 part 'app_text_theme.dart';
@@ -25,6 +23,7 @@ final class AppThemeData {
       canvasColor: colorScheme.surface,
       appBarTheme: const AppBarTheme(
         centerTitle: true,
+        scrolledUnderElevation: 0,
       ),
       inputDecorationTheme: InputDecorationTheme(
         alignLabelWithHint: true,

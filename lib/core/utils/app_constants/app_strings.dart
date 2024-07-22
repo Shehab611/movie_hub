@@ -76,6 +76,8 @@ abstract final class AppStrings {
   static const String logoSemanticLabel = 'logo_semantic_label';
   static const String openScreenScaffoldSemanticLabel = 'open_screen_scaffold_semantic_label';
   static const String loginScaffoldSemanticLabel = 'login_screen_scaffold_semantic_label';
+  static const String forgetPasswordScaffoldSemanticLabel =
+      'forget_password_screen_scaffold_semantic_label';
   static const String googleButtonSemanticLabel = 'google_button_semantic_label';
 
   //#endregion

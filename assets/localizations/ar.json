@@ -72,5 +72,6 @@
   "login_screen_scaffold_semantic_label": "هذه هي الشاشة التي من المفترض أن تدخل فيها بريدك الإلكتروني وكلمة المرور لتسجيل الدخول وإذا لم يكن لديك حساب يمكنك الذهاب إلى شاشة التسجيل وأيضا يمكنك الذهاب إلى شاشة نسيان كلمة المرور إذا نسيت كلمة المرور الخاصة بك",
   "login_with_email_or": "تسجيل الدخول باستخدام البريد الإلكتروني الخاص بك أو",
   "sign_up_with_email_or": "تسجيل حساب باستخدام البريد الإلكتروني الخاص بك أو",
-  "google_button_semantic_label": "تسجيل الدخول باستخدام زر جوجل"
+  "google_button_semantic_label": "تسجيل الدخول باستخدام زر جوجل",
+  "forget_password_screen_scaffold_semantic_label": "This is the screen where you can reset your password"
 }

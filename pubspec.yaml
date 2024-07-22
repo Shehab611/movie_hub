@@ -46,6 +46,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   flutter_native_splash: ^2.4.1
   shimmer: ^3.0.0
+  font_awesome_flutter: ^10.7.0
 
 dev_dependencies:
   flutter_test:

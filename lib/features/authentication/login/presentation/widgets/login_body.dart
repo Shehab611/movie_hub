@@ -9,7 +9,8 @@ class LoginBody extends StatefulWidget {
   State<LoginBody> createState() => _LoginBodyState();
 }
 
-class _LoginBodyState extends State<LoginBody> with RestorationMixin,AutomaticKeepAliveClientMixin  {
+class _LoginBodyState extends State<LoginBody>
+    with RestorationMixin, AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -17,27 +18,31 @@ class _LoginBodyState extends State<LoginBody> with RestorationMixin,AutomaticKe
     return Form(
       //key: widget.formKey,
       child: Column(
-        key:  Key("First Column ${widget.key}"),
+        key: Key("First Column ${widget.key}"),
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Semantics(
             key: Key('Image Semantics ${widget.key}'),
-            label:AppLocalizations.of(context)
-                .translate(AppStrings.logoSemanticLabel) ,
+            label: AppLocalizations.of(context)
+                .translate(AppStrings.logoSemanticLabel),
             child: HeroAnimation(
-              key:  Key("Hero ${widget.key}"),
+              key: Key("Hero ${widget.key}"),
               tag: AppTags.loginLogoTag,
               child: Image.asset(
-                key:  Key("Image ${widget.key}"),
+                key: Key("Image ${widget.key}"),
                 AppImages.logo,
-                height: size.height * 0.3,
+                height: size.height * 0.22,
               ),
             ),
           ),
+          GoogleButton(
+            key: Key('Google Button ${widget.key}'),
+          ),
           SizedBox(
-            key:  Key("SizedBox ${widget.key}"),
-            height: size.height * 0.38,
+            key: Key("SizedBox ${widget.key}"),
+            height: size.height * 0.3,
             child: Column(
-              key:  Key("Second Column ${widget.key}"),
+              key: Key("Second Column ${widget.key}"),
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 EmailTextField(
@@ -51,19 +56,18 @@ class _LoginBodyState extends State<LoginBody> with RestorationMixin,AutomaticKe
                   controller: TextEditingController(),
                   focusNode: FocusNode(),
                 ),
-                 ForgotPasswordButton(
-                   key: Key("Forget Password button ${widget.key}"),
-                 ),
-                 LoginButton(
-                   key: Key("Login button ${widget.key}"),
-                 ),
-
+                ForgotPasswordButton(
+                  key: Key("Forget Password button ${widget.key}"),
+                ),
               ],
             ),
           ),
-           RegisterButton(
-             key: Key("Register button ${widget.key}"),
-           ),
+          RegisterButton(
+            key: Key("Register button ${widget.key}"),
+          ),
+          LoginButton(
+            key: Key("Login button ${widget.key}"),
+          ),
         ],
       ),
     );

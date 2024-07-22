@@ -30,12 +30,18 @@ class LoginButton extends StatelessWidget {
     return CustomShimmer(
       key: Key('Custom Shimmer $key'),
       applyShimmer: true,
-      child: ElevatedButton(
-        key: Key('Elevated Button $key'),
-        onPressed: onPressed,
-        child: Text(
-          key: Key('Text $key'),
-          AppLocalizations.of(context).translate(AppStrings.login),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: AppSizes.paddingSizeEight),
+        child: ElevatedButton(
+          key: Key('Elevated Button $key'),
+          style: ElevatedButton.styleFrom(
+            fixedSize: const Size(double.maxFinite, 45),
+          ),
+          onPressed: onPressed,
+          child: Text(
+            key: Key('Text $key'),
+            AppLocalizations.of(context).translate(AppStrings.login),
+          ),
         ),
       ),
     );
@@ -58,7 +64,7 @@ class RegisterButton extends StatelessWidget {
           TextSpan(
             text: AppLocalizations.of(context).translate(AppStrings.register),
             style: TextStyle(
-              color: Theme.of(context).colorScheme.tertiary,
+              color: Theme.of(context).colorScheme.surfaceTint,
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
@@ -67,6 +73,28 @@ class RegisterButton extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class GoogleButton extends StatelessWidget {
+  const GoogleButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      key: Key('Google Login Row $key'),
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(AppLocalizations.of(context)
+            .translate(AppStrings.loginWithEmailOr)),
+        IconButton(
+            key: Key('Icon Button $key'),
+            tooltip: AppLocalizations.of(context)
+                .translate(AppStrings.googleButtonSemanticLabel),
+            onPressed: () {},
+            icon:  Icon(FontAwesomeIcons.google,color:Theme.of(context).colorScheme.surfaceTint ,)),
+      ],
     );
   }
 }

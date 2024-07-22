@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-
+part of 'custom_components.dart';
 class CustomLoader extends StatelessWidget {
   const CustomLoader({super.key});
 

@@ -14,16 +14,40 @@ final class AppThemeData {
   const AppThemeData(this.textTheme);
 
   ThemeData _theme(ColorScheme colorScheme) => ThemeData(
-    useMaterial3: true,
-    brightness: colorScheme.brightness,
-    colorScheme: colorScheme,
-    textTheme: textTheme.apply(
-      bodyColor: colorScheme.onSurface,
-      displayColor: colorScheme.onSurface,
-    ),
-    scaffoldBackgroundColor: colorScheme.surface,
-    canvasColor: colorScheme.surface,
-  );
+      useMaterial3: true,
+      brightness: colorScheme.brightness,
+      colorScheme: colorScheme,
+      textTheme: textTheme.apply(
+        bodyColor: colorScheme.onSurface,
+        displayColor: colorScheme.onSurface,
+      ),
+      scaffoldBackgroundColor: colorScheme.surface,
+      canvasColor: colorScheme.surface,
+      appBarTheme: const AppBarTheme(
+        centerTitle: true,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        alignLabelWithHint: true,
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSizes.paddingSizeEight),
+            borderSide: const BorderSide(
+              width: .75,
+            )),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSizes.paddingSizeEight),
+            borderSide: const BorderSide(
+              width: .75,
+            )),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSizes.paddingSizeEight),
+            borderSide: const BorderSide(
+              width: .75,
+            )),
+        filled: true,
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSizes.paddingSizeDefault,
+            vertical: AppSizes.paddingSizeEight),
+      ));
 
   static ColorScheme _lightScheme() {
     return const ColorScheme(
@@ -79,7 +103,6 @@ final class AppThemeData {
   ThemeData lightTheme() {
     return _theme(_lightScheme());
   }
-
 
   static ColorScheme _darkScheme() {
     return const ColorScheme(

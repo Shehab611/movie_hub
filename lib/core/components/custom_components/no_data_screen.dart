@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
-import 'package:movie_hub/core/utils/design_utils/app_images.dart';
+part of 'custom_components.dart';
 
 
 class NoDataScreen extends StatelessWidget {

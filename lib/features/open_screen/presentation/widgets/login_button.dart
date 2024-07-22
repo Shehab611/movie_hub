@@ -8,6 +8,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     return Container(
+      key: Key('Container $key'),
       height: size.height * 0.053,
       width: size.width * 0.56,
       decoration: BoxDecoration(
@@ -15,14 +16,18 @@ class LoginButton extends StatelessWidget {
               Theme.of(context).colorScheme.tertiaryContainer.withOpacity(0.3),
           borderRadius: BorderRadius.circular(AppSizes.paddingSizeDefault)),
       child: Align(
+          key: Key('Align $key'),
           alignment: Alignment.centerLeft,
           child: TextButton(
+              key: Key('Text Button $key'),
               onPressed: () {
                 AppNavigator.navigateToLoginScreen(context);
               },
-              child: HeroTextAnimation(
+              child: HeroAnimation(
+                key: Key('Hero Text $key'),
                 tag: AppTags.loginTextTag,
                 child: Text(
+                    key: Key('Text $key'),
                     AppLocalizations.of(context).translate(AppStrings.login)),
               ))),
     );

@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+part of 'custom_components.dart';
 
 showCustomSnackBar(String? message, BuildContext context,
     {bool isError = true, bool inTop = false}) {

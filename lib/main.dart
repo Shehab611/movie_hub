@@ -5,12 +5,18 @@ import 'core/utils/app_constants/app_strings.dart';
 import 'core/utils/app_routes_utils/app_router.dart';
 import 'core/utils/design_utils/app_theme.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initServicesLocator();
   await sl<AppLanguage>().fetchLocale();
   await sl<AppTheme>().fetchTheme();
-  runApp(const MyApp());
+  runApp(Semantics(
+    key: const Key('Movie Hub Semantic Key'),
+    label: 'Movie Hub App',
+    child: const MyApp(
+      key: Key('Movie Hub Key'),
+    ),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,18 +36,23 @@ class MyApp extends StatelessWidget {
             listenable: appLanguage,
             builder: (context, child) {
               return MediaQuery(
+                  key: Key('Media Query App $key'),
                   data: MediaQuery.of(context).copyWith(
                     textScaler: const TextScaler.linear(1.15),
                   ),
                   child: MaterialApp(
+                    key: Key('Material App  $key'),
+                    restorationScopeId: AppRestorationIds.rootId,
                     title: 'Movie Hub',
+                    showSemanticsDebugger: true,
                     debugShowCheckedModeBanner: false,
                     routes: AppRouter.routes,
                     theme: appThemeData.lightTheme(),
                     darkTheme: appThemeData.darkTheme(),
-                    themeMode: ThemeMode.light, //appTheme.themeMode
+                    themeMode: ThemeMode.light,
+                    //appTheme.themeMode
                     initialRoute: AppPathName.kOpenScreen,
-                    locale: appLanguage.appLocal,
+                    locale: appLanguage.appLocale,
                     supportedLocales: AppConstants.supportedLocales.values,
                     localizationsDelegates: AppConstants.delegates,
                   ));

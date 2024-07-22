@@ -1,5 +1,4 @@
-
-import 'package:flutter/material.dart';
+part of 'custom_components.dart';
 
 class CustomSlideTransition extends StatefulWidget {
   final Widget child;
@@ -23,7 +22,7 @@ class CustomSlideTransition extends StatefulWidget {
 }
 
 class CustomSlideTransitionState extends State<CustomSlideTransition>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin , AutomaticKeepAliveClientMixin {
   late final AnimationController _controller;
   late final Animation<Offset> _animation;
 
@@ -70,9 +69,14 @@ class CustomSlideTransitionState extends State<CustomSlideTransition>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SlideTransition(
+      key: Key("Slide Transition Key ${widget.key}"),
       position: _animation,
       child: widget.child,
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

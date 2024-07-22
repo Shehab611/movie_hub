@@ -1,4 +1,4 @@
-part of '../views/login_screen.dart';
+part of '../view/login_screen.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({

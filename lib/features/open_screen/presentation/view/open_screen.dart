@@ -35,7 +35,7 @@ class OpenScreen extends StatelessWidget {
                     const Duration(seconds: 1, milliseconds: 500),
                 animationDelayDuration: const Duration(milliseconds: 300),
                 child: HeroAnimation(
-                  tag: AppTags.loginLogoTag,
+                  tag: AppTags.logoTag,
                   key: Key("Hero logo $key"),
                   child: Image.asset(
                     key: Key("Image logo $Key"),

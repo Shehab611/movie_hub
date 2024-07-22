@@ -1,15 +1,10 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
-import 'package:movie_hub/core/usable_functions/validate_check.dart';
+import 'package:movie_hub/core/service_locator.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
-import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
-import 'package:movie_hub/core/utils/design_utils/app_images.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
+import 'package:movie_hub/features/authentication/shared/components/shared_components.dart';
 
-part '../components/login_buttons.dart';
-part '../components/login_text_fields.dart';
 part '../widgets/login_body.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -18,13 +13,13 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      key: Key('Scaffold Semantics  $key'),
+      key: Key('Login Scaffold Semantics $key'),
       label:AppLocalizations.of(context)
-          .translate(AppStrings.openScreenScaffoldSemanticLabel) ,
+          .translate(AppStrings.loginScaffoldSemanticLabel),
       child: Scaffold(
-        key: Key('Scaffold $key'),
+        key: Key('Login Scaffold $key'),
         appBar: AppBar(
-          key: Key('AppBar $key'),
+          key: Key('Login AppBar $key'),
           title: HeroAnimation(
             key:  Key("Hero Login Text $key"),
             tag: AppTags.loginTextTag,

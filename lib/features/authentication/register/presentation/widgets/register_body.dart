@@ -1,15 +1,15 @@
-part of '../views/login_screen.dart';
+part of '../views/register_screen.dart';
 
-class LoginBody extends StatefulWidget {
-  const LoginBody({
+class RegisterBody extends StatefulWidget {
+  const RegisterBody({
     super.key,
   });
 
   @override
-  State<LoginBody> createState() => _LoginBodyState();
+  State<RegisterBody> createState() => _RegisterBodyState();
 }
 
-class _LoginBodyState extends State<LoginBody>
+class _RegisterBodyState extends State<RegisterBody>
     with RestorationMixin, AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
@@ -31,11 +31,20 @@ class _LoginBodyState extends State<LoginBody>
           ),
           SizedBox(
             key: Key("SizedBox ${widget.key}"),
-            height: size.height * 0.3,
+            height: size.height * 0.4,
             child: Column(
               key: Key("Second Column ${widget.key}"),
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                NamesTextField(
+                  key: Key("Names Text Field ${widget.key}"),
+                  controllers: (
+                    firstName: TextEditingController(),
+                    lastName: TextEditingController()
+                  ),
+                  nodes: (firstName: FocusNode(), lastName: FocusNode()),
+                  nextNodes: (firstName: FocusNode(), lastName: FocusNode()),
+                ),
                 EmailTextField(
                   key: Key("Email Text Field ${widget.key}"),
                   controller: TextEditingController(),
@@ -47,17 +56,22 @@ class _LoginBodyState extends State<LoginBody>
                   controller: TextEditingController(),
                   focusNode: FocusNode(),
                 ),
-                ForgotPasswordButton(
-                  key: Key("Forget Password button ${widget.key}"),
-                ),
+                ConfirmPasswordTextField(
+                    key: Key("Confirm Password Text Field ${widget.key}"),
+                    controller: TextEditingController(),
+                    focusNode: FocusNode(),
+                    nextFocusNode: FocusNode(),
+                    password: 'password')
               ],
             ),
           ),
           NavigationButton(
-            key: Key("Register Navigation button ${widget.key}"),
+            toLogin: false,
+            key: Key("Login Navigation button ${widget.key}"),
           ),
           BigActionButton(
-            key: Key("Login button ${widget.key}"),
+            key: Key("Register button ${widget.key}"),
+            isLogin: false,
           )
         ],
       ),
@@ -75,29 +89,4 @@ class _LoginBodyState extends State<LoginBody>
 
   @override
   bool get wantKeepAlive => true;
-}
-
-class ForgotPasswordButton extends StatelessWidget {
-  const ForgotPasswordButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      key: Key('Align $key'),
-      alignment: Alignment.lerp(
-          Alignment.center,
-          (sl.get<AppLanguage>().appLocale == const Locale('en'))
-              ? Alignment.centerRight
-              : Alignment.centerLeft,
-          .9)!,
-      child: TextButton(
-        key: Key('Text Button $key'),
-        onPressed: () {},
-        child: Text(
-          key: Key('Text $key'),
-          AppLocalizations.of(context).translate(AppStrings.forgetPassword),
-        ),
-      ),
-    );
-  }
 }

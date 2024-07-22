@@ -76,5 +76,9 @@
   "forget_password_screen_scaffold_semantic_label": "This is the screen where you can reset your password",
   "forget_password_message": "Don't worry! it happens. Please enter the email address associated with your account",
   "reset_password": "Reset Password",
-  "forget_password_animation_semantic_label": "This is an forget password animation"
+  "forget_password_animation_semantic_label": "This is an forget password animation",
+  "email_verification": "Yeah! Confirm Your Email \uD83C\uDF89",
+  "email_verification_message": "Please check your email for confirmation mail. Click the link in email to verify your account",
+  "email_verification_screen_scaffold_semantic_label": "This the screen where you suppose to verify your account",
+  "email_verification_animation_semantic_label": "This is an email verification animation"
 }

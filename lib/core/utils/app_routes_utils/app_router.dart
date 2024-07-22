@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_hub/features/authentication//register/presentation/view/register_screen.dart';
+import 'package:movie_hub/features/authentication/email_verification/presentation/view/email_verification_screen.dart';
 import 'package:movie_hub/features/authentication/forget_password/view/forget_password_screen.dart';
 import 'package:movie_hub/features/authentication/login/presentation/view/login_screen.dart';
 import 'package:movie_hub/features/open_screen/presentation/view/open_screen.dart';
@@ -18,5 +19,8 @@ abstract final class AppRouter {
         const RegisterScreen(key: Key('Register Screen')),
     AppPathName.kForgetPasswordScreen: (BuildContext context) =>
         const ForgetPasswordScreen(key: Key('ForgetPassword Screen')),
+    AppPathName.kEmailVerificationScreen: (BuildContext context) =>
+        const EmailVerificationScreen(
+            key: Key('EmailVerificationScreen Screen')),
   };
 }

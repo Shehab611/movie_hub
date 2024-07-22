@@ -65,10 +65,6 @@ class _RegisterBodyState extends State<RegisterBody>
               ],
             ),
           ),
-          NavigationButton(
-            toLogin: false,
-            key: Key("Login Navigation button ${widget.key}"),
-          ),
           BigActionButton(
             key: Key("Register button ${widget.key}"),
             isLogin: false,

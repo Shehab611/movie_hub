@@ -53,9 +53,6 @@ class _LoginBodyState extends State<LoginBody>
               ],
             ),
           ),
-          NavigationButton(
-            key: Key("Register Navigation button ${widget.key}"),
-          ),
           BigActionButton(
             key: Key("Login button ${widget.key}"),
           )

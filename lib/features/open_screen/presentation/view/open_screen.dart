@@ -11,35 +11,47 @@ class OpenScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: Key('Scaffold $key'),
-      body: Column(
-        key: Key('Column $key'),
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          CustomSlideTransition(
-            key: Key('CustomSlideTransition Image $key'),
-            isLeftToRight: false,
-            isVertical: true,
-            isTopDown: true,
-            animationDuration: const Duration(seconds: 1, milliseconds: 500),
-            animationDelayDuration: const Duration(milliseconds: 300),
-            child: HeroAnimation(
-              tag: AppTags.loginLogoTag,
-              key: Key("Hero logo $key"),
-              child: Image.asset(
-                key: Key("Image logo $Key"),
-                AppImages.logo,
-                color: sl<AppTheme>().themeMode == ThemeMode.dark
-                    ? Colors.white
-                    : null,
+    return Semantics(
+      key: Key('Scaffold Semantics  $key'),
+      label:AppLocalizations.of(context)
+          .translate(AppStrings.openScreenScaffoldSemanticLabel) ,
+      child: Scaffold(
+        key: Key('Scaffold $key'),
+        body: Column(
+          key: Key('Column $key'),
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Semantics(
+              key: Key('Image Semantics  $key'),
+              image: true,
+              label: AppLocalizations.of(context)
+                  .translate(AppStrings.logoSemanticLabel),
+              child: CustomSlideTransition(
+                key: Key('CustomSlideTransition Image $key'),
+                isLeftToRight: false,
+                isVertical: true,
+                isTopDown: true,
+                animationDuration:
+                    const Duration(seconds: 1, milliseconds: 500),
+                animationDelayDuration: const Duration(milliseconds: 300),
+                child: HeroAnimation(
+                  tag: AppTags.loginLogoTag,
+                  key: Key("Hero logo $key"),
+                  child: Image.asset(
+                    key: Key("Image logo $Key"),
+                    AppImages.logo,
+                    color: sl<AppTheme>().themeMode == ThemeMode.dark
+                        ? Colors.white
+                        : null,
+                  ),
+                ),
               ),
             ),
-          ),
-          LoginRegisterButton(
-            key: Key('Login Register Button $key'),
-          )
-        ],
+            LoginRegisterButton(
+              key: Key('Login Register Button $key'),
+            )
+          ],
+        ),
       ),
     );
   }

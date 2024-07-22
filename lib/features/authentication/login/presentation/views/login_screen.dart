@@ -18,31 +18,36 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: Key('Scaffold $key'),
-      appBar: AppBar(
-        key: Key('AppBar $key'),
-        title: HeroAnimation(
-          key:  Key("Hero Login Text $key"),
-          tag: AppTags.loginTextTag,
-          child: Text(AppLocalizations.of(context).translate(AppStrings.login)),
+    return Semantics(
+      key: Key('Scaffold Semantics  $key'),
+      label:AppLocalizations.of(context)
+          .translate(AppStrings.openScreenScaffoldSemanticLabel) ,
+      child: Scaffold(
+        key: Key('Scaffold $key'),
+        appBar: AppBar(
+          key: Key('AppBar $key'),
+          title: HeroAnimation(
+            key:  Key("Hero Login Text $key"),
+            tag: AppTags.loginTextTag,
+            child: Text(AppLocalizations.of(context).translate(AppStrings.login)),
+          ),
         ),
-      ),
-      body:  CustomScrollView(
-        key: Key("Custom Scroll View login $key"),
-        slivers: [
-          SliverPadding(
-            key: Key("Sliver Padding login $key"),
-            padding: const EdgeInsets.all(AppSizes.paddingSizeDefault),
-            sliver: SliverFillRemaining(
-              key: Key("Sliver fill reaming login $key"),
-              hasScrollBody: false,
-              child: LoginBody(
-                key: Key("Login body $key"),
+        body:  CustomScrollView(
+          key: Key("Custom Scroll View login $key"),
+          slivers: [
+            SliverPadding(
+              key: Key("Sliver Padding login $key"),
+              padding: const EdgeInsets.all(AppSizes.paddingSizeDefault),
+              sliver: SliverFillRemaining(
+                key: Key("Sliver fill reaming login $key"),
+                hasScrollBody: false,
+                child: LoginBody(
+                  key: Key("Login body $key"),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

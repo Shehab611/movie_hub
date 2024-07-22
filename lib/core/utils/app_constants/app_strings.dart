@@ -73,6 +73,13 @@ abstract final class AppStrings {
 
   //#endregion
 
+  //#region Semantics Labels
+  static const String logoSemanticLabel = 'logo_semantic_label';
+  static const String openScreenScaffoldSemanticLabel = 'open_screen_scaffold_semantic_label';
+  static const String loginScaffoldSemanticLabel = 'login_screen_scaffold_semantic_label';
+
+  //#endregion
+
   //#region Screens Name
 
   //#endregion

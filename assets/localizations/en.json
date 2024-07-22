@@ -66,5 +66,8 @@
   "password_changed_success": "Password Changed Successfully",
   "recent_password": "Recent Password",
   "new_password": "New Password",
-  "confirm_new_password": "Confirm New Password"
+  "confirm_new_password": "Confirm New Password",
+  "logo_semantic_label": "This is the Movie Hub App Logo",
+  "open_screen_scaffold_semantic_label": "This is the screen where you to choose to login or register",
+  "login_screen_scaffold_semantic_label": "This is the screen where you suppose to enter your email and password to login and if you don't have an account you can go to register screen and also you can go to forget password screen if you forgets your password"
 }

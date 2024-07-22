@@ -19,13 +19,18 @@ class _LoginBodyState extends State<LoginBody> with RestorationMixin,AutomaticKe
       child: Column(
         key:  Key("First Column ${widget.key}"),
         children: [
-          HeroAnimation(
-            key:  Key("Hero ${widget.key}"),
-            tag: AppTags.loginLogoTag,
-            child: Image.asset(
-              key:  Key("Image ${widget.key}"),
-              AppImages.logo,
-              height: size.height * 0.3,
+          Semantics(
+            key: Key('Image Semantics ${widget.key}'),
+            label:AppLocalizations.of(context)
+                .translate(AppStrings.logoSemanticLabel) ,
+            child: HeroAnimation(
+              key:  Key("Hero ${widget.key}"),
+              tag: AppTags.loginLogoTag,
+              child: Image.asset(
+                key:  Key("Image ${widget.key}"),
+                AppImages.logo,
+                height: size.height * 0.3,
+              ),
             ),
           ),
           SizedBox(

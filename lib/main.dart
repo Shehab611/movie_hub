@@ -10,8 +10,12 @@ void main() async {
   await initServicesLocator();
   await sl<AppLanguage>().fetchLocale();
   await sl<AppTheme>().fetchTheme();
-  runApp(const MyApp(
-    key: Key('Movie Hub Key'),
+  runApp(Semantics(
+    key: const Key('Movie Hub Semantic Key'),
+    label: 'Movie Hub App',
+    child: const MyApp(
+      key: Key('Movie Hub Key'),
+    ),
   ));
 }
 
@@ -40,6 +44,7 @@ class MyApp extends StatelessWidget {
                     key: Key('Material App  $key'),
                     restorationScopeId: AppRestorationIds.rootId,
                     title: 'Movie Hub',
+                    showSemanticsDebugger: true,
                     debugShowCheckedModeBanner: false,
                     routes: AppRouter.routes,
                     theme: appThemeData.lightTheme(),

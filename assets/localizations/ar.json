@@ -73,5 +73,8 @@
   "login_with_email_or": "تسجيل الدخول باستخدام البريد الإلكتروني الخاص بك أو",
   "sign_up_with_email_or": "تسجيل حساب باستخدام البريد الإلكتروني الخاص بك أو",
   "google_button_semantic_label": "تسجيل الدخول باستخدام زر جوجل",
-  "forget_password_screen_scaffold_semantic_label": "This is the screen where you can reset your password"
+  "forget_password_screen_scaffold_semantic_label": "هذه هي الشاشة التي يمكنك من خلالها إعادة تعيين كلمة المرور الخاصة بك",
+  "forget_password_message": "لا تقلق! يحدث ذلك. الرجاء إدخال عنوان البريد الإلكتروني المرتبط بحسابك",
+  "reset_password": "إعادة تعيين كلمة المرور",
+  "forget_password_animation_semantic_label": "هذه الرسوم المتحركة لنسيان كلمة المرور"
 }

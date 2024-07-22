@@ -69,6 +69,8 @@ abstract final class AppStrings {
   static const String passwordChangedSuccessful = 'password_changed_success';
   static const String loginWithEmailOr = 'login_with_email_or';
   static const String signUpWithEmailOr = 'sign_up_with_email_or';
+  static const String forgetPasswordMessage = 'forget_password_message';
+  static const String resetPassword = 'reset_password';
 
   //#endregion
 
@@ -79,6 +81,8 @@ abstract final class AppStrings {
   static const String forgetPasswordScaffoldSemanticLabel =
       'forget_password_screen_scaffold_semantic_label';
   static const String googleButtonSemanticLabel = 'google_button_semantic_label';
+  static const String forgetPasswordAnimationSemanticsLabel =
+      'forget_password_animation_semantic_label';
 
   //#endregion
 

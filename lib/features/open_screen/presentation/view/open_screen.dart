@@ -13,37 +13,32 @@ class OpenScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       key: Key('Scaffold Semantics  $key'),
-      label:AppLocalizations.of(context)
-          .translate(AppStrings.openScreenScaffoldSemanticLabel) ,
+      label: AppLocalizations.of(context)
+          .translate(AppStrings.openScreenScaffoldSemanticLabel),
       child: Scaffold(
         key: Key('Scaffold $key'),
         body: Column(
           key: Key('Column $key'),
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Semantics(
-              key: Key('Image Semantics  $key'),
-              image: true,
-              label: AppLocalizations.of(context)
-                  .translate(AppStrings.logoSemanticLabel),
-              child: CustomSlideTransition(
-                key: Key('CustomSlideTransition Image $key'),
-                isLeftToRight: false,
-                isVertical: true,
-                isTopDown: true,
-                animationDuration:
-                    const Duration(seconds: 1, milliseconds: 500),
-                animationDelayDuration: const Duration(milliseconds: 300),
-                child: HeroAnimation(
-                  tag: AppTags.logoTag,
-                  key: Key("Hero logo $key"),
-                  child: Image.asset(
-                    key: Key("Image logo $Key"),
-                    AppImages.logo,
-                    color: sl<AppTheme>().themeMode == ThemeMode.dark
-                        ? Colors.white
-                        : null,
-                  ),
+            CustomSlideTransition(
+              key: Key('CustomSlideTransition Image $key'),
+              isLeftToRight: false,
+              isVertical: true,
+              isTopDown: true,
+              animationDuration: const Duration(seconds: 1, milliseconds: 500),
+              animationDelayDuration: const Duration(milliseconds: 300),
+              child: HeroAnimation(
+                tag: AppTags.logoTag,
+                key: Key("Hero logo $key"),
+                child: Image.asset(
+                  semanticLabel: AppLocalizations.of(context)
+                      .translate(AppStrings.logoSemanticLabel),
+                  key: Key("Image logo $Key"),
+                  AppImages.logo,
+                  color: sl<AppTheme>().themeMode == ThemeMode.dark
+                      ? Colors.white
+                      : null,
                 ),
               ),
             ),

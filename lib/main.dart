@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
                     key: Key('Material App  $key'),
                     restorationScopeId: AppRestorationIds.rootId,
                     title: 'Movie Hub',
-                    showSemanticsDebugger: true,
+                    // showSemanticsDebugger: true,
                     debugShowCheckedModeBanner: false,
                     routes: AppRouter.routes,
                     theme: appThemeData.lightTheme(),

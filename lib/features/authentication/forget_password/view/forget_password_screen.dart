@@ -18,6 +18,9 @@ class ForgetPasswordScreen extends StatelessWidget {
           .translate(AppStrings.forgetPasswordScaffoldSemanticLabel),
       child: Scaffold(
         key: Key('Forget Password Scaffold $key'),
+        appBar: AppBar(
+          key: Key('Forget Password AppBar $key'),
+        ),
         body: CustomScrollView(
           key: Key("Custom Scroll View Forget Password $key"),
           slivers: [

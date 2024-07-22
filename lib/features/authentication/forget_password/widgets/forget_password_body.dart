@@ -19,10 +19,26 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody>
       //key: widget.formKey,
       child: Column(
         key: Key("First Column ${widget.key}"),
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Lottie.asset(
-            AppAnimatedImages.forgetPasswordAnimation,
+          Semantics(
+            key: Key("Forget Password Animation Semantics ${widget.key}"),
+            label: AppLocalizations.of(context)
+                .translate(AppStrings.forgetPasswordAnimationSemanticsLabel),
+            child: Lottie.asset(
+              key: Key("Forget Password Animation ${widget.key}"),
+              AppAnimatedImages.forgetPasswordAnimation,
+            ),
+          ),
+          Text(
+            key: Key("Forget Password Text ${widget.key}"),
+            AppLocalizations.of(context).translate(AppStrings.forgetPassword),
+          ),
+          Text(
+            key: Key("Forget Password Text Message ${widget.key}"),
+            AppLocalizations.of(context)
+                .translate(AppStrings.forgetPasswordMessage),
           ),
           SizedBox(
             key: Key("SizedBox ${widget.key}"),
@@ -39,7 +55,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody>
                 ),
                 BigActionButton(
                   key: Key("Forget Password button ${widget.key}"),
-                  text: AppStrings.forgetPassword,
+                  text: AppStrings.resetPassword,
                 )
               ],
             ),

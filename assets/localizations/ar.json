@@ -76,5 +76,9 @@
   "forget_password_screen_scaffold_semantic_label": "هذه هي الشاشة التي يمكنك من خلالها إعادة تعيين كلمة المرور الخاصة بك",
   "forget_password_message": "لا تقلق! يحدث ذلك. الرجاء إدخال عنوان البريد الإلكتروني المرتبط بحسابك",
   "reset_password": "إعادة تعيين كلمة المرور",
-  "forget_password_animation_semantic_label": "هذه الرسوم المتحركة لنسيان كلمة المرور"
+  "forget_password_animation_semantic_label": "هذه الرسوم المتحركة لنسيان كلمة المرور",
+  "email_verification": "نعم! قم بتأكيد بريدك الإلكتروني \uD83C\uDF89",
+  "email_verification_message": "يرجى التحقق من بريدك الإلكتروني للحصول على بريد التأكيد. انقر فوق الرابط في البريد الإلكتروني للتحقق من حسابك",
+  "email_verification_screen_scaffold_semantic_label": "هذه هي الشاشة التي من المفترض أن تقوم فيها بالتحقق من حسابك",
+  "email_verification_animation_semantic_label": "هذه صورة متحركة للتحقق من البريد الإلكتروني"
 }

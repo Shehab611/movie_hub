@@ -5,7 +5,6 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //ewfklonwejfuef
     return const Placeholder();
   }
 }

@@ -1,5 +1,5 @@
-import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 
 
 abstract final class ValidateCheck {
@@ -52,8 +52,8 @@ abstract final class ValidateCheck {
     return null;
   }
 
-  static String? validateConfirmPassword(
-      String? value, BuildContext context, String? password) {
+  static String? validateConfirmPassword(String? value, BuildContext context,
+      String password) {
     if (value == null || value.isEmpty) {
       return AppLocalizations.of(context).translate(
        AppStrings.requiredConfirmPassword,

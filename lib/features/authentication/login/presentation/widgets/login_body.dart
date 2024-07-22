@@ -55,6 +55,7 @@ class _LoginBodyState extends State<LoginBody>
           ),
           BigActionButton(
             key: Key("Login button ${widget.key}"),
+            text: AppStrings.login,
           )
         ],
       ),

@@ -67,7 +67,7 @@ class _RegisterBodyState extends State<RegisterBody>
           ),
           BigActionButton(
             key: Key("Register button ${widget.key}"),
-            isLogin: false,
+            text: AppStrings.register,
           )
         ],
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
 import 'package:movie_hub/core/service_locator.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
+import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
 import 'package:movie_hub/features/authentication/shared/components/shared_components.dart';
 

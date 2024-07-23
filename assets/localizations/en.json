@@ -80,5 +80,7 @@
   "email_verification": "Yeah! Confirm Your Email \uD83C\uDF89",
   "email_verification_message": "Please check your email for confirmation mail. Click the link in email to verify your account",
   "email_verification_screen_scaffold_semantic_label": "This the screen where you suppose to verify your account",
-  "email_verification_animation_semantic_label": "This is an email verification animation"
+  "email_verification_animation_semantic_label": "This is an email verification animation",
+  "mail_send_success": "Mail Send Successfully",
+  "resend": "Resend"
 }

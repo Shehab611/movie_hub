@@ -10,8 +10,8 @@ abstract final class Authentication {
   static Future<UserCredential> signInWithEmailAndPassword(
           {required String email, required String password}) async =>
       await sl
-          .get<FirebaseAuth>()
-          .signInWithEmailAndPassword(email: email, password: password);
+          .get<FirebaseAuth>().signInWithEmailAndPassword(
+          email: email.toLowerCase(), password: password);
 
   static Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount? googleSignInAccount =

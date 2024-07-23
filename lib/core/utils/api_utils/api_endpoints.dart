@@ -1,4 +1,4 @@
-part of '../../usable_functions/api_service_helper.dart';
+part of '../../usable_functions/api/api_service_helper.dart';
 
 abstract final class ApiEndPoints {
   //#region Private variables can not be accessed

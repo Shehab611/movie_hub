@@ -15,8 +15,8 @@ abstract final class AppConstants {
   ];
 
   static const Map<String, Locale> _supportedLocales = {
-    'en': Locale('en', ''),
-    'ar': Locale('ar', ''),
+    'en': Locale('en'),
+    'ar': Locale('ar'),
   };
 
   //#endregion

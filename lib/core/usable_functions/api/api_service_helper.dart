@@ -1,18 +1,14 @@
 import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 
-part '../utils/api_utils/api_endpoints.dart';
-
-part '../utils/api_utils/api_error_handler.dart';
-
-part '../utils/api_utils/api_error_response.dart';
-
-part '../utils/api_utils/api_response.dart';
-
-part '../utils/api_utils/api_response_handler.dart';
-
+part '../../utils/api_utils/api_endpoints.dart';
+part '../../utils/api_utils/api_error_handler.dart';
+part '../../utils/api_utils/api_error_response.dart';
+part '../../utils/api_utils/api_response.dart';
+part '../../utils/api_utils/api_response_handler.dart';
 part 'logging_interceptor.dart';
 
 class DioClient {

@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:movie_hub/core/usable_functions/api_service_helper.dart';
+import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;

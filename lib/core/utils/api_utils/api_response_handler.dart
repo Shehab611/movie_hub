@@ -1,4 +1,4 @@
-part of '../../usable_functions/api_service_helper.dart';
+part of '../../usable_functions/api/api_service_helper.dart';
 
 final class ApiResponseHandler {
   final DioClient _dioClient;

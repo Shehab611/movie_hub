@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_hub/core/usable_functions/firebase/firebase_handling.dart';
 
-abstract interface class SocialAppsSignInRemoteDataSource {
+abstract interface class SocialAppsSignInRemoteDataSourceInterface {
   Future<FirebaseAuthResponse> googleSignIn();
 }
 
 final class SocialAppsSignInRemoteDataSourceImpl
-    implements SocialAppsSignInRemoteDataSource {
+    implements SocialAppsSignInRemoteDataSourceInterface {
   @override
   Future<FirebaseAuthResponse> googleSignIn() async {
     try {

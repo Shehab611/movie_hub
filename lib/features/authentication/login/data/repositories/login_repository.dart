@@ -6,7 +6,7 @@ import 'package:movie_hub/features/authentication/login/parameters/login_paramet
 
 final class LoginRepository
     implements LoginRepositoryInterface<LoginParameters> {
-  final LoginRemoteDataSource _dataSource;
+  final LoginRemoteDataSourceInterface _dataSource;
 
   const LoginRepository(this._dataSource);
 

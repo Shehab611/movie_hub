@@ -3,8 +3,9 @@ import 'package:movie_hub/core/utils/api_utils/data_response.dart';
 import 'package:movie_hub/features/authentication/shared/data_sources/social_apps_sign_in_remote_data_source.dart';
 import 'package:movie_hub/features/authentication/shared/domain_repositories/social_apps_sign_in_interface.dart';
 
-final class SocialAppsSignInRepository implements SocialAppsSignInInterface {
-  final SocialAppsSignInRemoteDataSource _dataSource;
+final class SocialAppsSignInRepository
+    implements SocialAppsSignInRepositoryInterface {
+  final SocialAppsSignInRemoteDataSourceInterface _dataSource;
 
   const SocialAppsSignInRepository(this._dataSource);
 

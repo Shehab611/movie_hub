@@ -31,3 +31,7 @@ abstract interface class Parameters extends Equatable {
   @override
   List<Object?> get props => [];
 }
+
+final class NoParameters extends Parameters {
+  const NoParameters();
+}

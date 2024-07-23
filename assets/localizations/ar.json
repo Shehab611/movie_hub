@@ -80,5 +80,7 @@
   "email_verification": "نعم! قم بتأكيد بريدك الإلكتروني \uD83C\uDF89",
   "email_verification_message": "يرجى التحقق من بريدك الإلكتروني للحصول على بريد التأكيد. انقر فوق الرابط في البريد الإلكتروني للتحقق من حسابك",
   "email_verification_screen_scaffold_semantic_label": "هذه هي الشاشة التي من المفترض أن تقوم فيها بالتحقق من حسابك",
-  "email_verification_animation_semantic_label": "هذه صورة متحركة للتحقق من البريد الإلكتروني"
+  "email_verification_animation_semantic_label": "هذه صورة متحركة للتحقق من البريد الإلكتروني",
+  "mail_send_success": "تم إرسال البريد بنجاح",
+  "resend": "إعادة إرسال"
 }

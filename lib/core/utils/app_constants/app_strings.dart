@@ -72,6 +72,7 @@ abstract final class AppStrings {
   static const String emailVerificationMessage = 'email_verification_message';
   static const String emailVerification = 'email_verification';
   static const String resetPassword = 'reset_password';
+  static const String mailSendSuccess = 'mail_send_success';
 
   //#endregion
 

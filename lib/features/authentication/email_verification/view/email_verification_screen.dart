@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:movie_hub/core/components/custom_components/custom_components.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
+import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
 import 'package:movie_hub/core/utils/design_utils/app_images.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
+import 'package:movie_hub/features/authentication/email_verification/view_model_manger/email_verification_cubit.dart';
 
 part '../widgets/curve_painter.dart';
 part '../widgets/email_verification_body.dart';

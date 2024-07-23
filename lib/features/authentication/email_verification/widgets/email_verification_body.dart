@@ -14,39 +14,69 @@ class EmailVerificationBody extends StatelessWidget {
           size: size,
           painter: VerificationBackgroundCurve(),
         ),
-        Padding(
-          key: Key("Email Verification padding $key"),
-          padding: const EdgeInsets.all(AppSizes.paddingSizeDefault),
-          child: Column(
-            key: Key("Column $key"),
-            children: [
-              Text(
-                key: Key("Email Verification Text $key"),
-                AppLocalizations.of(context)
-                    .translate(AppStrings.emailVerification),
-                style: Theme.of(context).textTheme.headlineSmall,
-                textAlign: TextAlign.center,
+        BlocConsumer<EmailVerificationCubit, EmailVerificationState>(
+          listener: (context, state) {
+            if (state is EmailSendSuccessfullyState) {
+              showCustomSnackBar(
+                  AppLocalizations.of(context)
+                      .translate(AppStrings.mailSendSuccess),
+                  context,
+                  inTop: true,
+                  isError: false);
+            } else if (state is EmailVerifiedSuccessfullyState) {
+              AppNavigator.navigateToHomeScreen(context);
+            }
+          },
+          builder: (context, state) {
+            return Padding(
+              key: Key("Email Verification padding $key"),
+              padding: const EdgeInsets.all(AppSizes.paddingSizeDefault),
+              child: Column(
+                key: Key("Column $key"),
+                children: [
+                  Text(
+                    key: Key("Email Verification Text $key"),
+                    AppLocalizations.of(context)
+                        .translate(AppStrings.emailVerification),
+                    style: Theme.of(context).textTheme.headlineSmall,
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    key: Key("Email Verification Text Message $key"),
+                    AppLocalizations.of(context)
+                        .translate(AppStrings.emailVerificationMessage),
+                    style: Theme.of(context).textTheme.titleLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                  const Spacer(),
+                  Semantics(
+                    key: Key("Email Verification Animation Semantics $key"),
+                    label: AppLocalizations.of(context).translate(
+                        AppStrings.emailVerificationAnimationSemanticsLabel),
+                    child: RepaintBoundary(
+                      key: Key(
+                          "Repaint Boundary Email Verification Animation $key"),
+                      child: Lottie.asset(
+                        key: Key("Email Verification Animation $key"),
+                        AppAnimatedImages.verificationAnimation,
+                        height: size.height * .4,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    key: Key("Email Verification Resend Button $key"),
+                    onPressed: () {
+                      context
+                          .read<EmailVerificationCubit>()
+                          .sendEmailVerification();
+                    },
+                    child: Text(AppLocalizations.of(context)
+                        .translate(AppStrings.resend)),
+                  ),
+                ],
               ),
-              Text(
-                key: Key("Email Verification Text Message $key"),
-                AppLocalizations.of(context)
-                    .translate(AppStrings.emailVerificationMessage),
-                style: Theme.of(context).textTheme.titleLarge,
-                textAlign: TextAlign.center,
-              ),
-              const Spacer(),
-              Semantics(
-                key: Key("Email Verification Animation Semantics $key"),
-                label: AppLocalizations.of(context).translate(
-                    AppStrings.emailVerificationAnimationSemanticsLabel),
-                child: Lottie.asset(
-                  key: Key("Email Verification Animation $key"),
-                  AppAnimatedImages.verificationAnimation,
-                  height: size.height * .4,
-                ),
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ],
     );

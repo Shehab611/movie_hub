@@ -5,13 +5,13 @@ class ConfirmPasswordTextField extends StatelessWidget {
       {super.key,
       required this.controller,
       required this.focusNode,
-      required this.nextFocusNode,
-      required this.password});
+      required this.password,
+      this.nextFocusNode});
 
   final TextEditingController controller;
   final FocusNode focusNode;
-  final FocusNode nextFocusNode;
-  final String password;
+  final TextEditingController password;
+  final FocusNode? nextFocusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ConfirmPasswordTextField extends StatelessWidget {
           AppLocalizations.of(context).translate(AppStrings.confirmPassword),
       inputAction: TextInputAction.done,
       validator: (value) =>
-          ValidateCheck.validateConfirmPassword(value, context, password),
+          ValidateCheck.validateConfirmPassword(value, context, password.text),
     );
   }
 }
@@ -72,9 +72,9 @@ class NamesTextField extends StatelessWidget {
             key: Key("Last Name Expanded $key"),
             child: CustomTextField(
               key: Key("Last Name Text Field $key"),
-              controller: controllers.firstName,
-              focusNode: nodes.firstName,
-              nextFocus: nextNodes.firstName,
+              controller: controllers.lastName,
+              focusNode: nodes.lastName,
+              nextFocus: nextNodes.lastName,
               prefixIcon: Icons.person,
               labelText:
                   AppLocalizations.of(context).translate(AppStrings.lastName),

@@ -39,19 +39,8 @@ class LoginScreen extends StatelessWidget {
               sliver: SliverFillRemaining(
                 key: Key("Sliver fill reaming login $key"),
                 hasScrollBody: false,
-                child: BlocConsumer<LoginCubit, LoginState>(
-                  listener: (context, state) {
-                    if (state is GoogleLoginSuccessState) {
-                      AppNavigator.navigateToHomeScreen(context);
-                    }
-                  },
-                  builder: (context, state) {
-                    return LoginBody(
-                      key: Key("Login body $key"),
-                      cubit: BlocProvider.of<LoginCubit>(context),
-                      state: state,
-                    );
-                  },
+                child: LoginBody(
+                  key: Key("Login body $key"),
                 ),
               ),
             ),

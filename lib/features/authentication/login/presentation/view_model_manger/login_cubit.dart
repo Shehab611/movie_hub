@@ -18,19 +18,17 @@ class LoginCubit extends Cubit<LoginState> {
   final LoginUseCase _loginUseCase;
   final GoogleSignInUseCase _googleSignInUseCase;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final RestorableTextEditingController _emailController =
-      RestorableTextEditingController();
-  final RestorableTextEditingController _passwordController =
-      RestorableTextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
 //#endregion
 
   //#region getters
-  RestorableTextEditingController get emailController => _emailController;
+  TextEditingController get emailController => _emailController;
 
-  RestorableTextEditingController get passwordController => _passwordController;
+  TextEditingController get passwordController => _passwordController;
 
   GlobalKey<FormState> get formKey => _formKey;
 

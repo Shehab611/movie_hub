@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 part 'app_constants.dart';
 part 'app_localization.dart';
-part 'app_restoration_scopes.dart';
 part 'hero_tags.dart';
 
 abstract final class AppStrings {

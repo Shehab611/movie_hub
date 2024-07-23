@@ -1,6 +1,6 @@
 import 'package:movie_hub/core/utils/api_utils/data_response.dart';
 
-final class LoginParameters implements Parameters {
+final class LoginParameters extends Parameters {
   final String email;
   final String password;
 

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:encrypt/encrypt.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
@@ -37,7 +38,8 @@ Future<void> initServicesLocator() async {
   sl.registerLazySingleton<AppTheme>(() => AppTheme());
   sl.registerLazySingleton<ApiResponseHandler>(
       () => ApiResponseHandler(sl.get()));
-  sl.registerLazySingleton<EncryptionService>(() => EncryptionService());
+  sl.registerLazySingleton<EncryptionService>(() => EncryptionService(
+      sl.get(), IV.fromBase64(const String.fromEnvironment('IV'))));
   //#endregion
 
   //#region Repos
@@ -95,5 +97,7 @@ Future<void> initServicesLocator() async {
   sl.registerLazySingleton<Dio>(() => Dio());
   sl.registerLazySingleton<LoggingInterceptor>(() => LoggingInterceptor());
   sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+  sl.registerLazySingleton<Encrypter>(() =>
+      Encrypter(AES(Key.fromBase64(const String.fromEnvironment('KEY')))));
   //#endregion
 }

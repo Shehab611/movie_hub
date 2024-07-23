@@ -2,6 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_hub/core/service_locator.dart';
+import 'package:movie_hub/core/usable_functions/encryption.dart';
 import 'package:movie_hub/core/usable_functions/firebase/firebase_handling.dart';
 import 'package:movie_hub/core/usable_functions/validate_check.dart';
 import 'package:movie_hub/core/utils/api_utils/data_response.dart';
@@ -82,12 +84,11 @@ class RegisterCubit extends Cubit<RegisterState> {
           .userCredential
           .user!;
 
-      //todo : fix the encryption problem and isolates
-      /*     String firstName =
-      sl.get<EncryptionService>().encrypt(registerParameters.firstName);
+      String firstName =
+          sl.get<EncryptionService>().encrypt(registerParameters.firstName);
       String lastName =
-      sl.get<EncryptionService>().encrypt(registerParameters.firstName);
-       user.updateDisplayName('$firstName $lastName');*/
+          sl.get<EncryptionService>().encrypt(registerParameters.firstName);
+      user.updateDisplayName('$firstName $lastName');
       await _sendEmailVerification(user);
 
       emit(const RegisterSuccessState());

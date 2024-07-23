@@ -4,8 +4,8 @@ abstract final class Authentication {
   static Future<UserCredential> createUserWithEmailAndPassword(
           {required String email, required String password}) async =>
       await sl
-          .get<FirebaseAuth>()
-          .createUserWithEmailAndPassword(email: email, password: password);
+          .get<FirebaseAuth>().createUserWithEmailAndPassword(
+          email: email.toLowerCase(), password: password);
 
   static Future<UserCredential> signInWithEmailAndPassword(
           {required String email, required String password}) async =>
@@ -25,8 +25,9 @@ abstract final class Authentication {
     return await sl.get<FirebaseAuth>().signInWithCredential(credential);
   }
 
-  static Future<void> resetPassword({required String email}) async =>
-      await sl.get<FirebaseAuth>().sendPasswordResetEmail(email: email);
+  static Future<void> resetPassword({required String email}) async => await sl
+      .get<FirebaseAuth>()
+      .sendPasswordResetEmail(email: email.toLowerCase());
 
   static Future<void> sendEmailVerification({required User user}) =>
       user.sendEmailVerification();

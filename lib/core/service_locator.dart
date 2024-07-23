@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
+import 'package:movie_hub/core/usable_functions/encryption.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
 import 'package:movie_hub/features/authentication/login/data/repositories/login_repository.dart';
@@ -24,6 +25,7 @@ Future<void> initServicesLocator() async {
   sl.registerLazySingleton<AppTheme>(() => AppTheme());
   sl.registerLazySingleton<ApiResponseHandler>(
       () => ApiResponseHandler(sl.get()));
+  sl.registerLazySingleton<EncryptionService>(() => EncryptionService());
   //#endregion
 
   //#region Repos

@@ -6,8 +6,12 @@ final class RegisterParameters implements Parameters {
   final String firstName;
   final String lastName;
 
-  const RegisterParameters(this.firstName, this.lastName,
-      {required this.email, required this.password});
+  const RegisterParameters({
+    required this.email,
+    required this.password,
+    required this.firstName,
+    required this.lastName,
+  });
 
   @override
   List<Object> get props => [email, password, firstName, lastName];

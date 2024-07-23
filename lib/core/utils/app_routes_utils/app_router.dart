@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub/core/service_locator.dart';
 import 'package:movie_hub/features/authentication//register/presentation/view/register_screen.dart';
-import 'package:movie_hub/features/authentication/email_verification/presentation/view/email_verification_screen.dart';
+import 'package:movie_hub/features/authentication/email_verification/view/email_verification_screen.dart';
 import 'package:movie_hub/features/authentication/forget_password/view/forget_password_screen.dart';
 import 'package:movie_hub/features/authentication/login/presentation/view/login_screen.dart';
 import 'package:movie_hub/features/authentication/login/presentation/view_model_manger/login_cubit.dart';

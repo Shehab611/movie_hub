@@ -5,6 +5,10 @@ import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/usable_functions/encryption.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
+import 'package:movie_hub/features/authentication/forget_password/data/repositories/forget_password_repository.dart';
+import 'package:movie_hub/features/authentication/forget_password/data/sources/forget_password_remote_data_source.dart';
+import 'package:movie_hub/features/authentication/forget_password/domain/repositories/forget_password_repository_interface.dart';
+import 'package:movie_hub/features/authentication/forget_password/domain/use_cases/forget_password_use_case.dart';
 import 'package:movie_hub/features/authentication/login/data/repositories/login_repository.dart';
 import 'package:movie_hub/features/authentication/login/data/sources/login_remote_data_source.dart';
 import 'package:movie_hub/features/authentication/login/domain/repositories/login_repository_interface.dart';
@@ -48,6 +52,9 @@ Future<void> initServicesLocator() async {
 
   sl.registerLazySingleton<EmailVerificationRepositoryInterface>(
       () => EmailVerificationRepository(sl.get()));
+
+  sl.registerLazySingleton<ForgetPasswordRepositoryInterface>(
+      () => ForgetPasswordRepository(sl.get()));
   //#endregion
 
   //#region Data Sources
@@ -62,6 +69,9 @@ Future<void> initServicesLocator() async {
 
   sl.registerLazySingleton<EmailVerificationRemoteDataSourceInterface>(
       () => EmailVerificationRemoteDataSourceImpl());
+
+  sl.registerLazySingleton<ForgetPasswordRemoteDataSourceInterface>(
+      () => ForgetPasswordRemoteDataSourceImpl());
   //#endregion
 
   //#region Use Cases
@@ -74,6 +84,9 @@ Future<void> initServicesLocator() async {
 
   sl.registerLazySingleton<EmailVerificationUseCase>(
       () => EmailVerificationUseCase(sl.get()));
+
+  sl.registerLazySingleton<ForgetPasswordUseCase>(
+      () => ForgetPasswordUseCase(sl.get()));
   //#endregion
 
   //#region External

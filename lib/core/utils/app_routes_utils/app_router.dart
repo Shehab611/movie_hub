@@ -4,7 +4,8 @@ import 'package:movie_hub/core/service_locator.dart';
 import 'package:movie_hub/features/authentication//register/presentation/view/register_screen.dart';
 import 'package:movie_hub/features/authentication/email_verification/view/email_verification_screen.dart';
 import 'package:movie_hub/features/authentication/email_verification/view_model_manger/email_verification_cubit.dart';
-import 'package:movie_hub/features/authentication/forget_password/view/forget_password_screen.dart';
+import 'package:movie_hub/features/authentication/forget_password/presentation/view/forget_password_screen.dart';
+import 'package:movie_hub/features/authentication/forget_password/presentation/view_model_manger/forget_password_cubit.dart';
 import 'package:movie_hub/features/authentication/login/presentation/view/login_screen.dart';
 import 'package:movie_hub/features/authentication/login/presentation/view_model_manger/login_cubit.dart';
 import 'package:movie_hub/features/authentication/register/presentation/view_model_manger/register_cubit.dart';
@@ -30,8 +31,10 @@ abstract final class AppRouter {
           create: (context) => RegisterCubit(sl.get(), sl.get(), sl.get()),
           child: const RegisterScreen(key: Key('Register Screen')),
         ),
-    AppPathName.kForgetPasswordScreen: (BuildContext context) =>
-        const ForgetPasswordScreen(key: Key('ForgetPassword Screen')),
+    AppPathName.kForgetPasswordScreen: (BuildContext context) => BlocProvider(
+          create: (context) => ForgetPasswordCubit(sl.get()),
+          child: const ForgetPasswordScreen(key: Key('ForgetPassword Screen')),
+        ),
     AppPathName.kEmailVerificationScreen: (BuildContext context) =>
         BlocProvider(
           key: const Key('Email Verification Screen Bloc Provider'),

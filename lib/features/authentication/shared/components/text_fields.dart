@@ -4,12 +4,12 @@ class EmailTextField extends StatelessWidget {
   const EmailTextField(
       {super.key,
       required this.controller,
-      required this.focusNode,
-      required this.nextFocusNode});
+      this.focusNode,
+      this.nextFocusNode});
 
   final TextEditingController controller;
-  final FocusNode focusNode;
-  final FocusNode nextFocusNode;
+  final FocusNode? focusNode;
+  final FocusNode? nextFocusNode;
 
   @override
   Widget build(BuildContext context) {

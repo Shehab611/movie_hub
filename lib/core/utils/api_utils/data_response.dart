@@ -1,15 +1,33 @@
 import 'package:equatable/equatable.dart';
 
-final class DataResponse<T> extends Equatable {
-  final String? error;
-  final T? data;
-
-  const DataResponse({this.error, this.data});
-
-  const DataResponse.withError(String this.error) : data = null;
-
-  const DataResponse.withSuccess(T this.data) : error = null;
+sealed class DataResponse extends Equatable {
+  const DataResponse();
 
   @override
-  List<Object?> get props => [error, data];
+  List<Object?> get props => [];
+}
+
+final class SuccessDataResponse<T> extends DataResponse {
+  final T data;
+
+  const SuccessDataResponse(this.data);
+
+  @override
+  List<Object?> get props => [data];
+}
+
+final class FailureDataResponse<T> extends DataResponse {
+  final T error;
+
+  const FailureDataResponse(this.error);
+
+  @override
+  List<Object?> get props => [error];
+}
+
+abstract interface class Parameters extends Equatable {
+  const Parameters();
+
+  @override
+  List<Object?> get props => [];
 }

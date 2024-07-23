@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:movie_hub/core/components/custom_components/custom_components.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/design_utils/app_images.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
+import 'package:movie_hub/features/authentication/forget_password/presentation/view_model_manger/forget_password_cubit.dart';
 import 'package:movie_hub/features/authentication/shared/components/shared_components.dart';
 
 part '../widgets/forget_password_body.dart';

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
-import 'package:movie_hub/core/base_use_case/base_use_case.dart';
 import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
@@ -44,8 +43,8 @@ Future<void> initServicesLocator() async {
   //#endregion
 
   //#region Use Cases
-  sl.registerLazySingleton<BaseUseCaseInterface>(() => LoginUseCase(sl.get()));
-  sl.registerLazySingleton<BaseUseCaseInterface>(
+  sl.registerLazySingleton<LoginUseCase>(() => LoginUseCase(sl.get()));
+  sl.registerLazySingleton<GoogleSignInUseCase>(
       () => GoogleSignInUseCase(sl.get()));
   //#endregion
 

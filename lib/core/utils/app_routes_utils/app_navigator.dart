@@ -13,7 +13,12 @@ abstract final class AppNavigator {
     Navigator.pushNamed(context, AppPathName.kForgetPasswordScreen);
   }
 
-  static navigateToEmailVerificationScreenScreen(BuildContext context) {
+  static navigateToEmailVerificationScreen(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context,
+        AppPathName.kEmailVerificationScreen, ModalRoute.withName('/'));
+  }
+
+  static navigateToHomeScreen(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context,
         AppPathName.kEmailVerificationScreen, ModalRoute.withName('/'));
   }

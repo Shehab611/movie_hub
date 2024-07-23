@@ -5,4 +5,5 @@ abstract final class AppPathName {
   static const String kRegisterScreen = 'RegisterScreen';
   static const String kForgetPasswordScreen = 'ForgetPasswordScreen';
   static const String kEmailVerificationScreen = 'EmailVerificationScreen';
+  static const String kHomeScreen = 'HomeScreen';
 }

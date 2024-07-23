@@ -15,9 +15,10 @@ final class LoginRemoteDataSourceImpl
           await Authentication.signInWithEmailAndPassword(
               email: parameters.email, password: parameters.password);
       return SuccessFirebaseAuthResponse(credential);
-    } catch (e) {
-      FirebaseAuthFailure authFailure = FirebaseAuthFailure(e.toString());
-      return FailureFirebaseAuthResponse(authFailure);
+    } on FirebaseAuthException catch (e) {
+      FirebaseAuthFailure authFailure =
+          FirebaseAuthFailure.fromAuthException(e);
+      throw FailureFirebaseAuthResponse(authFailure);
     }
   }
 }

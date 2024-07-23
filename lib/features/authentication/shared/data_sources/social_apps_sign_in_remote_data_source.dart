@@ -14,7 +14,7 @@ final class SocialAppsSignInRemoteDataSourceImpl
       return SuccessFirebaseAuthResponse(credential);
     } catch (e) {
       FirebaseAuthFailure authFailure = FirebaseAuthFailure(e.toString());
-      return FailureFirebaseAuthResponse(authFailure);
+      throw FailureFirebaseAuthResponse(authFailure);
     }
   }
 }

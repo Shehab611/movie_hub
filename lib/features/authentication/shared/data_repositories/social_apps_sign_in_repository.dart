@@ -13,6 +13,7 @@ final class SocialAppsSignInRepository
   Future<DataResponse> googleSignIn() async {
     try {
       final FirebaseAuthResponse data = await _dataSource.googleSignIn();
+
       return SuccessDataResponse<SuccessFirebaseAuthResponse>(
           data as SuccessFirebaseAuthResponse);
     } on FailureFirebaseAuthResponse catch (e) {

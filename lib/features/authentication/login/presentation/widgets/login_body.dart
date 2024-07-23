@@ -3,8 +3,12 @@ part of '../view/login_screen.dart';
 class LoginBody extends StatefulWidget {
   const LoginBody({
     super.key,
+    required this.cubit,
+    required this.state,
   });
 
+  final LoginCubit cubit;
+  final LoginState state;
   @override
   State<LoginBody> createState() => _LoginBodyState();
 }
@@ -16,7 +20,7 @@ class _LoginBodyState extends State<LoginBody>
     super.build(context);
     final Size size = MediaQuery.sizeOf(context);
     return Form(
-      //key: widget.formKey,
+      key: widget.cubit.formKey,
       child: Column(
         key: Key("First Column ${widget.key}"),
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -26,8 +30,10 @@ class _LoginBodyState extends State<LoginBody>
             key: Key("Register ${widget.key}"),
           ),
           GoogleButton(
-            isLogin: false,
             key: Key('Google Button ${widget.key}'),
+            onPressed: () {
+              widget.cubit.googleSignIn(context);
+            },
           ),
           SizedBox(
             key: Key("SizedBox ${widget.key}"),
@@ -38,14 +44,14 @@ class _LoginBodyState extends State<LoginBody>
               children: [
                 EmailTextField(
                   key: Key("Email Text Field ${widget.key}"),
-                  controller: TextEditingController(),
-                  focusNode: FocusNode(),
-                  nextFocusNode: FocusNode(),
+                  controller: widget.cubit.emailController.value,
+                  focusNode: widget.cubit.emailFocusNode,
+                  nextFocusNode: widget.cubit.passwordFocusNode,
                 ),
                 PasswordTextField(
                   key: Key("Password Text Field ${widget.key}"),
-                  controller: TextEditingController(),
-                  focusNode: FocusNode(),
+                  controller: widget.cubit.passwordController.value,
+                  focusNode: widget.cubit.passwordFocusNode,
                 ),
                 ForgotPasswordButton(
                   key: Key("Forget Password button ${widget.key}"),
@@ -56,6 +62,10 @@ class _LoginBodyState extends State<LoginBody>
           BigActionButton(
             key: Key("Login button ${widget.key}"),
             text: AppStrings.login,
+            applyShimmer: widget.state is LoginLoadingState,
+            onPressed: () {
+              widget.cubit.login(context);
+            },
           )
         ],
       ),
@@ -67,8 +77,10 @@ class _LoginBodyState extends State<LoginBody>
 
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
-    //registerForRestoration(widget.emailController, ElementsRestorationIds.loginEmailId);
-    //registerForRestoration(widget.passwordController, ElementsRestorationIds.loginPasswordId);
+    registerForRestoration(
+        widget.cubit.emailController, ElementsRestorationIds.loginEmailId);
+    registerForRestoration(widget.cubit.passwordController,
+        ElementsRestorationIds.loginPasswordId);
   }
 
   @override

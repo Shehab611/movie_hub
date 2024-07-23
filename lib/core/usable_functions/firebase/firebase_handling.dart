@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
+import 'package:movie_hub/core/service_locator.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 
 part 'firebase_auth.dart';

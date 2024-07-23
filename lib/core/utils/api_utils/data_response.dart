@@ -25,7 +25,7 @@ final class FailureDataResponse<T> extends DataResponse {
   List<Object?> get props => [error];
 }
 
-abstract interface class Parameters extends Equatable {
+abstract class Parameters extends Equatable {
   const Parameters();
 
   @override

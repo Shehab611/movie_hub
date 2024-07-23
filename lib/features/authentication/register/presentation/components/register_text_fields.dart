@@ -5,13 +5,13 @@ class ConfirmPasswordTextField extends StatelessWidget {
       {super.key,
       required this.controller,
       required this.focusNode,
-      required this.nextFocusNode,
-      required this.password});
+      required this.password,
+      this.nextFocusNode});
 
   final TextEditingController controller;
   final FocusNode focusNode;
-  final FocusNode nextFocusNode;
   final String password;
+  final FocusNode? nextFocusNode;
 
   @override
   Widget build(BuildContext context) {

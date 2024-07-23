@@ -45,6 +45,7 @@ class PasswordTextField extends StatelessWidget {
       key: key,
       controller: controller,
       focusNode: focusNode,
+      nextFocus: nextFocusNode,
       prefixIcon: Icons.lock,
       labelText: AppLocalizations.of(context).translate(AppStrings.password),
       inputAction: TextInputAction.next,

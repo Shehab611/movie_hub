@@ -1,6 +1,6 @@
 import 'package:movie_hub/core/utils/api_utils/data_response.dart';
 
-final class RegisterParameters implements Parameters {
+final class RegisterParameters extends Parameters {
   final String email;
   final String password;
   final String firstName;

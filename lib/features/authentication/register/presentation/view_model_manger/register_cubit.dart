@@ -11,7 +11,6 @@ import 'package:movie_hub/core/usable_functions/validate_check.dart';
 import 'package:movie_hub/core/utils/api_utils/data_response.dart';
 import 'package:movie_hub/features/authentication/register/domain/use_cases/register_use_case.dart';
 import 'package:movie_hub/features/authentication/register/parameters/register_parameters.dart';
-import 'package:movie_hub/features/authentication/shared/parameters/email_verification_parameters.dart';
 import 'package:movie_hub/features/authentication/shared/use_cases/email_verification_use_case.dart';
 import 'package:movie_hub/features/authentication/shared/use_cases/google_sign_in.dart';
 
@@ -31,12 +30,15 @@ class RegisterCubit extends Cubit<RegisterState> {
       RestorableTextEditingController();
   final RestorableTextEditingController _passwordController =
       RestorableTextEditingController();
+  final RestorableTextEditingController _confirmPasswordController =
+      RestorableTextEditingController();
   final RestorableTextEditingController _firstNameController =
       RestorableTextEditingController();
   final RestorableTextEditingController _lastNameController =
       RestorableTextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
+  final FocusNode _confirmPasswordFocusNode = FocusNode();
   final FocusNode _firstNameFocusNode = FocusNode();
   final FocusNode _lastNameFocusNode = FocusNode();
 
@@ -49,9 +51,14 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   RestorableTextEditingController get passwordController => _passwordController;
 
+  RestorableTextEditingController get confirmPasswordController =>
+      _confirmPasswordController;
+
   FocusNode get emailFocusNode => _emailFocusNode;
 
   FocusNode get passwordFocusNode => _passwordFocusNode;
+
+  FocusNode get confirmPasswordFocusNode => _confirmPasswordFocusNode;
 
   RestorableTextEditingController get firstNameController =>
       _firstNameController;
@@ -93,8 +100,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           return user.updateDisplayName('$firstName $lastName');
         },
       );
-      await Isolate.run(
-          () => _sendEmailVerification(EmailVerificationParameters(user)));
+      await Isolate.run(() => _sendEmailVerification(user));
 
       emit(const RegisterSuccessState());
     }
@@ -115,9 +121,8 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
   }
 
-  Future<void> _sendEmailVerification(
-      EmailVerificationParameters parameters) async {
-    await _emailVerificationUseCase.call(parameters);
+  Future<void> _sendEmailVerification(User user) async {
+    await _emailVerificationUseCase.call(user);
   }
 
 //#endregion

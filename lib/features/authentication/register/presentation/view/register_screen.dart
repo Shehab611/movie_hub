@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
 import 'package:movie_hub/core/usable_functions/validate_check.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
+import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
+import 'package:movie_hub/features/authentication/register/presentation/view_model_manger/register_cubit.dart';
 import 'package:movie_hub/features/authentication/shared/components/shared_components.dart';
 
 part '../components/register_text_fields.dart';
@@ -37,8 +40,21 @@ class RegisterScreen extends StatelessWidget {
               sliver: SliverFillRemaining(
                 key: Key("Sliver fill reaming register $key"),
                 hasScrollBody: false,
-                child: RegisterBody(
-                  key: Key("register body $key"),
+                child: BlocConsumer<RegisterCubit, RegisterState>(
+                  listener: (context, state) {
+                    if (state is RegisterSuccessState) {
+                      AppNavigator.navigateToEmailVerificationScreen(context);
+                    } else if (state is GoogleRegisterSuccessState) {
+                      AppNavigator.navigateToHomeScreen(context);
+                    }
+                  },
+                  builder: (context, state) {
+                    return RegisterBody(
+                      key: Key("register body $key"),
+                      state: state,
+                      cubit: BlocProvider.of<RegisterCubit>(context),
+                    );
+                  },
                 ),
               ),
             ),

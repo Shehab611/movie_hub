@@ -87,7 +87,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       String firstName =
           sl.get<EncryptionService>().encrypt(registerParameters.firstName);
       String lastName =
-          sl.get<EncryptionService>().encrypt(registerParameters.firstName);
+          sl.get<EncryptionService>().encrypt(registerParameters.lastName);
       user.updateDisplayName('$firstName $lastName');
       await _sendEmailVerification(user);
 

@@ -9,11 +9,11 @@ part 'firebase_auth.dart';
 part 'firebase_error_failures.dart';
 
 abstract final class FirebaseResponseChecker {
-  static void checkAuthResponse(
-      FirebaseAuthResponse response, BuildContext context) {
+  static void checkAuthResponse(FailureFirebaseAuthResponse response,
+      BuildContext context) {
     String translatedText =
         AppLocalizations.of(context).translate(AppStrings.authenticationError);
-    switch (response.error!.errorMessage) {
+    switch (response.error.errorMessage) {
       case AppStrings.invalidEmailCode:
         translatedText += AppLocalizations.of(context)
             .translate(AppStrings.invalidEmailError);

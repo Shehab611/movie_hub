@@ -1,11 +1,7 @@
-import 'dart:isolate';
-
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_hub/core/service_locator.dart';
-import 'package:movie_hub/core/usable_functions/encryption.dart';
 import 'package:movie_hub/core/usable_functions/firebase/firebase_handling.dart';
 import 'package:movie_hub/core/usable_functions/validate_check.dart';
 import 'package:movie_hub/core/utils/api_utils/data_response.dart';
@@ -26,16 +22,12 @@ class RegisterCubit extends Cubit<RegisterState> {
   final GoogleSignInUseCase _googleSignInUseCase;
   final EmailVerificationUseCase _emailVerificationUseCase;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final RestorableTextEditingController _emailController =
-      RestorableTextEditingController();
-  final RestorableTextEditingController _passwordController =
-      RestorableTextEditingController();
-  final RestorableTextEditingController _confirmPasswordController =
-      RestorableTextEditingController();
-  final RestorableTextEditingController _firstNameController =
-      RestorableTextEditingController();
-  final RestorableTextEditingController _lastNameController =
-      RestorableTextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
   final FocusNode _confirmPasswordFocusNode = FocusNode();
@@ -47,11 +39,11 @@ class RegisterCubit extends Cubit<RegisterState> {
   //#region getters
   GlobalKey<FormState> get formKey => _formKey;
 
-  RestorableTextEditingController get emailController => _emailController;
+  TextEditingController get emailController => _emailController;
 
-  RestorableTextEditingController get passwordController => _passwordController;
+  TextEditingController get passwordController => _passwordController;
 
-  RestorableTextEditingController get confirmPasswordController =>
+  TextEditingController get confirmPasswordController =>
       _confirmPasswordController;
 
   FocusNode get emailFocusNode => _emailFocusNode;
@@ -60,10 +52,9 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   FocusNode get confirmPasswordFocusNode => _confirmPasswordFocusNode;
 
-  RestorableTextEditingController get firstNameController =>
-      _firstNameController;
+  TextEditingController get firstNameController => _firstNameController;
 
-  RestorableTextEditingController get lastNameController => _lastNameController;
+  TextEditingController get lastNameController => _lastNameController;
 
   FocusNode get firstNameFocusNode => _firstNameFocusNode;
 
@@ -91,16 +82,13 @@ class RegisterCubit extends Cubit<RegisterState> {
           .userCredential
           .user!;
 
-      await Isolate.run(
-        () {
-          String firstName =
-              sl.get<EncryptionService>().encrypt(registerParameters.firstName);
-          String lastName =
-              sl.get<EncryptionService>().encrypt(registerParameters.firstName);
-          return user.updateDisplayName('$firstName $lastName');
-        },
-      );
-      await Isolate.run(() => _sendEmailVerification(user));
+      //todo : fix the encryption problem and isolates
+      /*     String firstName =
+      sl.get<EncryptionService>().encrypt(registerParameters.firstName);
+      String lastName =
+      sl.get<EncryptionService>().encrypt(registerParameters.firstName);
+       user.updateDisplayName('$firstName $lastName');*/
+      await _sendEmailVerification(user);
 
       emit(const RegisterSuccessState());
     }

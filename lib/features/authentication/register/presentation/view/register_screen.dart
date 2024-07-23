@@ -40,21 +40,8 @@ class RegisterScreen extends StatelessWidget {
               sliver: SliverFillRemaining(
                 key: Key("Sliver fill reaming register $key"),
                 hasScrollBody: false,
-                child: BlocConsumer<RegisterCubit, RegisterState>(
-                  listener: (context, state) {
-                    if (state is RegisterSuccessState) {
-                      AppNavigator.navigateToEmailVerificationScreen(context);
-                    } else if (state is GoogleRegisterSuccessState) {
-                      AppNavigator.navigateToHomeScreen(context);
-                    }
-                  },
-                  builder: (context, state) {
-                    return RegisterBody(
-                      key: Key("register body $key"),
-                      state: state,
-                      cubit: BlocProvider.of<RegisterCubit>(context),
-                    );
-                  },
+                child: RegisterBody(
+                  key: Key("register body $key"),
                 ),
               ),
             ),

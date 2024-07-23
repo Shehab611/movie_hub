@@ -13,7 +13,7 @@ final class RegisterRemoteDataSourceImpl
       RegisterParameters parameters) async {
     try {
       UserCredential credential =
-          await Authentication.signInWithEmailAndPassword(
+          await Authentication.createUserWithEmailAndPassword(
               email: parameters.email, password: parameters.password);
       return SuccessFirebaseAuthResponse(credential);
     } on FirebaseAuthException catch (e) {

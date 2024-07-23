@@ -1,90 +1,73 @@
 part of '../view/login_screen.dart';
 
-class LoginBody extends StatefulWidget {
-  const LoginBody({
-    super.key,
-    required this.cubit,
-    required this.state,
-  });
+class LoginBody extends StatelessWidget {
+  const LoginBody({super.key});
 
-  final LoginCubit cubit;
-  final LoginState state;
-  @override
-  State<LoginBody> createState() => _LoginBodyState();
-}
-
-class _LoginBodyState extends State<LoginBody>
-    with RestorationMixin, AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     final Size size = MediaQuery.sizeOf(context);
-    return Form(
-      key: widget.cubit.formKey,
-      child: Column(
-        key: Key("First Column ${widget.key}"),
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          LogoComponent(
-            size: size,
-            key: Key("Register ${widget.key}"),
-          ),
-          GoogleButton(
-            key: Key('Google Button ${widget.key}'),
-            onPressed: () {
-              widget.cubit.googleSignIn(context);
-            },
-          ),
-          SizedBox(
-            key: Key("SizedBox ${widget.key}"),
-            height: size.height * 0.3,
-            child: Column(
-              key: Key("Second Column ${widget.key}"),
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                EmailTextField(
-                  key: Key("Email Text Field ${widget.key}"),
-                  controller: widget.cubit.emailController.value,
-                  focusNode: widget.cubit.emailFocusNode,
-                  nextFocusNode: widget.cubit.passwordFocusNode,
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
+        if (state is GoogleLoginSuccessState) {
+          AppNavigator.navigateToHomeScreen(context);
+        }
+      },
+      builder: (context, state) {
+        final cubit = context.read<LoginCubit>();
+        return Form(
+          key: cubit.formKey,
+          child: Column(
+            key: Key("First Column $key"),
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              LogoComponent(
+                size: size,
+                key: Key("Register $key"),
+              ),
+              GoogleButton(
+                key: Key('Google Button $key'),
+                onPressed: () {
+                  cubit.googleSignIn(context);
+                },
+              ),
+              SizedBox(
+                key: Key("SizedBox $key"),
+                height: size.height * 0.3,
+                child: Column(
+                  key: Key("Second Column $key"),
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    EmailTextField(
+                      key: Key("Email Text Field $key"),
+                      controller: cubit.emailController,
+                      focusNode: cubit.emailFocusNode,
+                      nextFocusNode: cubit.passwordFocusNode,
+                    ),
+                    PasswordTextField(
+                      key: Key("Password Text Field $key"),
+                      controller: cubit.passwordController,
+                      focusNode: cubit.passwordFocusNode,
+                    ),
+                    ForgotPasswordButton(
+                      key: Key("Forget Password button $key"),
+                    ),
+                  ],
                 ),
-                PasswordTextField(
-                  key: Key("Password Text Field ${widget.key}"),
-                  controller: widget.cubit.passwordController.value,
-                  focusNode: widget.cubit.passwordFocusNode,
-                ),
-                ForgotPasswordButton(
-                  key: Key("Forget Password button ${widget.key}"),
-                ),
-              ],
-            ),
+              ),
+              BigActionButton(
+                key: Key("Login button $key"),
+                text: AppStrings.login,
+                applyShimmer: state is LoginLoadingState,
+                onPressed: () {
+                  cubit.login(context);
+                },
+              )
+            ],
           ),
-          BigActionButton(
-            key: Key("Login button ${widget.key}"),
-            text: AppStrings.login,
-            applyShimmer: widget.state is LoginLoadingState,
-            onPressed: () {
-              widget.cubit.login(context);
-            },
-          )
-        ],
-      ),
+        );
+      },
     );
   }
-
-  @override
-  String? get restorationId => AppRestorationIds.loginId;
-
-  @override
-  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
-    registerForRestoration(
-        widget.cubit.emailController, ElementsRestorationIds.loginEmailId);
-    registerForRestoration(widget.cubit.passwordController,
-        ElementsRestorationIds.loginPasswordId);
-  }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class ForgotPasswordButton extends StatelessWidget {

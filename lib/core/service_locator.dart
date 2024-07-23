@@ -4,6 +4,14 @@ import 'package:get_it/get_it.dart';
 import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
+import 'package:movie_hub/features/authentication/login/data/repositories/login_repository.dart';
+import 'package:movie_hub/features/authentication/login/data/sources/login_remote_data_source.dart';
+import 'package:movie_hub/features/authentication/login/domain/repositories/login_repository_interface.dart';
+import 'package:movie_hub/features/authentication/login/domain/use_cases/login_use_case.dart';
+import 'package:movie_hub/features/authentication/shared/data_repositories/social_apps_sign_in_repository.dart';
+import 'package:movie_hub/features/authentication/shared/data_sources/social_apps_sign_in_remote_data_source.dart';
+import 'package:movie_hub/features/authentication/shared/domain_repositories/social_apps_sign_in_interface.dart';
+import 'package:movie_hub/features/authentication/shared/use_cases/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -19,11 +27,25 @@ Future<void> initServicesLocator() async {
   //#endregion
 
   //#region Repos
+  sl.registerLazySingleton<LoginRepositoryInterface>(
+      () => LoginRepository(sl.get()));
 
+  sl.registerLazySingleton<SocialAppsSignInRepositoryInterface>(
+      () => SocialAppsSignInRepository(sl.get()));
   //#endregion
 
   //#region Data Sources
+  sl.registerLazySingleton<LoginRemoteDataSourceInterface>(
+      () => LoginRemoteDataSourceImpl());
 
+  sl.registerLazySingleton<SocialAppsSignInRemoteDataSourceInterface>(
+      () => SocialAppsSignInRemoteDataSourceImpl());
+  //#endregion
+
+  //#region Use Cases
+  sl.registerLazySingleton<LoginUseCase>(() => LoginUseCase(sl.get()));
+  sl.registerLazySingleton<GoogleSignInUseCase>(
+      () => GoogleSignInUseCase(sl.get()));
   //#endregion
 
   //#region External

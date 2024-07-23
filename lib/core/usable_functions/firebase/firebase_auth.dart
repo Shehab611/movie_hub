@@ -10,8 +10,8 @@ abstract final class Authentication {
   static Future<UserCredential> signInWithEmailAndPassword(
           {required String email, required String password}) async =>
       await sl
-          .get<FirebaseAuth>()
-          .signInWithEmailAndPassword(email: email, password: password);
+          .get<FirebaseAuth>().signInWithEmailAndPassword(
+          email: email.toLowerCase(), password: password);
 
   static Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount? googleSignInAccount =
@@ -44,19 +44,18 @@ abstract final class Authentication {
       await sl.get<FirebaseAuth>().currentUser!.delete();
 }
 
-final class FirebaseAuthResponse {
-  final bool success;
-  final FirebaseAuthFailure? error;
+sealed class FirebaseAuthResponse {
+  const FirebaseAuthResponse();
+}
 
-  const FirebaseAuthResponse({this.success = true, this.error});
+final class FailureFirebaseAuthResponse extends FirebaseAuthResponse {
+  final FirebaseAuthFailure error;
 
-  factory FirebaseAuthResponse.withError(FirebaseAuthException exception) {
-    return FirebaseAuthResponse(
-        success: false,
-        error: FirebaseAuthFailure.fromAuthException(exception));
-  }
+  const FailureFirebaseAuthResponse(this.error);
+}
 
-  factory FirebaseAuthResponse.withSuccess() {
-    return const FirebaseAuthResponse();
-  }
+final class SuccessFirebaseAuthResponse extends FirebaseAuthResponse {
+  final UserCredential userCredential;
+
+  const SuccessFirebaseAuthResponse(this.userCredential);
 }

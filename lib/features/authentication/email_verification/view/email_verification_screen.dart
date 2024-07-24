@@ -24,6 +24,13 @@ class EmailVerificationScreen extends StatelessWidget {
         key: Key('Email Verification Scaffold $key'),
         appBar: AppBar(
           key: Key('Email Verification AppBar $key'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  context.read<EmailVerificationCubit>().logout(context);
+                },
+                icon: const Icon(Icons.logout))
+          ],
         ),
         body: EmailVerificationBody(
           key: Key("Email Verification body $key"),

@@ -3,12 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub/core/service_locator.dart';
+import 'package:movie_hub/core/shared/use_cases/logout_use_case.dart';
 import 'package:movie_hub/core/usable_functions/encryption.dart';
 import 'package:movie_hub/core/utils/api_utils/data_response.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
-import 'package:movie_hub/features/drawer/domain/use_cases/drawer_use_case.dart';
 
 part 'drawer_state.dart';
 
@@ -52,7 +52,7 @@ class DrawerCubit extends Cubit<DrawerState> {
 
   final User _user = sl.get<FirebaseAuth>().currentUser!;
 
-  final DrawerUseCase _drawerUseCase;
+  final LogoutUseCase _drawerUseCase;
 
   //#endregion
 

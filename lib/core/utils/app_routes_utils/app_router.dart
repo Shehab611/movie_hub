@@ -39,8 +39,8 @@ abstract final class AppRouter {
     AppPathName.kEmailVerificationScreen: (BuildContext context) =>
         BlocProvider(
           key: const Key('Email Verification Screen Bloc Provider'),
-          create: (context) =>
-              EmailVerificationCubit(sl.get())..checkIfUserEmailVerified(),
+          create: (context) => EmailVerificationCubit(sl.get(), sl.get())
+            ..checkIfUserEmailVerified(),
           child: const EmailVerificationScreen(
               key: Key('Email Verification Screen')),
         ),

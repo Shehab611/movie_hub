@@ -5,6 +5,11 @@ abstract final class AppNavigator {
     Navigator.pushNamed(context, AppPathName.kLoginScreen);
   }
 
+  static navigateToOpenScreen(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(
+        context, AppPathName.kOpenScreen, ModalRoute.withName('/'));
+  }
+
   static navigateToRegisterScreen(BuildContext context) {
     Navigator.pushNamed(context, AppPathName.kRegisterScreen);
   }

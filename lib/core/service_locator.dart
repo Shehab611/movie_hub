@@ -26,6 +26,10 @@ import 'package:movie_hub/features/authentication/shared/domain_repositories/ema
 import 'package:movie_hub/features/authentication/shared/domain_repositories/social_apps_sign_in_interface.dart';
 import 'package:movie_hub/features/authentication/shared/use_cases/email_verification_use_case.dart';
 import 'package:movie_hub/features/authentication/shared/use_cases/google_sign_in.dart';
+import 'package:movie_hub/features/drawer/data/repositories/drawer_repository.dart';
+import 'package:movie_hub/features/drawer/data/sources/drawer_remote_data_source.dart';
+import 'package:movie_hub/features/drawer/domain/repositories/drawer_repository_interface.dart';
+import 'package:movie_hub/features/drawer/domain/use_cases/drawer_use_case.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -57,6 +61,9 @@ Future<void> initServicesLocator() async {
 
   sl.registerLazySingleton<ForgetPasswordRepositoryInterface>(
       () => ForgetPasswordRepository(sl.get()));
+
+  sl.registerLazySingleton<DrawerRepositoryInterface>(
+      () => DrawerRepository(sl.get()));
   //#endregion
 
   //#region Data Sources
@@ -74,6 +81,9 @@ Future<void> initServicesLocator() async {
 
   sl.registerLazySingleton<ForgetPasswordRemoteDataSourceInterface>(
       () => ForgetPasswordRemoteDataSourceImpl());
+
+  sl.registerLazySingleton<DrawerRemoteDataSourceInterface>(
+      () => DrawerRemoteDataSourceImpl());
   //#endregion
 
   //#region Use Cases
@@ -89,6 +99,8 @@ Future<void> initServicesLocator() async {
 
   sl.registerLazySingleton<ForgetPasswordUseCase>(
       () => ForgetPasswordUseCase(sl.get()));
+
+  sl.registerLazySingleton<DrawerUseCase>(() => DrawerUseCase(sl.get()));
   //#endregion
 
   //#region External

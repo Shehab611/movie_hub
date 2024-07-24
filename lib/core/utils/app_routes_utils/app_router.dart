@@ -9,6 +9,7 @@ import 'package:movie_hub/features/authentication/forget_password/presentation/v
 import 'package:movie_hub/features/authentication/login/presentation/view/login_screen.dart';
 import 'package:movie_hub/features/authentication/login/presentation/view_model_manger/login_cubit.dart';
 import 'package:movie_hub/features/authentication/register/presentation/view_model_manger/register_cubit.dart';
+import 'package:movie_hub/features/home/home/presentation/home_screen.dart';
 import 'package:movie_hub/features/open_screen/presentation/view/open_screen.dart';
 
 part 'app_navigator.dart';
@@ -43,6 +44,10 @@ abstract final class AppRouter {
           child: const EmailVerificationScreen(
               key: Key('Email Verification Screen')),
         ),
+    //#endregion
+
+    //#region Home Routes
+    AppPathName.kHomeScreen: (BuildContext context) => const HomeScreen()
     //#endregion
   };
 }

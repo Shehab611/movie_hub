@@ -70,10 +70,13 @@ class CustomSlideTransitionState extends State<CustomSlideTransition>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return SlideTransition(
-      key: Key("Slide Transition Key ${widget.key}"),
-      position: _animation,
-      child: widget.child,
+    return RepaintBoundary(
+      key: Key("Repaint Boundary Key ${widget.key}"),
+      child: SlideTransition(
+        key: Key("Slide Transition Key ${widget.key}"),
+        position: _animation,
+        child: widget.child,
+      ),
     );
   }
 

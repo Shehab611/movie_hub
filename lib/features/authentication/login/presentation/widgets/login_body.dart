@@ -8,7 +8,7 @@ class LoginBody extends StatelessWidget {
     final Size size = MediaQuery.sizeOf(context);
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state is GoogleLoginSuccessState) {
+        if (state is GoogleLoginSuccessState || state is LoginSuccessState) {
           AppNavigator.navigateToHomeScreen(context);
         }
       },

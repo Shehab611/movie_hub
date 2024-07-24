@@ -30,6 +30,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
         sl.get<FirebaseAuth>().currentUser!.reload().then(
           (value) {
             if (sl.get<FirebaseAuth>().currentUser!.emailVerified) {
+              timer.cancel();
               emit(const EmailVerifiedSuccessfullyState());
             }
           },

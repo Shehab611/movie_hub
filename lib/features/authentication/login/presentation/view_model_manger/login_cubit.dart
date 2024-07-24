@@ -1,6 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_hub/core/service_locator.dart';
+import 'package:movie_hub/core/usable_functions/encryption.dart';
 import 'package:movie_hub/core/usable_functions/firebase/firebase_handling.dart';
 import 'package:movie_hub/core/usable_functions/validate_check.dart';
 import 'package:movie_hub/core/utils/api_utils/data_response.dart';
@@ -66,6 +69,14 @@ class LoginCubit extends Cubit<LoginState> {
 
       emit(const GoogleLoginFailedState());
     } else {
+      User user = (response as SuccessDataResponse<SuccessFirebaseAuthResponse>)
+          .data
+          .userCredential
+          .user!;
+      final names = user.displayName!.split(' ');
+      String firstName = sl.get<EncryptionService>().encrypt(names.first);
+      String lastName = sl.get<EncryptionService>().encrypt(names.last);
+      user.updateDisplayName('$firstName $lastName');
       emit(const GoogleLoginSuccessState());
     }
   }

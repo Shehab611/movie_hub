@@ -82,5 +82,10 @@
   "email_verification_screen_scaffold_semantic_label": "This the screen where you suppose to verify your account",
   "email_verification_animation_semantic_label": "This is an email verification animation",
   "mail_send_success": "Mail Send Successfully",
-  "resend": "Resend"
+  "resend": "Resend",
+  "drawer_semantic_label": "This is the drawer of the application that contains your data and the navigation items",
+  "home_screen_semantic_label": "This is the home screen of the application where you suppose to see the list of movies",
+  "home_screen": "Home Screen",
+  "profile_screen": "Profile Screen",
+  "theme": "Theme"
 }

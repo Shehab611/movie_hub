@@ -73,26 +73,34 @@ abstract final class AppStrings {
   static const String emailVerification = 'email_verification';
   static const String resetPassword = 'reset_password';
   static const String mailSendSuccess = 'mail_send_success';
+  static const String theme = 'theme';
 
   //#endregion
 
   //#region Semantics Labels
   static const String logoSemanticLabel = 'logo_semantic_label';
-  static const String openScreenScaffoldSemanticLabel = 'open_screen_scaffold_semantic_label';
-  static const String loginScaffoldSemanticLabel = 'login_screen_scaffold_semantic_label';
+  static const String openScreenScaffoldSemanticLabel =
+      'open_screen_scaffold_semantic_label';
+  static const String loginScaffoldSemanticLabel =
+      'login_screen_scaffold_semantic_label';
   static const String forgetPasswordScaffoldSemanticLabel =
       'forget_password_screen_scaffold_semantic_label';
   static const String emailVerificationScaffoldSemanticLabel =
       'email_verification_screen_scaffold_semantic_label';
-  static const String googleButtonSemanticLabel = 'google_button_semantic_label';
+  static const String googleButtonSemanticLabel =
+      'google_button_semantic_label';
   static const String forgetPasswordAnimationSemanticsLabel =
       'forget_password_animation_semantic_label';
   static const String emailVerificationAnimationSemanticsLabel =
       'email_verification_animation_semantic_label';
+  static const String drawerSemanticLabel = 'drawer_semantic_label';
+  static const String homeScreenSemanticLabel = 'home_screen_semantic_label';
 
   //#endregion
 
   //#region Screens Name
+  static const String homeScreen = 'home_screen';
+  static const String profileScreen = 'profile_screen';
 
   //#endregion
 

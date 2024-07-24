@@ -53,8 +53,7 @@ class MyApp extends StatelessWidget {
                     routes: AppRouter.routes,
                     theme: appThemeData.lightTheme(),
                     darkTheme: appThemeData.darkTheme(),
-                    themeMode: ThemeMode.light,
-                    //appTheme.themeMode
+                    themeMode: appTheme.themeMode,
                     initialRoute: AppPathName.kOpenScreen,
                     locale: appLanguage.appLocale,
                     supportedLocales: AppConstants.supportedLocales.values,

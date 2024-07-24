@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'core/service_locator.dart';
 import 'core/utils/app_constants/app_strings.dart';
 import 'core/utils/app_routes_utils/app_router.dart';
+import 'core/utils/app_routes_utils/route_checker.dart';
 import 'core/utils/design_utils/app_theme.dart';
 import 'firebase_options.dart';
 
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
                     theme: appThemeData.lightTheme(),
                     darkTheme: appThemeData.darkTheme(),
                     themeMode: appTheme.themeMode,
-                    initialRoute: AppPathName.kOpenScreen,
+                    initialRoute: RouteChecker.checkRoutes(),
                     locale: appLanguage.appLocale,
                     supportedLocales: AppConstants.supportedLocales.values,
                     localizationsDelegates: AppConstants.delegates,

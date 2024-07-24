@@ -1,16 +1,17 @@
-import 'package:encrypt/encrypt.dart';
+import 'package:encrypt_decrypt_plus/cipher/cipher.dart';
 
 final class EncryptionService {
-  final Encrypter _encrypter;
-  final IV _iv;
+  final Cipher _cipher;
 
-  const EncryptionService(this._encrypter, this._iv);
+  const EncryptionService(this._cipher);
 
   String encrypt(String text) {
-    return _encrypter.encrypt(text, iv: _iv).base64;
+    return _cipher.xorEncode(text,
+        secretKey: const String.fromEnvironment('KEY'));
   }
 
   String decrypt(String text) {
-    return _encrypter.decrypt64(text, iv: _iv);
+    return _cipher.xorDecode(text,
+        secretKey: const String.fromEnvironment('KEY'));
   }
 }

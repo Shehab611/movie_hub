@@ -37,7 +37,7 @@ abstract final class Authentication {
 
   static Future<void> logOut() async {
     await sl.get<FirebaseAuth>().signOut();
-    if (GoogleSignIn().currentUser != null) {
+    if (await GoogleSignIn().isSignedIn()) {
       await GoogleSignIn().disconnect();
       await GoogleSignIn().signOut();
     }

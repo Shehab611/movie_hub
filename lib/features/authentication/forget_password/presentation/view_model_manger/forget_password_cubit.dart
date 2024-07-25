@@ -10,6 +10,12 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   ForgetPasswordCubit(this._repositoryInterface)
       : super(const ForgetPasswordInitial());
 
+  @override
+  Future<void> close() {
+    _emailController.dispose();
+    return super.close();
+  }
+
   //#region Private Variables
   final ForgetPasswordUseCase _repositoryInterface;
 

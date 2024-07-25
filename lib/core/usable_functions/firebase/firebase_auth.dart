@@ -3,14 +3,12 @@ part of 'firebase_handling.dart';
 abstract final class Authentication {
   static Future<UserCredential> createUserWithEmailAndPassword(
           {required String email, required String password}) async =>
-      await sl
-          .get<FirebaseAuth>().createUserWithEmailAndPassword(
+      await sl.get<FirebaseAuth>().createUserWithEmailAndPassword(
           email: email.toLowerCase(), password: password);
 
   static Future<UserCredential> signInWithEmailAndPassword(
           {required String email, required String password}) async =>
-      await sl
-          .get<FirebaseAuth>().signInWithEmailAndPassword(
+      await sl.get<FirebaseAuth>().signInWithEmailAndPassword(
           email: email.toLowerCase(), password: password);
 
   static Future<UserCredential> signInWithGoogle() async {
@@ -34,6 +32,31 @@ abstract final class Authentication {
 
   static Future<void> changePassword(String password) async =>
       await sl.get<FirebaseAuth>().currentUser!.updatePassword(password);
+
+  static Future<void> changeEmail(String email) async =>
+      await sl.get<FirebaseAuth>().currentUser!.verifyBeforeUpdateEmail(email);
+
+  static Future<void> changeFirstName(String firstName) async {
+    String name =
+        sl.get<FirebaseAuth>().currentUser!.displayName!.split(' ').last;
+    await sl
+        .get<FirebaseAuth>()
+        .currentUser!
+        .updateDisplayName('$firstName $name');
+  }
+
+  static Future<void> changeLastName(String lastName) async {
+    String name =
+        sl.get<FirebaseAuth>().currentUser!.displayName!.split(' ').first;
+    await sl
+        .get<FirebaseAuth>()
+        .currentUser!
+        .updateDisplayName('$name $lastName');
+  }
+
+  static Future<void> changeName(String name) async {
+    await sl.get<FirebaseAuth>().currentUser!.updateDisplayName(name);
+  }
 
   static Future<void> logOut() async {
     await sl.get<FirebaseAuth>().signOut();

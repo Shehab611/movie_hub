@@ -29,6 +29,7 @@ abstract final class AppStrings {
   static const String logoutSuccessful = 'logout_successful';
   static const String accountCreatedSuccess = 'account_created_success';
   static const String userDeleteSuccessfully = 'user_delete_successful';
+  static const String updateUserDataSuccessful = 'update_user_data_successful';
 
   //#endregion
 
@@ -74,6 +75,11 @@ abstract final class AppStrings {
   static const String resetPassword = 'reset_password';
   static const String mailSendSuccess = 'mail_send_success';
   static const String theme = 'theme';
+  static const String deleteAccount = 'delete_account';
+  static const String biometricFailed = 'biometric_failed';
+  static const String sameData = 'same_data';
+  static const String deleteConfirmation = 'delete_confirmation';
+  static const String deleteConfirmationMessage = 'delete_confirmation_message';
 
   //#endregion
 
@@ -95,6 +101,8 @@ abstract final class AppStrings {
       'email_verification_animation_semantic_label';
   static const String drawerSemanticLabel = 'drawer_semantic_label';
   static const String homeScreenSemanticLabel = 'home_screen_semantic_label';
+  static const String profileScreenSemanticLabel =
+      'profile_screen_semantic_label';
 
   //#endregion
 

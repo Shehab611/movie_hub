@@ -53,6 +53,7 @@ dependencies:
   encrypt: ^5.0.0
   pointycastle: ^3.4.0
   encrypt_decrypt_plus: ^1.2.0
+  local_auth: ^2.2.0
 
 dev_dependencies:
   flutter_test:

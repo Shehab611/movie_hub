@@ -28,7 +28,7 @@ class DrawerCubit extends Cubit<DrawerState> {
     (
       icon: Icons.person,
       title: AppStrings.profileScreen,
-      routePath: AppPathName.kHomeScreen
+      routePath: AppPathName.kProfileScreen
     ),
     (
       icon: Icons.logout,

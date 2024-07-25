@@ -17,6 +17,15 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._loginUseCase, this._googleSignInUseCase)
       : super(const LoginInitial());
 
+  @override
+  Future<void> close() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    return super.close();
+  }
+
   //#region Private Variables
   final LoginUseCase _loginUseCase;
   final GoogleSignInUseCase _googleSignInUseCase;
@@ -74,9 +83,11 @@ class LoginCubit extends Cubit<LoginState> {
           .userCredential
           .user!;
       final names = user.displayName!.split(' ');
-      String firstName = sl.get<EncryptionService>().encrypt(names.first);
-      String lastName = sl.get<EncryptionService>().encrypt(names.last);
-      user.updateDisplayName('$firstName $lastName');
+      if (!sl.get<EncryptionService>().isEncrypted(names.first)) {
+        String firstName = sl.get<EncryptionService>().encrypt(names.first);
+        String lastName = sl.get<EncryptionService>().encrypt(names.last);
+        Authentication.changeName('$firstName $lastName');
+      }
       emit(const GoogleLoginSuccessState());
     }
   }

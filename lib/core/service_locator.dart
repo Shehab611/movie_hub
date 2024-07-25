@@ -1,7 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:encrypt_decrypt_plus/cipher/cipher.dart';
+import 'package:encrypt/encrypt.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:movie_hub/core/shared/data_repositories/logout_repository.dart';
+import 'package:movie_hub/core/shared/data_sources/logout_remote_data_source.dart';
+import 'package:movie_hub/core/shared/domain_repositories/logout_repository_interface.dart';
+import 'package:movie_hub/core/shared/use_cases/logout_use_case.dart';
 import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/usable_functions/encryption.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
@@ -26,10 +30,10 @@ import 'package:movie_hub/features/authentication/shared/domain_repositories/ema
 import 'package:movie_hub/features/authentication/shared/domain_repositories/social_apps_sign_in_interface.dart';
 import 'package:movie_hub/features/authentication/shared/use_cases/email_verification_use_case.dart';
 import 'package:movie_hub/features/authentication/shared/use_cases/google_sign_in.dart';
-import 'package:movie_hub/core/shared/data_repositories/logout_repository.dart';
-import 'package:movie_hub/core/shared/data_sources/logout_remote_data_source.dart';
-import 'package:movie_hub/core/shared/domain_repositories/logout_repository_interface.dart';
-import 'package:movie_hub/core/shared/use_cases/logout_use_case.dart';
+import 'package:movie_hub/features/profile/data/repositories/profile_repository.dart';
+import 'package:movie_hub/features/profile/data/sources/profile_remote_data_source.dart';
+import 'package:movie_hub/features/profile/domain/repositories/profile_repository_interface.dart';
+import 'package:movie_hub/features/profile/domain/use_cases/main_use_case.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -42,8 +46,8 @@ Future<void> initServicesLocator() async {
   sl.registerLazySingleton<AppTheme>(() => AppTheme());
   sl.registerLazySingleton<ApiResponseHandler>(
       () => ApiResponseHandler(sl.get()));
-  sl.registerLazySingleton<EncryptionService>(
-      () => EncryptionService(Cipher()));
+  sl.registerLazySingleton<EncryptionService>(() => EncryptionService(
+      sl.get(), IV.fromBase64(const String.fromEnvironment('IV'))));
   //#endregion
 
   //#region Repos
@@ -64,6 +68,9 @@ Future<void> initServicesLocator() async {
 
   sl.registerLazySingleton<LogoutRepositoryInterface>(
       () => LogoutRepository(sl.get()));
+
+  sl.registerLazySingleton<ProfileRepositoryInterface<String>>(
+      () => ProfileRepository(sl.get()));
   //#endregion
 
   //#region Data Sources
@@ -84,6 +91,9 @@ Future<void> initServicesLocator() async {
 
   sl.registerLazySingleton<LogoutRemoteDataSourceInterface>(
       () => LogoutRemoteDataSourceImpl());
+
+  sl.registerLazySingleton<ProfileRemoteDataSourceInterface>(
+      () => ProfileRemoteDataSourceImpl());
   //#endregion
 
   //#region Use Cases
@@ -101,6 +111,22 @@ Future<void> initServicesLocator() async {
       () => ForgetPasswordUseCase(sl.get()));
 
   sl.registerLazySingleton<LogoutUseCase>(() => LogoutUseCase(sl.get()));
+
+  //#region Profile UseCases
+
+  sl.registerLazySingleton<ChangeFirstNameUseCase>(
+      () => ChangeFirstNameUseCase(sl.get()));
+
+  sl.registerLazySingleton<ChangeLastNameUseCase>(
+      () => ChangeLastNameUseCase(sl.get()));
+
+  sl.registerLazySingleton<ChangePasswordUseCase>(
+      () => ChangePasswordUseCase(sl.get()));
+
+  sl.registerLazySingleton<ProfileMainUseCases>(
+      () => ProfileMainUseCases(sl.get(), sl.get(), sl.get()));
+  //#endregion
+
   //#endregion
 
   //#region External
@@ -109,5 +135,7 @@ Future<void> initServicesLocator() async {
   sl.registerLazySingleton<Dio>(() => Dio());
   sl.registerLazySingleton<LoggingInterceptor>(() => LoggingInterceptor());
   sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+  sl.registerLazySingleton<Encrypter>(() =>
+      Encrypter(AES(Key.fromBase64(const String.fromEnvironment('KEY')))));
   //#endregion
 }

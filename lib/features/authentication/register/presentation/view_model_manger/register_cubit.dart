@@ -19,6 +19,21 @@ class RegisterCubit extends Cubit<RegisterState> {
       this._emailVerificationUseCase)
       : super(const RegisterInitial());
 
+  @override
+  Future<void> close() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _confirmPasswordFocusNode.dispose();
+    _firstNameFocusNode.dispose();
+    _lastNameFocusNode.dispose();
+    return super.close();
+  }
+
   //#region Private Variables
   final RegisterUseCase _registerUseCase;
   final GoogleSignInUseCase _googleSignInUseCase;
@@ -88,7 +103,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           sl.get<EncryptionService>().encrypt(registerParameters.firstName);
       String lastName =
           sl.get<EncryptionService>().encrypt(registerParameters.lastName);
-      user.updateDisplayName('$firstName $lastName');
+      Authentication.changeName('$firstName $lastName');
       await _sendEmailVerification(user);
 
       emit(const RegisterSuccessState());
@@ -111,10 +126,11 @@ class RegisterCubit extends Cubit<RegisterState> {
           .userCredential
           .user!;
       final names = user.displayName!.split(' ');
-      String firstName = sl.get<EncryptionService>().encrypt(names.first);
-      String lastName = sl.get<EncryptionService>().encrypt(names.last);
-      user.updateDisplayName('$firstName $lastName');
-
+      if (!sl.get<EncryptionService>().isEncrypted(names.first)) {
+        String firstName = sl.get<EncryptionService>().encrypt(names.first);
+        String lastName = sl.get<EncryptionService>().encrypt(names.last);
+        Authentication.changeName('$firstName $lastName');
+      }
       emit(const GoogleRegisterSuccessState());
     }
   }

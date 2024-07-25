@@ -9,6 +9,7 @@ class NowPlayingSection extends StatelessWidget {
     return SliverToBoxAdapter(
       key: Key('Now Playing $key'),
       child: CarouselSlider(
+        key: Key('Carousel Slider $key'),
         options: CarouselOptions(
           height: size.height * 0.48,
           enlargeCenterPage: true,
@@ -18,6 +19,7 @@ class NowPlayingSection extends StatelessWidget {
         items: List.generate(
           5,
           (index) => const CustomShimmer(
+              // key: ValueKey(), the model
               applyShimmer: false,
               child: NowPlayingWidget(
                   imagePath:

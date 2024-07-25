@@ -97,5 +97,7 @@
   "delete_confirmation_message": "لا يمكنك التراجع عن هذا الإجراء",
   "popular": "شائع",
   "top_rated": "أعلى التقييمات",
-  "upcoming": "القادمة"
+  "upcoming": "القادمة",
+  "similar": "مشابه",
+  "release_date": "تاريخ الافراج عنه"
 }

@@ -7,6 +7,23 @@ part 'profile_state.dart';
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(const ProfileInitial());
 
+  @override
+  Future<void> close() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _currentPasswordController.dispose();
+    _newPasswordController.dispose();
+    _confirmPasswordController.dispose();
+    _firstNameNode.dispose();
+    _lastNameNode.dispose();
+    _emailNode.dispose();
+    _currentPasswordNode.dispose();
+    _newPasswordNode.dispose();
+    _confirmPasswordNode.dispose();
+    return super.close();
+  }
+
   //#region Private Variables
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();

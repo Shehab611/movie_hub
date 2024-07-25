@@ -17,6 +17,15 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._loginUseCase, this._googleSignInUseCase)
       : super(const LoginInitial());
 
+  @override
+  Future<void> close() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    return super.close();
+  }
+
   //#region Private Variables
   final LoginUseCase _loginUseCase;
   final GoogleSignInUseCase _googleSignInUseCase;

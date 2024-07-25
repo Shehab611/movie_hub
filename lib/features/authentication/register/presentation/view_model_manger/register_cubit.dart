@@ -19,6 +19,21 @@ class RegisterCubit extends Cubit<RegisterState> {
       this._emailVerificationUseCase)
       : super(const RegisterInitial());
 
+  @override
+  Future<void> close() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _confirmPasswordFocusNode.dispose();
+    _firstNameFocusNode.dispose();
+    _lastNameFocusNode.dispose();
+    return super.close();
+  }
+
   //#region Private Variables
   final RegisterUseCase _registerUseCase;
   final GoogleSignInUseCase _googleSignInUseCase;

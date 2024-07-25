@@ -74,6 +74,7 @@ abstract final class AppStrings {
   static const String resetPassword = 'reset_password';
   static const String mailSendSuccess = 'mail_send_success';
   static const String theme = 'theme';
+  static const String deleteAccount = 'delete_account';
 
   //#endregion
 

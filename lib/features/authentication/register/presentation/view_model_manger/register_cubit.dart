@@ -103,7 +103,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           sl.get<EncryptionService>().encrypt(registerParameters.firstName);
       String lastName =
           sl.get<EncryptionService>().encrypt(registerParameters.lastName);
-      user.updateDisplayName('$firstName $lastName');
+      Authentication.changeName('$firstName $lastName');
       await _sendEmailVerification(user);
 
       emit(const RegisterSuccessState());
@@ -129,7 +129,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       if (!sl.get<EncryptionService>().isEncrypted(names.first)) {
         String firstName = sl.get<EncryptionService>().encrypt(names.first);
         String lastName = sl.get<EncryptionService>().encrypt(names.last);
-        user.updateDisplayName('$firstName $lastName');
+        Authentication.changeName('$firstName $lastName');
       }
       emit(const GoogleRegisterSuccessState());
     }

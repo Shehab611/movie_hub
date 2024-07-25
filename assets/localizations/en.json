@@ -88,5 +88,6 @@
   "home_screen": "Home Screen",
   "profile_screen": "Profile Screen",
   "theme": "Theme",
-  "profile_screen_semantic_label": "This is the screen where you could edit your profile"
+  "profile_screen_semantic_label": "This is the screen where you could edit your profile",
+  "delete_account": "Delete Account"
 }

@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:local_auth/local_auth.dart';
 
 part 'profile_state.dart';
 
@@ -95,13 +96,107 @@ class ProfileCubit extends Cubit<ProfileState> {
 
 //#endregion
 
+  //#region Private Methods
+  Future<bool> _authenticateWithBiometrics() async {
+    final LocalAuthentication auth = LocalAuthentication();
+    return await auth.authenticate(
+      localizedReason: 'Authenticate with Fingerprint or Face ID',
+      options: const AuthenticationOptions(
+        stickyAuth: true,
+      ),
+    );
+  }
+
+  Future<void> _updateUserData(
+      BuildContext context, Map<String, dynamic> updatedData) async {
+    emit(const ProfileUpdateUserDataLoadingState());
+    _changeEditButtonVisibility(updatedData, false);
+
+    if (true) {
+      _changeEditButtonVisibility(updatedData, true);
+      emit(const ProfileUpdateUserDataSuccessfulState());
+    } else {
+      if (context.mounted) {
+        _changeEditButtonVisibility(updatedData, true);
+        emit(ProfileUpdateUserDataFailedState(''));
+      }
+    }
+  }
+
+  void _changeEditButtonVisibility(
+      Map<String, dynamic> updatedData, bool valueToUpdate) {
+    if (updatedData.keys.contains('first_name')) {
+      firstNameButtonEditButtonVisible = valueToUpdate;
+    } else if (updatedData.keys.contains('last_name')) {
+      lastNameButtonEditButtonVisible = valueToUpdate;
+    } else {
+      emailButtonEditButtonVisible = valueToUpdate;
+    }
+  }
+
+  void _updateUserFirstName(BuildContext context) {
+    Map<String, dynamic> data = {'first_name': _firstNameController.text};
+    _updateUserData(context, data);
+  }
+
+  void _updateUserLastName(BuildContext context) {
+    Map<String, dynamic> data = {'last_name': _lastNameController.text};
+    _updateUserData(context, data);
+  }
+
+  void _updateUserEmail(BuildContext context) {
+    Map<String, dynamic> data = {'email': _emailController.text};
+    _updateUserData(context, data);
+  }
+
+  void _deleteAccount() async {}
+
+  void _changePassword(BuildContext context) async {}
+
+  //#endregion
+
   //#region Public Methods
-  void firstNameButtonPressed(BuildContext context) {}
+  void firstNameButtonPressed(BuildContext context) {
+    if (firstNameIcon == _editIcon) {
+      firstNameIcon = _confirmIcon;
+      firstNameFieldEnabled = true;
+      emit(const ProfileChangeFirstnameVariables());
+    } else {
+      firstNameIcon = _editIcon;
+      firstNameFieldEnabled = false;
+      emit(const ProfileChangeFirstnameVariables());
+      //_updateUserEmail(context);
+    }
+  }
 
-  void lastNameButtonPressed(BuildContext context) {}
+  void lastNameButtonPressed(BuildContext context) {
+    if (lastNameIcon == _editIcon) {
+      lastNameIcon = _confirmIcon;
+      lastNameFieldEnabled = true;
+      emit(const ProfileChangeLastNameVariables());
+    } else {
+      lastNameIcon = _editIcon;
+      lastNameFieldEnabled = false;
+      emit(const ProfileChangeLastNameVariables());
+      //_updateUserEmail(context);
+    }
+  }
 
-  void emailButtonPressed(BuildContext context) {}
+  void emailButtonPressed(BuildContext context) {
+    if (emailIcon == _editIcon) {
+      emailIcon = _confirmIcon;
+      emailFieldEnabled = true;
+      emit(const ProfileChangeEmailVariables());
+    } else {
+      emailIcon = _editIcon;
+      emailFieldEnabled = false;
+      emit(const ProfileChangeEmailVariables());
+      //_updateUserEmail(context);
+    }
+  }
 
   void changePassword() {}
+
+  void deleteAccount() {}
 //#endregion
 }

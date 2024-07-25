@@ -88,6 +88,6 @@
   "home_screen": "الشاشة الرئيسية",
   "profile_screen": "شاشة الملف الشخصي",
   "theme": "الوضع",
-  "profile_screen_semantic_label": "هذه هي الشاشة التي يمكنك من خلالها تعديل ملف التعريف الخاص بك"
-
+  "profile_screen_semantic_label": "هذه هي الشاشة التي يمكنك من خلالها تعديل ملف التعريف الخاص بك",
+  "delete_account": "حذف الحساب"
 }

@@ -8,38 +8,42 @@ class ProfileBody extends StatelessWidget {
     final cubit = context.read<ProfileCubit>();
     return Form(
         key: cubit.profileBodyFormKey,
-        child: Column(
-          key: Key("First Column $key"),
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            EmailTextField(
-              key: key,
-              cubit: cubit,
-            ),
-            FirstNameTextField(
-              key: key,
-              cubit: cubit,
-            ),
-            LastNameTextField(
-              key: key,
-              cubit: cubit,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) {
-                      return RepaintBoundary(
-                          child: ChangePasswordSheet(
-                        cubit: cubit,
-                      ));
+        child: BlocBuilder<ProfileCubit, ProfileState>(
+          builder: (context, state) {
+            return Column(
+              key: Key("First Column $key"),
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                EmailTextField(
+                  key: key,
+                  cubit: cubit,
+                ),
+                FirstNameTextField(
+                  key: key,
+                  cubit: cubit,
+                ),
+                LastNameTextField(
+                  key: key,
+                  cubit: cubit,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) {
+                          return RepaintBoundary(
+                              child: ChangePasswordSheet(
+                            cubit: cubit,
+                          ));
+                        },
+                      );
                     },
-                  );
-                },
-                child: Text(AppLocalizations.of(context)
-                    .translate(AppStrings.changePassword)))
-          ],
+                    child: Text(AppLocalizations.of(context)
+                        .translate(AppStrings.changePassword)))
+              ],
+            );
+          },
         ));
   }
 }

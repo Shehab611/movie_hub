@@ -28,6 +28,16 @@ class ProfileScreen extends StatelessWidget {
           title: Text(
             AppLocalizations.of(context).translate(AppStrings.profileScreen),
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                context.read<ProfileCubit>().deleteAccount();
+              },
+              icon: const Icon(Icons.delete_forever_outlined),
+              tooltip: AppLocalizations.of(context)
+                  .translate(AppStrings.deleteAccount),
+            )
+          ],
         ),
         drawer: AppDrawer(
           key: Key("App Drawer in $key"),

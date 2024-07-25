@@ -54,6 +54,8 @@ dependencies:
   pointycastle: ^3.4.0
   encrypt_decrypt_plus: ^1.2.0
   local_auth: ^2.2.0
+  carousel_slider: ^4.2.1
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   flutter_test:

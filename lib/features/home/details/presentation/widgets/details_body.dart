@@ -12,7 +12,7 @@ class DetailsBody extends StatelessWidget {
           child: ImageWidget(
             imagePath:
                 'https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg',
-            height: size.height * .25,
+            height: size.height * .4,
             width: double.infinity,
             fit: BoxFit.fitWidth,
             clipBehavior: Clip.hardEdge,
@@ -23,7 +23,18 @@ class DetailsBody extends StatelessWidget {
         const SliverPadding(
           padding: EdgeInsets.all(AppSizes.paddingSizeDefault),
           sliver: SliverToBoxAdapter(
-            child: Text('Movie Name'),
+            child: AddShareWidget(),
+          ),
+        ),
+        const SliverPadding(
+          padding: EdgeInsets.all(AppSizes.paddingSizeDefault),
+          sliver: SliverToBoxAdapter(
+            child: Text(
+              'Movie Name',
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
         const SliverPadding(
@@ -35,15 +46,13 @@ class DetailsBody extends StatelessWidget {
         const SliverPadding(
           padding: EdgeInsets.all(AppSizes.paddingSizeDefault),
           sliver: SliverToBoxAdapter(
-            child: Text('Movie Over View'),
+            child: Text(
+              'Movie Over View',
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
-        const SliverPadding(
-          padding: EdgeInsets.all(AppSizes.paddingSizeDefault),
-          sliver: SliverFillRemaining(
-            child: MoviesSection(title: AppStrings.similar),
-          ),
-        ),
+        const MoviesSection(title: AppStrings.similar)
       ],
     );
   }

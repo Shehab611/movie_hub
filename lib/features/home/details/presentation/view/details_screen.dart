@@ -5,6 +5,7 @@ import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
 import 'package:movie_hub/features/home/shared/sections/movies_section.dart';
 import 'package:movie_hub/features/home/shared/widgets/image_widget.dart';
 
+part '../widgets/add_share_widget.dart';
 part '../widgets/date_language_widget.dart';
 part '../widgets/details_body.dart';
 
@@ -18,9 +19,12 @@ class DetailsScreen extends StatelessWidget {
         Navigator.popUntil(
             context, ModalRoute.withName(AppPathName.kHomeScreen));
       },
-      child: Scaffold(
-        key: Key('Details Scaffold $key'),
-        body: const DetailsBody(),
+      child: SafeArea(
+        top: true,
+        child: Scaffold(
+          key: Key('Details Scaffold $key'),
+          body: const DetailsBody(),
+        ),
       ),
     );
   }

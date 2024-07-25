@@ -10,12 +10,12 @@ class DateLanguageWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppSizes.paddingSizeDefault),
-      height: MediaQuery.sizeOf(context).height * 0.1,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(AppSizes.paddingSizeLarge),
-        ),
-      ),
+      height: MediaQuery.sizeOf(context).height * 0.12,
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(
+            Radius.circular(AppSizes.paddingSizeLarge),
+          ),
+          color: Theme.of(context).colorScheme.secondaryContainer),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [

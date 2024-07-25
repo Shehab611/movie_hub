@@ -6,7 +6,14 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const CustomScrollView(
-      slivers: [NowPlayingSection()],
+      slivers: [
+        NowPlayingSection(),
+        MoviesSection(
+          title: AppStrings.popular,
+        ),
+        MoviesSection(title: AppStrings.topRated),
+        MoviesSection(title: AppStrings.upComing),
+      ],
     );
   }
 }

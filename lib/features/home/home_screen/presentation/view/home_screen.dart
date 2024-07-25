@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/features/drawer/presentation/view/app_drawer.dart';
+import 'package:movie_hub/features/home/shared/sections/movies_section.dart';
 import 'package:movie_hub/features/home/shared/widgets/image_widget.dart';
 
 part '../components/now_playing_item.dart';

@@ -24,17 +24,18 @@ abstract final class AppNavigator {
   }
 
   static navigateToHomeScreen(BuildContext context) {
-    Navigator.pushNamedAndRemoveUntil(context, AppPathName.kHomeScreen, ModalRoute.withName('/'));
+    Navigator.pushNamedAndRemoveUntil(
+        context, AppPathName.kHomeScreen, ModalRoute.withName('/'));
   }
 
-  static navigateToScreen(BuildContext context, String routePath) {
+  static navigateToScreen(BuildContext context, String routePath,
+      [Object? arg]) {
     if (routePath == AppPathName.kHomeScreen ||
         routePath == AppPathName.kOpenScreen) {
       Navigator.pushNamedAndRemoveUntil(
           context, routePath, ModalRoute.withName('/'));
     } else {
-      Navigator.pushNamedAndRemoveUntil(
-          context, routePath, ModalRoute.withName(AppPathName.kHomeScreen));
+      Navigator.pushNamed(context, routePath, arguments: arg);
     }
   }
 }

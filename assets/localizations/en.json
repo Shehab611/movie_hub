@@ -44,7 +44,7 @@
   "no_data": "No Data is Found",
   "try_again": "Try Again",
   "account_created_success": "Your Account Created Successfully",
-  "see_all": "See All",
+  "see_more": "See More",
   "auth_error": "Authentication Error: ",
   "invalid_email_error": "Invalid email address.",
   "user_disabled_error": "User account disabled.",
@@ -94,6 +94,9 @@
   "biometric_failed": "Failed to authenticate. Try again",
   "same_data": "Can not change as the is the same",
   "delete_confirmation": "Are you sure you want to delete your account?",
-  "delete_confirmation_message": "You can't undo this action"
+  "delete_confirmation_message": "You can't undo this action",
+  "popular": "Popular",
+  "top_rated": "Top Rated",
+  "up_coming": "Upcoming"
 
 }

@@ -44,7 +44,7 @@
   "no_data": "لم يتم العثور على بيانات",
   "try_again": "إعادة المحاولة",
   "account_created_success": "تم إنشاء حسابك بنجاح",
-  "see_all": "مشاهدة الكل",
+  "see_more": "مشاهدة المزيد",
   "auth_error": "خطأ في التسجيل: ",
   "invalid_email_error": "عنوان البريد الإلكتروني غير صالح.",
   "user_disabled_error": "تم تعطيل حساب المستخدم.",
@@ -94,5 +94,8 @@
   "biometric_failed": "فشلت المصادقة. حاول ثانية",
   "same_data": "لا يمكن أن تتغير لأنها هي نفسها",
   "delete_confirmation": "هل انت متأكد انك تريد حذف حسابك؟",
-  "delete_confirmation_message": "لا يمكنك التراجع عن هذا الإجراء"
+  "delete_confirmation_message": "لا يمكنك التراجع عن هذا الإجراء",
+  "popular": "شائع",
+  "top_rated": "أعلى التقييمات",
+  "upcoming": "القادمة"
 }

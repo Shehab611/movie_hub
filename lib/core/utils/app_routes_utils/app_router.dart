@@ -9,7 +9,7 @@ import 'package:movie_hub/features/authentication/forget_password/presentation/v
 import 'package:movie_hub/features/authentication/login/presentation/view/login_screen.dart';
 import 'package:movie_hub/features/authentication/login/presentation/view_model_manger/login_cubit.dart';
 import 'package:movie_hub/features/authentication/register/presentation/view_model_manger/register_cubit.dart';
-import 'package:movie_hub/features/home/home/presentation/home_screen.dart';
+import 'package:movie_hub/features/home/home_screen/presentation/view/home_screen.dart';
 import 'package:movie_hub/features/open_screen/presentation/view/open_screen.dart';
 import 'package:movie_hub/features/profile/presentation/view/profile_screen.dart';
 import 'package:movie_hub/features/profile/presentation/view_model_manger/profile_cubit.dart';

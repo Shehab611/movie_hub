@@ -57,7 +57,7 @@ abstract final class AppStrings {
   static const String language = 'language';
   static const String noData = 'no_data';
   static const String tryAgain = 'try_again';
-  static const String seeAll = 'see_all';
+  static const String seeMore = 'see_more';
   static const String sync = 'sync';
   static const String syncSuccess = 'sync_success';
   static const String syncFailed = 'sync_failed';
@@ -80,6 +80,9 @@ abstract final class AppStrings {
   static const String sameData = 'same_data';
   static const String deleteConfirmation = 'delete_confirmation';
   static const String deleteConfirmationMessage = 'delete_confirmation_message';
+  static const String popular = 'popular';
+  static const String topRated = 'top_rated';
+  static const String upComing = 'up_coming';
 
   //#endregion
 

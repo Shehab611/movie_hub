@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
+import 'package:movie_hub/core/service_locator.dart';
 import 'package:movie_hub/core/usable_functions/validate_check.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
@@ -21,35 +22,41 @@ class ProfileScreen extends StatelessWidget {
       key: Key('Profile Scaffold Semantics $key'),
       label: AppLocalizations.of(context)
           .translate(AppStrings.profileScreenSemanticLabel),
-      child: Scaffold(
-        key: Key('Profile Scaffold $key'),
-        appBar: AppBar(
-          key: Key('Profile AppBar $key'),
-          title: Text(
-            AppLocalizations.of(context).translate(AppStrings.profileScreen),
+      child: BlocListener<ProfileCubit, ProfileState>(
+        listener: (context, state) {
+          if (state is ProfileUpdateUserDataSuccessfulState) {
+            showCustomSnackBar(
+                AppLocalizations.of(context)
+                    .translate(AppStrings.updateUserDataSuccessful),
+                context,
+                isError: false,
+                inTop: true);
+          } else if (state is ProfileSameDataState) {
+            showCustomSnackBar(
+                AppLocalizations.of(context).translate(AppStrings.sameData),
+                context);
+          }
+        },
+        child: Scaffold(
+          key: Key('Profile Scaffold $key'),
+          appBar: AppBar(
+            key: Key('Profile AppBar $key'),
+            title: Text(
+              AppLocalizations.of(context).translate(AppStrings.profileScreen),
+            ),
           ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                context.read<ProfileCubit>().deleteAccount();
-              },
-              icon: const Icon(Icons.delete_forever_outlined),
-              tooltip: AppLocalizations.of(context)
-                  .translate(AppStrings.deleteAccount),
-            )
-          ],
-        ),
-        drawer: AppDrawer(
-          key: Key("App Drawer in $key"),
-        ),
-        body: Center(
-          key: Key('Profile Body $key'),
-          child: SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.6,
-              child: const Padding(
-                padding: EdgeInsets.all(AppSizes.paddingSizeDefault),
-                child: ProfileBody(),
-              )),
+          drawer: AppDrawer(
+            key: Key("App Drawer in $key"),
+          ),
+          body: Center(
+            key: Key('Profile Body $key'),
+            child: SizedBox(
+                height: MediaQuery.sizeOf(context).height * 0.6,
+                child: const Padding(
+                  padding: EdgeInsets.all(AppSizes.paddingSizeDefault),
+                  child: ProfileBody(),
+                )),
+          ),
         ),
       ),
     );

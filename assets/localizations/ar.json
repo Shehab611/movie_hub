@@ -89,5 +89,10 @@
   "profile_screen": "شاشة الملف الشخصي",
   "theme": "الوضع",
   "profile_screen_semantic_label": "هذه هي الشاشة التي يمكنك من خلالها تعديل ملف التعريف الخاص بك",
-  "delete_account": "حذف الحساب"
+  "delete_account": "حذف الحساب",
+  "update_user_data_successful": "تم تحديث بيانات المستخدم بنجاح",
+  "biometric_failed": "فشلت المصادقة. حاول ثانية",
+  "same_data": "لا يمكن أن تتغير لأنها هي نفسها",
+  "delete_confirmation": "هل انت متأكد انك تريد حذف حسابك؟",
+  "delete_confirmation_message": "لا يمكنك التراجع عن هذا الإجراء"
 }

@@ -8,6 +8,4 @@ abstract interface class ProfileRepositoryInterface<T> {
   Future<DataResponse> changeEmail(T parameters);
 
   Future<DataResponse> changePassword(T parameters);
-
-  Future<DataResponse> deleteAccount();
 }

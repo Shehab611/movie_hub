@@ -1,30 +1,5 @@
 part of '../view/profile_screen.dart';
 
-class EmailTextField extends StatelessWidget {
-  const EmailTextField({super.key, required this.cubit});
-
-  final ProfileCubit cubit;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFieldWithIconButton(
-      key: Key('Email Text Field $key'),
-      controller: cubit.emailController,
-      focusNode: cubit.emailNode,
-      nextFocusNode: cubit.firstNameNode,
-      icon: Icons.alternate_email,
-      labelText: AppLocalizations.of(context).translate(AppStrings.email),
-      buttonIcon: cubit.emailIcon,
-      validator: (value) => ValidateCheck.validateEmail(value, context),
-      enabled: cubit.emailFieldEnabled,
-      isButtonVisible: cubit.emailButtonEditButtonVisible,
-      onPressed: () {
-        cubit.emailButtonPressed(context);
-      },
-    );
-  }
-}
-
 class FirstNameTextField extends StatelessWidget {
   const FirstNameTextField({super.key, required this.cubit});
 
@@ -89,7 +64,7 @@ class CurrentPasswordTextField extends StatelessWidget {
       focusNode: cubit.currentPasswordNode,
       nextFocus: cubit.newPasswordNode,
       prefixIcon: Icons.lock,
-      labelText: AppLocalizations.of(context).translate(AppStrings.newPassword),
+      labelText: AppLocalizations.of(context).translate(AppStrings.password),
       inputAction: TextInputAction.next,
       isPassword: true,
       validator: (value) => ValidateCheck.validatePassword(value, context),
@@ -110,7 +85,7 @@ class NewPasswordTextField extends StatelessWidget {
       focusNode: cubit.newPasswordNode,
       nextFocus: cubit.confirmPasswordNode,
       prefixIcon: Icons.lock,
-      labelText: AppLocalizations.of(context).translate(AppStrings.password),
+      labelText: AppLocalizations.of(context).translate(AppStrings.newPassword),
       inputAction: TextInputAction.next,
       isPassword: true,
       validator: (value) => ValidateCheck.validatePassword(value, context),

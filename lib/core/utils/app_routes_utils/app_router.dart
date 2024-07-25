@@ -54,7 +54,7 @@ abstract final class AppRouter {
 
     //#region Profile Routes
     AppPathName.kProfileScreen: (BuildContext context) => BlocProvider(
-          create: (context) => ProfileCubit(),
+          create: (context) => ProfileCubit(sl.get())..putData(),
           child: const ProfileScreen(),
         ),
     //#endregion

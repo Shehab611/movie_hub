@@ -14,10 +14,6 @@ class ProfileBody extends StatelessWidget {
               key: Key("First Column $key"),
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                EmailTextField(
-                  key: key,
-                  cubit: cubit,
-                ),
                 FirstNameTextField(
                   key: key,
                   cubit: cubit,
@@ -26,21 +22,25 @@ class ProfileBody extends StatelessWidget {
                   key: key,
                   cubit: cubit,
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        builder: (context) {
-                          return RepaintBoundary(
-                              child: ChangePasswordSheet(
-                            cubit: cubit,
-                          ));
-                        },
-                      );
-                    },
-                    child: Text(AppLocalizations.of(context)
-                        .translate(AppStrings.changePassword)))
+                Visibility(
+                  visible: cubit.isPasswordProvider(),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (context) {
+                            return BlocProvider(
+                              create: (context) => ProfileCubit(sl.get()),
+                              child: const RepaintBoundary(
+                                  child: ChangePasswordSheet()),
+                            );
+                          },
+                        );
+                      },
+                      child: Text(AppLocalizations.of(context)
+                          .translate(AppStrings.changePassword))),
+                )
               ],
             );
           },

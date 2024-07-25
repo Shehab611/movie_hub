@@ -47,9 +47,42 @@ final class ProfileUpdateUserDataSuccessfulState extends ProfileState {
 }
 
 final class ProfileUpdateUserDataFailedState extends ProfileState {
-  const ProfileUpdateUserDataFailedState(this.error);
+  const ProfileUpdateUserDataFailedState();
 
-  final String error;
+  @override
+  List<Object> get props => [];
+}
+
+final class ProfileChangePasswordFailedState extends ProfileState {
+  const ProfileChangePasswordFailedState();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class ProfileChangePasswordSuccessState extends ProfileState {
+  const ProfileChangePasswordSuccessState();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class ProfileChangePasswordLoadingState extends ProfileState {
+  const ProfileChangePasswordLoadingState();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class ProfileSameDataState extends ProfileState {
+  const ProfileSameDataState();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class ProfileBiometricFailedState extends ProfileState {
+  const ProfileBiometricFailedState();
 
   @override
   List<Object> get props => [];

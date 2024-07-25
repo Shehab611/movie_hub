@@ -10,7 +10,6 @@ abstract interface class ProfileRemoteDataSourceInterface {
 
   Future<String?> changePassword(String password);
 
-  Future<String?> deleteAccount();
 }
 
 final class ProfileRemoteDataSourceImpl
@@ -23,7 +22,7 @@ final class ProfileRemoteDataSourceImpl
     } on FirebaseAuthException catch (e) {
       FirebaseAuthFailure authFailure =
           FirebaseAuthFailure.fromAuthException(e);
-      throw authFailure.errorMessage;
+      throw FailureFirebaseAuthResponse(authFailure);
     }
   }
 
@@ -35,7 +34,7 @@ final class ProfileRemoteDataSourceImpl
     } on FirebaseAuthException catch (e) {
       FirebaseAuthFailure authFailure =
           FirebaseAuthFailure.fromAuthException(e);
-      throw authFailure.errorMessage;
+      throw FailureFirebaseAuthResponse(authFailure);
     }
   }
 
@@ -47,7 +46,7 @@ final class ProfileRemoteDataSourceImpl
     } on FirebaseAuthException catch (e) {
       FirebaseAuthFailure authFailure =
           FirebaseAuthFailure.fromAuthException(e);
-      throw authFailure.errorMessage;
+      throw FailureFirebaseAuthResponse(authFailure);
     }
   }
 
@@ -59,19 +58,8 @@ final class ProfileRemoteDataSourceImpl
     } on FirebaseAuthException catch (e) {
       FirebaseAuthFailure authFailure =
           FirebaseAuthFailure.fromAuthException(e);
-      throw authFailure.errorMessage;
+      throw FailureFirebaseAuthResponse(authFailure);
     }
   }
 
-  @override
-  Future<String?> deleteAccount() async {
-    try {
-      await Authentication.deleteAccount();
-      return null;
-    } on FirebaseAuthException catch (e) {
-      FirebaseAuthFailure authFailure =
-          FirebaseAuthFailure.fromAuthException(e);
-      throw authFailure.errorMessage;
-    }
-  }
 }

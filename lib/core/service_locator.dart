@@ -33,11 +33,7 @@ import 'package:movie_hub/features/authentication/shared/use_cases/google_sign_i
 import 'package:movie_hub/features/profile/data/repositories/profile_repository.dart';
 import 'package:movie_hub/features/profile/data/sources/profile_remote_data_source.dart';
 import 'package:movie_hub/features/profile/domain/repositories/profile_repository_interface.dart';
-import 'package:movie_hub/features/profile/domain/use_cases/change_email_use_case.dart';
-import 'package:movie_hub/features/profile/domain/use_cases/change_first_name_use_case.dart';
-import 'package:movie_hub/features/profile/domain/use_cases/change_last_name_use_case.dart';
-import 'package:movie_hub/features/profile/domain/use_cases/change_password_use_case.dart';
-import 'package:movie_hub/features/profile/domain/use_cases/delete_account_use_case.dart';
+import 'package:movie_hub/features/profile/domain/use_cases/main_use_case.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -73,7 +69,7 @@ Future<void> initServicesLocator() async {
   sl.registerLazySingleton<LogoutRepositoryInterface>(
       () => LogoutRepository(sl.get()));
 
-  sl.registerLazySingleton<ProfileRepositoryInterface>(
+  sl.registerLazySingleton<ProfileRepositoryInterface<String>>(
       () => ProfileRepository(sl.get()));
   //#endregion
 
@@ -117,8 +113,6 @@ Future<void> initServicesLocator() async {
   sl.registerLazySingleton<LogoutUseCase>(() => LogoutUseCase(sl.get()));
 
   //#region Profile UseCases
-  sl.registerLazySingleton<ChangeEmailUseCase>(
-      () => ChangeEmailUseCase(sl.get()));
 
   sl.registerLazySingleton<ChangeFirstNameUseCase>(
       () => ChangeFirstNameUseCase(sl.get()));
@@ -129,8 +123,8 @@ Future<void> initServicesLocator() async {
   sl.registerLazySingleton<ChangePasswordUseCase>(
       () => ChangePasswordUseCase(sl.get()));
 
-  sl.registerLazySingleton<DeleteAccountUseCase>(
-      () => DeleteAccountUseCase(sl.get()));
+  sl.registerLazySingleton<ProfileMainUseCases>(
+      () => ProfileMainUseCases(sl.get(), sl.get(), sl.get()));
   //#endregion
 
   //#endregion

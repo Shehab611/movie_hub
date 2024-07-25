@@ -1,6 +1,4 @@
-import 'package:movie_hub/core/base_use_case/base_use_case.dart';
-import 'package:movie_hub/core/utils/api_utils/data_response.dart';
-import 'package:movie_hub/features/profile/domain/repositories/profile_repository_interface.dart';
+part of 'main_use_case.dart';
 
 final class ChangeFirstNameUseCase implements BaseUseCaseInterface<String> {
   final ProfileRepositoryInterface<String> _repositoryInterface;

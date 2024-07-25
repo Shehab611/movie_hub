@@ -89,5 +89,11 @@
   "profile_screen": "Profile Screen",
   "theme": "Theme",
   "profile_screen_semantic_label": "This is the screen where you could edit your profile",
-  "delete_account": "Delete Account"
+  "delete_account": "Delete Account",
+  "update_user_data_successful": "User Data Updated Successfully",
+  "biometric_failed": "Failed to authenticate. Try again",
+  "same_data": "Can not change as the is the same",
+  "delete_confirmation": "Are you sure you want to delete your account?",
+  "delete_confirmation_message": "You can't undo this action"
+
 }

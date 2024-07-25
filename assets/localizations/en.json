@@ -97,6 +97,8 @@
   "delete_confirmation_message": "You can't undo this action",
   "popular": "Popular",
   "top_rated": "Top Rated",
-  "up_coming": "Upcoming"
+  "up_coming": "Upcoming",
+  "similar": "Similar",
+  "release_date": "Release Date"
 
 }

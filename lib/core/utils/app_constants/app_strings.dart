@@ -83,6 +83,8 @@ abstract final class AppStrings {
   static const String popular = 'popular';
   static const String topRated = 'top_rated';
   static const String upComing = 'up_coming';
+  static const String similar = 'similar';
+  static const String releaseDate = 'release_date';
 
   //#endregion
 

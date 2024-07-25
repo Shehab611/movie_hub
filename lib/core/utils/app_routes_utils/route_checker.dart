@@ -6,9 +6,6 @@ sealed class Route {
   late String _routePath;
   late bool _go;
 
-  set routePath(String path) => _routePath = path;
-
-  set go(bool path) => _go = path;
 }
 
 class OpenScreenRoute extends Route {
@@ -38,22 +35,16 @@ class HomeRoute extends Route {
 }
 
 class RouteChecker {
-  static bool _checkRoutes(Route route) {
-    return route._go;
-  }
-
   static String checkRoutes() {
     List<Route> routes = [
       OpenScreenRoute(),
       EmailVerificationRoute(),
       HomeRoute(),
     ];
-    for (var route in routes) {
-      if (_checkRoutes(route)) {
-        return route._routePath;
-      }
-    }
-
-    throw UnimplementedError();
+    return routes
+        .firstWhere(
+          (element) => element._go,
+        )
+        ._routePath;
   }
 }

@@ -11,6 +11,8 @@ import 'package:movie_hub/features/authentication/login/presentation/view_model_
 import 'package:movie_hub/features/authentication/register/presentation/view_model_manger/register_cubit.dart';
 import 'package:movie_hub/features/home/home/presentation/home_screen.dart';
 import 'package:movie_hub/features/open_screen/presentation/view/open_screen.dart';
+import 'package:movie_hub/features/profile/presentation/view/profile_screen.dart';
+import 'package:movie_hub/features/profile/presentation/view_model_manger/profile_cubit.dart';
 
 part 'app_navigator.dart';
 part 'app_paths.dart';
@@ -47,7 +49,14 @@ abstract final class AppRouter {
     //#endregion
 
     //#region Home Routes
-    AppPathName.kHomeScreen: (BuildContext context) => const HomeScreen()
+    AppPathName.kHomeScreen: (BuildContext context) => const HomeScreen(),
+    //#endregion
+
+    //#region Profile Routes
+    AppPathName.kProfileScreen: (BuildContext context) => BlocProvider(
+          create: (context) => ProfileCubit(),
+          child: const ProfileScreen(),
+        ),
     //#endregion
   };
 }

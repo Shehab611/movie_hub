@@ -111,10 +111,11 @@ class RegisterCubit extends Cubit<RegisterState> {
           .userCredential
           .user!;
       final names = user.displayName!.split(' ');
-      String firstName = sl.get<EncryptionService>().encrypt(names.first);
-      String lastName = sl.get<EncryptionService>().encrypt(names.last);
-      user.updateDisplayName('$firstName $lastName');
-
+      if (!sl.get<EncryptionService>().isEncrypted(names.first)) {
+        String firstName = sl.get<EncryptionService>().encrypt(names.first);
+        String lastName = sl.get<EncryptionService>().encrypt(names.last);
+        user.updateDisplayName('$firstName $lastName');
+      }
       emit(const GoogleRegisterSuccessState());
     }
   }

@@ -8,8 +8,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      drawer: const AppDrawer(
-        key: Key("App Drawer in home screen"),
+      drawer: AppDrawer(
+        key: Key("App Drawer in $key"),
       ),
     );
   }

@@ -95,6 +95,8 @@ abstract final class AppStrings {
       'email_verification_animation_semantic_label';
   static const String drawerSemanticLabel = 'drawer_semantic_label';
   static const String homeScreenSemanticLabel = 'home_screen_semantic_label';
+  static const String profileScreenSemanticLabel =
+      'profile_screen_semantic_label';
 
   //#endregion
 

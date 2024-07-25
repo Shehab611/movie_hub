@@ -20,7 +20,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
   //#region Private Variables
   final EmailVerificationUseCase _emailVerificationUseCase;
   final LogoutUseCase _logoutVerificationUseCase;
-
+  late Timer _timer;
   //#endregion
 
   //#region Public Methods
@@ -30,7 +30,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
   }
 
   Future<void> checkIfUserEmailVerified() async {
-    Timer.periodic(
+    _timer = Timer.periodic(
       const Duration(seconds: 5),
       (timer) {
         sl.get<FirebaseAuth>().currentUser!.reload().then(
@@ -47,6 +47,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
 
   Future<void> logout(BuildContext context) async {
     await _logoutVerificationUseCase.call(const NoParameters());
+    _timer.cancel();
     if (context.mounted) {
       AppNavigator.navigateToOpenScreen(context);
     }

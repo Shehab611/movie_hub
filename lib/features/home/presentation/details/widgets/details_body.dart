@@ -1,7 +1,9 @@
 part of '../view/details_screen.dart';
 
 class DetailsBody extends StatelessWidget {
-  const DetailsBody({super.key});
+  const DetailsBody({super.key, required this.movie});
+
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +12,8 @@ class DetailsBody extends StatelessWidget {
       slivers: [
         SliverToBoxAdapter(
           child: ImageWidget(
-            imagePath:
-                'https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg',
-            height: size.height * .4,
+            imagePath: '${ApiEndPoints.imagesBaseUrl}${movie.backdropPath}',
+            height: size.height * .25,
             width: double.infinity,
             fit: BoxFit.fitWidth,
             clipBehavior: Clip.hardEdge,
@@ -20,39 +21,49 @@ class DetailsBody extends StatelessWidget {
                 bottom: Radius.circular(AppSizes.paddingSizeOverLarge)),
           ),
         ),
-        const SliverPadding(
-          padding: EdgeInsets.all(AppSizes.paddingSizeDefault),
-          sliver: SliverToBoxAdapter(
-            child: AddShareWidget(),
-          ),
-        ),
-        const SliverPadding(
-          padding: EdgeInsets.all(AppSizes.paddingSizeDefault),
+        SliverPadding(
+          padding: const EdgeInsets.all(AppSizes.paddingSizeDefault),
           sliver: SliverToBoxAdapter(
             child: Text(
-              'Movie Name',
+              movie.title,
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
         ),
-        const SliverPadding(
+        /*const SliverPadding(
           padding: EdgeInsets.all(AppSizes.paddingSizeDefault),
           sliver: SliverToBoxAdapter(
-            child: DateLanguageWidget(),
+            child: AddShareWidget(),
+          ),
+        ),*/
+        SliverPadding(
+          padding: const EdgeInsets.all(AppSizes.paddingSizeDefault),
+          sliver: SliverToBoxAdapter(
+            child: DateLanguageWidget(
+              date: movie.releaseDate,
+              language: movie.originalLanguage,
+            ),
           ),
         ),
-        const SliverPadding(
-          padding: EdgeInsets.all(AppSizes.paddingSizeDefault),
+        SliverPadding(
+          padding: const EdgeInsets.all(AppSizes.paddingSizeDefault),
           sliver: SliverToBoxAdapter(
             child: Text(
-              'Movie Over View',
+              movie.overview,
               textAlign: TextAlign.center,
             ),
           ),
         ),
-        const MoviesSection(title: AppStrings.similar)
+        BlocBuilder<SimilarCubit, SimilarState>(
+          builder: (context, state) {
+            return MoviesSection(
+              title: AppStrings.similar,
+              model: context.read<SimilarCubit>().model,
+            );
+          },
+        )
       ],
     );
   }

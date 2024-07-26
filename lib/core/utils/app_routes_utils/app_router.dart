@@ -11,8 +11,8 @@ import 'package:movie_hub/features/authentication/login/presentation/view_model_
 import 'package:movie_hub/features/authentication/register/presentation/view_model_manger/register_cubit.dart';
 import 'package:movie_hub/features/home/presentation/details/view/details_screen.dart';
 import 'package:movie_hub/features/home/presentation/home_screen/view/home_screen.dart';
-import 'package:movie_hub/features/home/presentation/home_screen/view_model_manger/home_cubit/home_cubit.dart';
 import 'package:movie_hub/features/home/presentation/see_more/view/see_more_screen.dart';
+import 'package:movie_hub/features/home/presentation/view_model_manger/home_cubit/home_cubit.dart';
 import 'package:movie_hub/features/open_screen/presentation/view/open_screen.dart';
 import 'package:movie_hub/features/profile/presentation/view/profile_screen.dart';
 import 'package:movie_hub/features/profile/presentation/view_model_manger/profile_cubit.dart';

@@ -13,6 +13,7 @@ import 'package:movie_hub/features/home/parameters/movie_parameters.dart';
 
 part 'now_playing_state.dart';
 part 'popular_state.dart';
+part 'similar_state.dart';
 part 'top_rated_state.dart';
 part 'up_coming_state.dart';
 
@@ -28,6 +29,7 @@ sealed class HomeCubit<T> extends Cubit<T> {
       PopularState() => const PopularLoadingState(),
       TopRatedState() => const TopRatedLoadingState(),
       UpComingState() => const UpComingLoadingState(),
+      SimilarState() => const SimilarLoadingState(),
       Object() => throw UnimplementedError(),
     } as T);
 
@@ -40,6 +42,7 @@ sealed class HomeCubit<T> extends Cubit<T> {
         PopularState() => const PopularSuccessState(),
         TopRatedState() => const TopRatedSuccessState(),
         UpComingState() => const UpComingSuccessState(),
+        SimilarState() => const SimilarSuccessState(),
         Object() => throw UnimplementedError(),
       } as T);
     } else {
@@ -49,6 +52,7 @@ sealed class HomeCubit<T> extends Cubit<T> {
         PopularState() => PopularFailedState(error),
         TopRatedState() => TopRatedFailedState(error),
         UpComingState() => UpComingFailedState(error),
+        SimilarState() => SimilarFailedState(error),
         Object() => throw UnimplementedError(),
       } as T);
     }
@@ -101,4 +105,18 @@ class UpComingCubit extends HomeCubit<UpComingState> {
   UpComingCubit(this._useCase) : super(const UpComingInitial());
 
   Future<void> getMovies() async => await super._getMovies(_useCase, _params);
+}
+
+class SimilarCubit extends HomeCubit<SimilarState> {
+  final GetMoviesUseCase _useCase;
+
+  SimilarCubit(this._useCase) : super(const SimilarInitial());
+
+  Future<void> getMovies(num movieId) async {
+    ApiEndPoints.similarMovies = movieId;
+    final MovieParameters params = MovieParameters(
+        endPoint: ApiEndPoints.similarMovies,
+        languageCode: sl.get<AppLanguage>().appLocale.languageCode);
+    await super._getMovies(_useCase, params);
+  }
 }

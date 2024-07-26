@@ -66,6 +66,9 @@ abstract final class Authentication {
     }
   }
 
+  static bool checkIfVerified() =>
+      sl.get<FirebaseAuth>().currentUser!.emailVerified;
+
   static Future<void> deleteAccount() async =>
       await sl.get<FirebaseAuth>().currentUser!.delete();
 }

@@ -51,6 +51,9 @@ class LoginCubit extends Cubit<LoginState> {
 //#endregion
 
   //#region Private Methods
+
+  bool _checkIfVerified() => Authentication.checkIfVerified();
+
   Future<void> _login(BuildContext context) async {
     emit(const LoginLoadingState());
     DataResponse response = await _loginUseCase.call(LoginParameters(
@@ -63,7 +66,11 @@ class LoginCubit extends Cubit<LoginState> {
 
       emit(const LoginFailedState());
     } else {
-      emit(const LoginSuccessState());
+      if (_checkIfVerified()) {
+        emit(const LoginSuccessState());
+      } else {
+        emit(const LoginVerifyState());
+      }
     }
   }
 
@@ -103,6 +110,5 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> googleSignIn(BuildContext context) async =>
       await _googleSignIn(context);
-
 //#endregion
 }

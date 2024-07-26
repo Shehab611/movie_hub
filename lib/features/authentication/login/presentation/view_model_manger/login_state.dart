@@ -25,6 +25,13 @@ final class LoginSuccessState extends LoginState {
   List<Object> get props => [];
 }
 
+final class LoginVerifyState extends LoginState {
+  const LoginVerifyState();
+
+  @override
+  List<Object> get props => [];
+}
+
 final class LoginFailedState extends LoginState {
   const LoginFailedState();
 

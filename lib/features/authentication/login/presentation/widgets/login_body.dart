@@ -10,6 +10,8 @@ class LoginBody extends StatelessWidget {
       listener: (context, state) {
         if (state is GoogleLoginSuccessState || state is LoginSuccessState) {
           AppNavigator.navigateToHomeScreen(context);
+        } else if (state is LoginVerifyState) {
+          AppNavigator.navigateToEmailVerificationScreen(context);
         }
       },
       builder: (context, state) {

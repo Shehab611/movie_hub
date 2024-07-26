@@ -2,13 +2,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'core/observer.dart';
 import 'core/service_locator.dart';
 import 'core/utils/app_constants/app_strings.dart';
 import 'core/utils/app_routes_utils/app_router.dart';
 import 'core/utils/app_routes_utils/route_checker.dart';
 import 'core/utils/design_utils/app_theme.dart';
 import 'firebase_options.dart';
-import 'obs.dart';
 
 void main() async {
   Bloc.observer = MyBlocObserver();

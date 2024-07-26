@@ -30,6 +30,12 @@ import 'package:movie_hub/features/authentication/shared/domain_repositories/ema
 import 'package:movie_hub/features/authentication/shared/domain_repositories/social_apps_sign_in_interface.dart';
 import 'package:movie_hub/features/authentication/shared/use_cases/email_verification_use_case.dart';
 import 'package:movie_hub/features/authentication/shared/use_cases/google_sign_in.dart';
+import 'package:movie_hub/features/home/data/repositories/movie_repository.dart';
+import 'package:movie_hub/features/home/data/sources/movie_remote_data_source.dart';
+import 'package:movie_hub/features/home/domain/repository/movie_repository_interface.dart';
+import 'package:movie_hub/features/home/domain/use_cases/get_movie_details_use_case.dart';
+import 'package:movie_hub/features/home/domain/use_cases/get_movies_use_case.dart';
+import 'package:movie_hub/features/home/parameters/movie_parameters.dart';
 import 'package:movie_hub/features/profile/data/repositories/profile_repository.dart';
 import 'package:movie_hub/features/profile/data/sources/profile_remote_data_source.dart';
 import 'package:movie_hub/features/profile/domain/repositories/profile_repository_interface.dart';
@@ -71,6 +77,9 @@ Future<void> initServicesLocator() async {
 
   sl.registerLazySingleton<ProfileRepositoryInterface<String>>(
       () => ProfileRepository(sl.get()));
+
+  sl.registerLazySingleton<MovieRepositoryInterface<MovieParameters>>(
+      () => MovieRepository(sl.get()));
   //#endregion
 
   //#region Data Sources
@@ -94,6 +103,9 @@ Future<void> initServicesLocator() async {
 
   sl.registerLazySingleton<ProfileRemoteDataSourceInterface>(
       () => ProfileRemoteDataSourceImpl());
+
+  sl.registerLazySingleton<MovieRemoteDataSourceInterface>(
+      () => MovieRemoteDataSourceImpl(sl.get()));
   //#endregion
 
   //#region Use Cases
@@ -111,6 +123,11 @@ Future<void> initServicesLocator() async {
       () => ForgetPasswordUseCase(sl.get()));
 
   sl.registerLazySingleton<LogoutUseCase>(() => LogoutUseCase(sl.get()));
+
+  sl.registerLazySingleton<GetMovieDetailsUseCase>(
+      () => GetMovieDetailsUseCase(sl.get()));
+
+  sl.registerLazySingleton<GetMoviesUseCase>(() => GetMoviesUseCase(sl.get()));
 
   //#region Profile UseCases
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
 import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
+import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
 import 'package:movie_hub/features/home/data/models/result_model.dart';
 import 'package:movie_hub/features/home/presentation/shared/components/see_more_component.dart';
@@ -29,18 +30,24 @@ class MoviesSection extends StatelessWidget {
               child: Row(
                 children: List.generate(
                   model?.movies.length ?? 5,
-                  (index) => CustomShimmer(
-                    applyShimmer: model == null,
-                    child: Padding(
-                      key: Key('Movies Section Shimmer $index $key'),
-                      padding: const EdgeInsets.only(
-                          right: AppSizes.paddingSizeEight,
-                          top: AppSizes.paddingSizeEight),
-                      child: ImageWidget(
-                          height: MediaQuery.sizeOf(context).height * 0.22,
-                          width: MediaQuery.sizeOf(context).width * 0.38,
-                          imagePath:
-                              '${ApiEndPoints.imagesBaseUrl}${model?.movies[index].backdropPath}'),
+                  (index) => GestureDetector(
+                    onTap: () {
+                      AppNavigator.navigateToDetailsScreen(
+                          context, model?.movies[index]);
+                    },
+                    child: CustomShimmer(
+                      applyShimmer: model == null,
+                      child: Padding(
+                        key: Key('Movies Section Shimmer $index $key'),
+                        padding: const EdgeInsets.only(
+                            right: AppSizes.paddingSizeEight,
+                            top: AppSizes.paddingSizeEight),
+                        child: ImageWidget(
+                            height: MediaQuery.sizeOf(context).height * 0.22,
+                            width: MediaQuery.sizeOf(context).width * 0.38,
+                            imagePath:
+                                '${ApiEndPoints.imagesBaseUrl}${model?.movies[index].backdropPath}'),
+                      ),
                     ),
                   ),
                 ),

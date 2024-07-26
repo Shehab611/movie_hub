@@ -5,9 +5,9 @@ import 'package:movie_hub/core/components/custom_components/custom_components.da
 import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/features/drawer/presentation/view/app_drawer.dart';
-import 'package:movie_hub/features/home/presentation/home_screen/view_model_manger/home_cubit/home_cubit.dart';
 import 'package:movie_hub/features/home/presentation/shared/sections/movies_section.dart';
 import 'package:movie_hub/features/home/presentation/shared/widgets/image_widget.dart';
+import 'package:movie_hub/features/home/presentation/view_model_manger/home_cubit/home_cubit.dart';
 
 part '../components/now_playing_item.dart';
 part '../sections/now_playing_section.dart';

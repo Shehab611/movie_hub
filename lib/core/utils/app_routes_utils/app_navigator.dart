@@ -28,6 +28,14 @@ abstract final class AppNavigator {
         context, AppPathName.kHomeScreen, ModalRoute.withName('/'));
   }
 
+  static navigateToDetailsScreen(BuildContext context, [Object? arg]) {
+    Navigator.pushNamed(context, AppPathName.kDetailsScreen, arguments: arg);
+  }
+
+  static navigateToSeeMoreScreen(BuildContext context, [Object? arg]) {
+    Navigator.pushNamed(context, AppPathName.kSeeMoreScreen, arguments: arg);
+  }
+
   static navigateToScreen(BuildContext context, String routePath,
       [Object? arg]) {
     if (routePath == AppPathName.kHomeScreen ||

@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'app_sizes.dart';
-
 part 'app_text_theme.dart';
 
 final class AppThemeData {
@@ -25,6 +24,8 @@ final class AppThemeData {
         centerTitle: true,
         scrolledUnderElevation: 0,
       ),
+      visualDensity: const VisualDensity(
+          horizontal: -2, vertical: VisualDensity.maximumDensity),
       inputDecorationTheme: InputDecorationTheme(
         alignLabelWithHint: true,
         border: OutlineInputBorder(

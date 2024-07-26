@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
-import 'package:movie_hub/features/home/shared/components/see_more_component.dart';
-import 'package:movie_hub/features/home/shared/widgets/image_widget.dart';
+import 'package:movie_hub/features/home/presentation/shared/components/see_more_component.dart';
+import 'package:movie_hub/features/home/presentation/shared/widgets/image_widget.dart';
 
 class MoviesSection extends StatelessWidget {
   const MoviesSection({super.key, required this.title});

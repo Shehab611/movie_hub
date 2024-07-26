@@ -23,6 +23,7 @@ abstract final class ApiEndPoints {
 
   static String _similarMovies = '';
 
+  static const String _imagesBaseUrl = 'https://image.tmdb.org/t/p/w500';
   //#endregion
 
   //#region setters
@@ -49,6 +50,8 @@ abstract final class ApiEndPoints {
   static String get upComingMovies => _upComingMovies;
 
   static String get similarMovies => _similarMovies;
+
+  static String get imagesBaseUrl => _imagesBaseUrl;
 
 //#endregion
 

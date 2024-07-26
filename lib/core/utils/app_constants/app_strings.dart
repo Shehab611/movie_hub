@@ -136,6 +136,7 @@ abstract final class AppStrings {
   static const String badCertificatesError = 'bad_certificates_error';
   static const String unknownError = 'unknown_error';
   static const String unexpectedError = 'unexpected_error';
+  static const String apiKey = 'api_key';
 
 //#endregion
 

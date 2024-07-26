@@ -5,13 +5,30 @@ abstract final class ApiEndPoints {
 
   //#region Basic Configurations
 
-  static const String _host = 'https://newsapi.org';
-  static const String _version = '$_host/v2';
+  static const String _host = 'https://api.themoviedb.org';
+  static const String _version = '$_host/3';
 
   //#endregion
 
   //#region EndPoints
-  static const String _everyThing = '/everything';
+  static const String _movie = '/movie';
+
+  static const String _nowPlayingMovies = '$_movie/now_playing';
+
+  static const String _popularMovies = '$_movie/popular';
+
+  static const String _topRatedMovies = '$_movie/top_rated';
+
+  static const String _upComingMovies = '$_movie/upcoming';
+
+  static String _similarMovies = '';
+
+  //#endregion
+
+  //#region setters
+  static set similarMovies(movieId) =>
+      _similarMovies = '/$_movie/$movieId/similar';
+
   //#endregion
 
   //#endregion
@@ -23,7 +40,16 @@ abstract final class ApiEndPoints {
 
   //#endregion
   //#region EndPoints
-  static String get everyThing => _everyThing;
+  static String get nowPlayingMovies => _nowPlayingMovies;
+
+  static String get popularMovies => _popularMovies;
+
+  static String get topRatedMovies => _topRatedMovies;
+
+  static String get upComingMovies => _upComingMovies;
+
+  static String get similarMovies => _similarMovies;
+
 //#endregion
 
 //#endregion

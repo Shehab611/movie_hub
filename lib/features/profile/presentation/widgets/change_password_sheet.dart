@@ -33,7 +33,7 @@ class ChangePasswordSheet extends StatelessWidget {
               return AnimatedContainer(
                 duration: const Duration(milliseconds: 100),
                 curve: Curves.easeInOut,
-                height: MediaQuery.of(context).viewInsets.bottom + 300,
+                height: MediaQuery.of(context).viewInsets.bottom + 380,
                 decoration: const BoxDecoration(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(28))),
@@ -42,39 +42,36 @@ class ChangePasswordSheet extends StatelessWidget {
                   padding: const EdgeInsets.all(AppSizes.paddingSizeSmall),
                   child: Form(
                     key: cubit.changePasswordSheetFormKey,
-                    child: SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.6,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            width: 40,
-                            height: 5,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondaryContainer,
-                                borderRadius: BorderRadius.circular(20)),
-                          ),
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate(AppStrings.changePassword),
-                          ),
-                          CurrentPasswordTextField(cubit: cubit),
-                          NewPasswordTextField(cubit: cubit),
-                          ConfirmPasswordTextField(cubit: cubit),
-                          CustomShimmer(
-                            applyShimmer:
-                                state is ProfileChangePasswordLoadingState,
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  cubit.changePassword(context);
-                                },
-                                child: Text(AppLocalizations.of(context)
-                                    .translate(AppStrings.changePassword))),
-                          )
-                        ],
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 5,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .secondaryContainer,
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+                        Text(
+                          AppLocalizations.of(context)
+                              .translate(AppStrings.changePassword),
+                        ),
+                        CurrentPasswordTextField(cubit: cubit),
+                        NewPasswordTextField(cubit: cubit),
+                        ConfirmPasswordTextField(cubit: cubit),
+                        CustomShimmer(
+                          applyShimmer:
+                              state is ProfileChangePasswordLoadingState,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                cubit.changePassword(context);
+                              },
+                              child: Text(AppLocalizations.of(context)
+                                  .translate(AppStrings.changePassword))),
+                        )
+                      ],
                     ),
                   ),
                 ),

@@ -12,10 +12,16 @@ import 'package:movie_hub/features/home/domain/use_cases/get_movies_use_case.dar
 import 'package:movie_hub/features/home/parameters/movie_parameters.dart';
 
 part 'now_playing_state.dart';
+
 part 'popular_state.dart';
+
 part 'similar_state.dart';
+
 part 'top_rated_state.dart';
+
 part 'up_coming_state.dart';
+
+part 'see_more_state.dart';
 
 sealed class HomeCubit<T> extends Cubit<T> {
   HomeCubit(super.initialState);
@@ -30,6 +36,7 @@ sealed class HomeCubit<T> extends Cubit<T> {
       TopRatedState() => const TopRatedLoadingState(),
       UpComingState() => const UpComingLoadingState(),
       SimilarState() => const SimilarLoadingState(),
+      SeeMoreState() => const SeeMoreLoadingState(),
       Object() => throw UnimplementedError(),
     } as T);
 
@@ -43,6 +50,7 @@ sealed class HomeCubit<T> extends Cubit<T> {
         TopRatedState() => const TopRatedSuccessState(),
         UpComingState() => const UpComingSuccessState(),
         SimilarState() => const SimilarSuccessState(),
+        SeeMoreState() => const SeeMoreSuccessState(),
         Object() => throw UnimplementedError(),
       } as T);
     } else {
@@ -53,6 +61,7 @@ sealed class HomeCubit<T> extends Cubit<T> {
         TopRatedState() => TopRatedFailedState(error),
         UpComingState() => UpComingFailedState(error),
         SimilarState() => SimilarFailedState(error),
+        SeeMoreState() => SeeMoreFailedState(error),
         Object() => throw UnimplementedError(),
       } as T);
     }
@@ -118,5 +127,44 @@ class SimilarCubit extends HomeCubit<SimilarState> {
         endPoint: ApiEndPoints.similarMovies,
         languageCode: sl.get<AppLanguage>().appLocale.languageCode);
     await super._getMovies(_useCase, params);
+  }
+}
+
+class SeeMoreCubit extends HomeCubit<SeeMoreState> {
+  final GetMoviesUseCase _useCase;
+  final ScrollController _scrollController = ScrollController();
+
+  final List<Movie> _movies = [];
+
+  int _page = 2;
+
+  bool _loading = false;
+
+  bool get loading => _loading;
+
+  ScrollController get scrollController => _scrollController;
+
+  List<Movie> get movies => _movies;
+
+  SeeMoreCubit(this._useCase) : super(const SeeMoreInitial());
+
+  Future<List<Movie>> loadMore(String endPoint, int maxPage) async {
+    if (_scrollController.position.pixels ==
+            _scrollController.position.maxScrollExtent &&
+        !_loading &&
+        _page < maxPage) {
+      final MovieParameters params = MovieParameters(
+          pageNum: _page,
+          endPoint: endPoint,
+          languageCode: sl.get<AppLanguage>().appLocale.languageCode);
+      _loading = true;
+      await super._getMovies(_useCase, params);
+      if (state is SimilarSuccessState) {
+        _page++;
+      }
+      _loading = false;
+      return model!.movies;
+    }
+    return model!.movies;
   }
 }

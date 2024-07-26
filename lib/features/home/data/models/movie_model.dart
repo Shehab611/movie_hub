@@ -1,5 +1,3 @@
-import 'package:movie_hub/features/home/data/models/genre_model.dart';
-import 'package:movie_hub/features/home/domain/entities/genre.dart';
 import 'package:movie_hub/features/home/domain/entities/movie.dart';
 
 final class MovieModel extends Movie {
@@ -12,7 +10,6 @@ final class MovieModel extends Movie {
     required super.releaseDate,
     required super.voteAverage,
     required super.voteCount,
-    super.genres,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) {
@@ -24,10 +21,8 @@ final class MovieModel extends Movie {
         overview: json['overview'] ?? '',
         releaseDate: json['release_date'] ?? '',
         voteAverage: json['vote_average'] ?? 0.0,
-        voteCount: json['vote_count'] ?? 0,
-        genres: (json['genres'] ?? [])
-            .map<Genre>((genre) => GenreModel.fromJson(genre))
-            .toList());
+      voteCount: json['vote_count'] ?? 0,
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -40,7 +35,7 @@ final class MovieModel extends Movie {
     data['release_date'] = releaseDate;
     data['vote_average'] = voteAverage;
     data['vote_count'] = voteCount;
-    data['genres'] = genres;
+
     return data;
   }
 }

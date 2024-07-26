@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
-import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
@@ -24,6 +23,7 @@ class MoviesSection extends StatelessWidget {
           children: [
             SeeMoreScreenComponent(
               seeMoreTitle: AppLocalizations.of(context).translate(title),
+              model: model,
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -45,8 +45,7 @@ class MoviesSection extends StatelessWidget {
                         child: ImageWidget(
                             height: MediaQuery.sizeOf(context).height * 0.22,
                             width: MediaQuery.sizeOf(context).width * 0.38,
-                            imagePath:
-                                '${ApiEndPoints.imagesBaseUrl}${model?.movies[index].backdropPath}'),
+                            imagePath: model?.movies[index].backdropPath ?? ''),
                       ),
                     ),
                   ),

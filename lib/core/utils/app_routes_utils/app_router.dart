@@ -18,6 +18,7 @@ import 'package:movie_hub/features/profile/presentation/view/profile_screen.dart
 import 'package:movie_hub/features/profile/presentation/view_model_manger/profile_cubit.dart';
 
 part 'app_navigator.dart';
+
 part 'app_paths.dart';
 
 abstract final class AppRouter {
@@ -67,16 +68,20 @@ abstract final class AppRouter {
               create: (context) => UpComingCubit(sl.get())..getMovies(),
             ),
           ],
-          child: const HomeScreen(),
+          child: const HomeScreen(key: Key('Home Screen')),
         ),
-    AppPathName.kDetailsScreen: (BuildContext context) => const DetailsScreen(),
-    AppPathName.kSeeMoreScreen: (BuildContext context) => const SeeMoreScreen(),
+    AppPathName.kDetailsScreen: (BuildContext context) =>
+        const DetailsScreen(key: Key('Details Screen')),
+    AppPathName.kSeeMoreScreen: (BuildContext context) => BlocProvider(
+          create: (context) => SeeMoreCubit(sl.get()),
+          child: const SeeMoreScreen(key: Key('See More Screen')),
+        ),
     //#endregion
 
     //#region Profile Routes
     AppPathName.kProfileScreen: (BuildContext context) => BlocProvider(
           create: (context) => ProfileCubit(sl.get())..putData(),
-          child: const ProfileScreen(),
+          child: const ProfileScreen(key: Key('Profile Screen')),
         ),
     //#endregion
   };

@@ -35,8 +35,12 @@ class NowPlayingSection extends StatelessWidget {
                           context, cubit.model!.movies[index]);
                     },
                     child: NowPlayingWidget(
-                      imagePath:
-                          '${ApiEndPoints.imagesBaseUrl}${context.read<NowPlayingCubit>().model?.movies[index].backdropPath}',
+                      imagePath: context
+                              .read<NowPlayingCubit>()
+                              .model
+                              ?.movies[index]
+                              .backdropPath ??
+                          '',
                       movieName: context
                               .read<NowPlayingCubit>()
                               .model

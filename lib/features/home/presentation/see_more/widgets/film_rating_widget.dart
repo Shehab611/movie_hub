@@ -8,7 +8,7 @@ class FilmRating extends StatelessWidget {
   });
 
   final num rating;
-  final int count;
+  final num count;
 
   @override
   Widget build(BuildContext context) {

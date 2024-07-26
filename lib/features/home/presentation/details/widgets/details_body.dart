@@ -12,7 +12,7 @@ class DetailsBody extends StatelessWidget {
       slivers: [
         SliverToBoxAdapter(
           child: ImageWidget(
-            imagePath: '${ApiEndPoints.imagesBaseUrl}${movie.backdropPath}',
+            imagePath: movie.backdropPath,
             height: size.height * .25,
             width: double.infinity,
             fit: BoxFit.fitWidth,

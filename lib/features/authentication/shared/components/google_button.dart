@@ -7,7 +7,7 @@ class GoogleButton extends StatelessWidget {
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       key: Key('Google Row $key'),
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

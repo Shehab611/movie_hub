@@ -1,6 +1,5 @@
 part of 'login_register_button.dart';
 
-
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key});
 
@@ -10,7 +9,9 @@ class LoginButton extends StatelessWidget {
     return Container(
       key: Key('Container $key'),
       height: size.height * 0.053,
-      width: size.width * 0.56,
+      width: sl.get<AppLanguage>().appLocale == const Locale('en')
+          ? size.width * .6
+          : size.width * .75,
       decoration: BoxDecoration(
           color:
               Theme.of(context).colorScheme.tertiaryContainer.withOpacity(0.3),

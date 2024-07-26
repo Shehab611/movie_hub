@@ -24,8 +24,9 @@ final class AppThemeData {
         centerTitle: true,
         scrolledUnderElevation: 0,
       ),
-      visualDensity: const VisualDensity(
-          horizontal: -2, vertical: VisualDensity.maximumDensity),
+      listTileTheme: const ListTileThemeData(
+          visualDensity: VisualDensity(
+              horizontal: -2, vertical: VisualDensity.maximumDensity)),
       inputDecorationTheme: InputDecorationTheme(
         alignLabelWithHint: true,
         border: OutlineInputBorder(

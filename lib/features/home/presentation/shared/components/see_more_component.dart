@@ -24,7 +24,7 @@ class SeeMoreScreenComponent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            seeMoreTitle,
+            AppLocalizations.of(context).translate(seeMoreTitle),
           ),
           Row(
             children: [

@@ -37,7 +37,12 @@ class ImageWidget extends StatelessWidget {
         fit: fit,
         placeholder: onImageLoading ??
             (context, url) => CustomShimmer(
-                    child: SizedBox(
+                    child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: borderRadius ??
+                        BorderRadius.circular(AppSizes.paddingSizeDefault),
+                    color: Colors.black,
+                  ),
                   width: width,
                   height: height,
                 )),

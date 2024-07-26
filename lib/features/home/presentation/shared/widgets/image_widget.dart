@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
+import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
 
 class ImageWidget extends StatelessWidget {
@@ -30,7 +31,7 @@ class ImageWidget extends StatelessWidget {
           borderRadius ?? BorderRadius.circular(AppSizes.paddingSizeDefault),
       clipBehavior: clipBehavior,
       child: CachedNetworkImage(
-        imageUrl: imagePath,
+        imageUrl: '${ApiEndPoints.imagesBaseUrl}$imagePath',
         width: width,
         height: height,
         fit: fit,

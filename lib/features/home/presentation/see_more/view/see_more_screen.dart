@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
-import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
+import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
+import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
+import 'package:movie_hub/features/home/data/models/result_model.dart';
+import 'package:movie_hub/features/home/domain/entities/movie.dart';
 import 'package:movie_hub/features/home/presentation/shared/widgets/image_widget.dart';
+import 'package:movie_hub/features/home/presentation/view_model_manger/home_cubit/home_cubit.dart';
 
 part '../widgets/film_info_widget.dart';
 part '../widgets/film_rating_widget.dart';
@@ -13,13 +18,16 @@ class SeeMoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? screenName = ModalRoute.of(context)!.settings.arguments as String?;
+    Map<String, dynamic> data =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            AppLocalizations.of(context).translate(screenName ?? 'popular')),
+        title: Text(data['name']),
       ),
-      body: const SeeMoreBody(),
+      body: SeeMoreBody(
+        key: Key('See More Body $key'),
+        model: data['model'],
+      ),
     );
   }
 }

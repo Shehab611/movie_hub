@@ -9,11 +9,13 @@ class NowPlayingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.sizeOf(context);
     return Stack(
       children: [
         ImageWidget(
           imagePath: imagePath,
           width: double.infinity,
+          height: size.height * 0.48,
         ),
         NowPlayingItem(
           movieName: movieName,

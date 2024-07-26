@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
-import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
 import 'package:movie_hub/features/home/presentation/shared/sections/movies_section.dart';
 import 'package:movie_hub/features/home/presentation/shared/widgets/image_widget.dart';
@@ -14,17 +13,11 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      onPopInvoked: (didPop) {
-        Navigator.popUntil(
-            context, ModalRoute.withName(AppPathName.kHomeScreen));
-      },
-      child: SafeArea(
-        top: true,
-        child: Scaffold(
-          key: Key('Details Scaffold $key'),
-          body: const DetailsBody(),
-        ),
+    return SafeArea(
+      top: true,
+      child: Scaffold(
+        key: Key('Details Scaffold $key'),
+        body: const DetailsBody(),
       ),
     );
   }

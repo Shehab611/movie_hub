@@ -4,8 +4,7 @@ final class MovieParameters extends Equatable {
   final int? pageNum;
   final String endPoint, languageCode;
 
-  const MovieParameters(
-      {required this.pageNum,
+  const MovieParameters({this.pageNum = 1,
       required this.endPoint,
       required this.languageCode});
 

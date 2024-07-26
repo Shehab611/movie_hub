@@ -33,7 +33,8 @@ class NowPlayingItem extends StatelessWidget {
               child: Text(
                 movieName,
                 textAlign: TextAlign.center,
-              ),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.surface)),
             ),
           ],
         ));

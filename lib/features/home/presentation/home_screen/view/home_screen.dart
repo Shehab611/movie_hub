@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
+import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/features/drawer/presentation/view/app_drawer.dart';
+import 'package:movie_hub/features/home/presentation/home_screen/view_model_manger/home_cubit/home_cubit.dart';
 import 'package:movie_hub/features/home/presentation/shared/sections/movies_section.dart';
 import 'package:movie_hub/features/home/presentation/shared/widgets/image_widget.dart';
 

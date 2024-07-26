@@ -9,9 +9,10 @@ import 'package:movie_hub/features/authentication/forget_password/presentation/v
 import 'package:movie_hub/features/authentication/login/presentation/view/login_screen.dart';
 import 'package:movie_hub/features/authentication/login/presentation/view_model_manger/login_cubit.dart';
 import 'package:movie_hub/features/authentication/register/presentation/view_model_manger/register_cubit.dart';
-import 'package:movie_hub/features/home/presentation/details/presentation/view/details_screen.dart';
-import 'package:movie_hub/features/home/presentation/home_screen/presentation/view/home_screen.dart';
-import 'package:movie_hub/features/home/presentation/see_more/presentation/view/see_more_screen.dart';
+import 'package:movie_hub/features/home/presentation/details/view/details_screen.dart';
+import 'package:movie_hub/features/home/presentation/home_screen/view/home_screen.dart';
+import 'package:movie_hub/features/home/presentation/home_screen/view_model_manger/home_cubit/home_cubit.dart';
+import 'package:movie_hub/features/home/presentation/see_more/view/see_more_screen.dart';
 import 'package:movie_hub/features/open_screen/presentation/view/open_screen.dart';
 import 'package:movie_hub/features/profile/presentation/view/profile_screen.dart';
 import 'package:movie_hub/features/profile/presentation/view_model_manger/profile_cubit.dart';
@@ -51,7 +52,23 @@ abstract final class AppRouter {
     //#endregion
 
     //#region Home Routes
-    AppPathName.kHomeScreen: (BuildContext context) => const HomeScreen(),
+    AppPathName.kHomeScreen: (BuildContext context) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => PopularCubit(sl.get())..getMovies(),
+            ),
+            BlocProvider(
+              create: (context) => TopRatedCubit(sl.get())..getMovies(),
+            ),
+            BlocProvider(
+              create: (context) => NowPlayingCubit(sl.get())..getMovies(),
+            ),
+            BlocProvider(
+              create: (context) => UpComingCubit(sl.get())..getMovies(),
+            ),
+          ],
+          child: const HomeScreen(),
+        ),
     AppPathName.kDetailsScreen: (BuildContext context) => const DetailsScreen(),
     AppPathName.kSeeMoreScreen: (BuildContext context) => const SeeMoreScreen(),
     //#endregion

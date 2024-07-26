@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
+import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
 import 'package:movie_hub/features/home/data/models/result_model.dart';
 
 class SeeMoreScreenComponent extends StatelessWidget {
@@ -15,25 +17,23 @@ class SeeMoreScreenComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      /*   onTap: () => AppNavigator.navigateToSeeMoreScreen(context,{
-        'name':seeMoreTitle,
-        'model':model
-      } ),*/
-      //, data model
+      onTap: () => AppNavigator.navigateToSeeMoreScreen(
+          context, {'name':seeMoreTitle,
+        'model':model}),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             seeMoreTitle,
           ),
-          /*Row(
+          Row(
             children: [
               Text(
                 AppLocalizations.of(context).translate(AppStrings.seeMore),
               ),
               const Icon(Icons.arrow_forward_ios)
             ],
-          ),*/
+          ),
         ],
       ),
     );

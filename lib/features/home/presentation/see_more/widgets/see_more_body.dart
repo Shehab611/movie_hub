@@ -1,9 +1,10 @@
 part of '../view/see_more_screen.dart';
 
 class SeeMoreBody extends StatelessWidget {
-  const SeeMoreBody({super.key, required this.model});
+  const SeeMoreBody({super.key, required this.model, required this.name});
 
   final ResultModel model;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +28,11 @@ class SeeMoreBody extends StatelessWidget {
                     .read<SeeMoreCubit>()
                     .scrollController
                     .addListener(() async {
-                  model.movies.addAll((await context
-                          .read<SeeMoreCubit>()
-                          .loadMore(ApiEndPoints.nowPlayingMovies,
-                              model.totalPages.toInt()))
-                      .toSet());
+                  final newList =
+                      (await context.read<SeeMoreCubit>().loadMore(name));
+                  if (newList != null) {
+                    model.movies.addAll(newList);
+                  }
                 });
                 return const CustomLoader();
               }

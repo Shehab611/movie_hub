@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub/core/components/custom_components/custom_components.dart';
-import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/utils/app_routes_utils/app_router.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
 import 'package:movie_hub/features/home/data/models/result_model.dart';
@@ -27,6 +26,7 @@ class SeeMoreScreen extends StatelessWidget {
       body: SeeMoreBody(
         key: Key('See More Body $key'),
         model: data['model'],
+        name: data['name'],
       ),
     );
   }

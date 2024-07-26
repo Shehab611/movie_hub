@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub/core/service_locator.dart';
-import 'package:movie_hub/core/usable_functions/api/api_service_helper.dart';
 import 'package:movie_hub/core/utils/app_constants/app_strings.dart';
 import 'package:movie_hub/core/utils/design_utils/app_theme.dart';
 import 'package:movie_hub/features/home/domain/entities/movie.dart';

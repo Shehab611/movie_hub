@@ -12,16 +12,11 @@ import 'package:movie_hub/features/home/domain/use_cases/get_movies_use_case.dar
 import 'package:movie_hub/features/home/parameters/movie_parameters.dart';
 
 part 'now_playing_state.dart';
-
 part 'popular_state.dart';
-
-part 'similar_state.dart';
-
-part 'top_rated_state.dart';
-
-part 'up_coming_state.dart';
-
 part 'see_more_state.dart';
+part 'similar_state.dart';
+part 'top_rated_state.dart';
+part 'up_coming_state.dart';
 
 sealed class HomeCubit<T> extends Cubit<T> {
   HomeCubit(super.initialState);
@@ -131,40 +126,75 @@ class SimilarCubit extends HomeCubit<SimilarState> {
 }
 
 class SeeMoreCubit extends HomeCubit<SeeMoreState> {
-  final GetMoviesUseCase _useCase;
-  final ScrollController _scrollController = ScrollController();
+  SeeMoreCubit(this._useCase) : super(const SeeMoreInitial());
 
-  final List<Movie> _movies = [];
+  //#region Private Variables
+
+  final GetMoviesUseCase _useCase;
+
+  final ScrollController _scrollController = ScrollController();
 
   int _page = 2;
 
   bool _loading = false;
 
+  //#endregion
+
+  //#region Getters
   bool get loading => _loading;
 
   ScrollController get scrollController => _scrollController;
 
-  List<Movie> get movies => _movies;
+  //#endregion
 
-  SeeMoreCubit(this._useCase) : super(const SeeMoreInitial());
+  //#region Private Methods
+  String _getEndPoint(String screenName) {
+    String endPoint = "";
+    switch (screenName) {
+      case AppStrings.popular:
+        endPoint = ApiEndPoints.popularMovies;
+        break;
+      case AppStrings.topRated:
+        endPoint = ApiEndPoints.topRatedMovies;
+        break;
+      case AppStrings.upComing:
+        endPoint = ApiEndPoints.upComingMovies;
+        break;
+      case AppStrings.similar:
+        endPoint = ApiEndPoints.similarMovies;
+        break;
+    }
+    return endPoint;
+  }
 
-  Future<List<Movie>> loadMore(String endPoint, int maxPage) async {
-    if (_scrollController.position.pixels ==
-            _scrollController.position.maxScrollExtent &&
-        !_loading &&
-        _page < maxPage) {
+  bool _canLoad() {
+    bool atEnd = _scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent;
+    bool lessThanTotal;
+    if (model == null) {
+      lessThanTotal = true;
+    } else {
+      lessThanTotal = _page < model!.totalPages;
+    }
+    return atEnd && lessThanTotal && !_loading;
+  }
+
+  //#endregion
+
+  Future<List<Movie>?> loadMore(String endPoint) async {
+    if (_canLoad()) {
       final MovieParameters params = MovieParameters(
           pageNum: _page,
-          endPoint: endPoint,
+          endPoint: _getEndPoint(endPoint),
           languageCode: sl.get<AppLanguage>().appLocale.languageCode);
       _loading = true;
       await super._getMovies(_useCase, params);
-      if (state is SimilarSuccessState) {
+      if (state is SeeMoreSuccessState) {
         _page++;
       }
       _loading = false;
       return model!.movies;
     }
-    return model!.movies;
+    return null;
   }
 }

@@ -10,10 +10,7 @@ class CustomTextField extends StatefulWidget {
   final TextInputType inputType;
   final TextInputAction inputAction;
   final bool isPassword;
-  final bool isRequiredFill;
-  final bool readOnly;
-  final void Function()? onTap;
-  final void Function()? suffixOnTap;
+  final void Function()? onFieldSubmitted;
   final Function(String text)? onChanged;
   final String? Function(String?)? validator;
   final bool isEnabled;
@@ -22,10 +19,7 @@ class CustomTextField extends StatefulWidget {
   final double borderRadius;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
-  final double suffixIconSize;
   final bool showBorder;
-  final bool showLabelText;
-  final double prefixHeight;
   final List<TextInputFormatter>? inputFormatters;
   final bool required;
 
@@ -40,24 +34,18 @@ class CustomTextField extends StatefulWidget {
     this.inputAction = TextInputAction.next,
     this.maxLines = 1,
     this.onChanged,
-    this.onTap,
     this.prefixIcon,
     this.suffixIcon,
-    this.suffixIconSize = 12,
-    this.capitalization = TextCapitalization.none,
-    this.readOnly = false,
+    this.capitalization = TextCapitalization.words,
     this.isPassword = false,
-    this.isRequiredFill = false,
-    this.showLabelText = true,
     this.showBorder = false,
     this.borderRadius = 8,
-    this.prefixHeight = 50,
     this.validator,
     this.inputFormatters,
     this.labelText,
     this.textAlign = TextAlign.start,
     this.required = false,
-    this.suffixOnTap,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -75,62 +63,31 @@ class _CustomTextFieldState extends State<CustomTextField> {
       controller: widget.controller,
       focusNode: widget.focusNode,
       validator: widget.validator,
-      textAlign: widget.textAlign,
-      readOnly: widget.readOnly,
-      onTap: widget.onTap,
       textInputAction: widget.inputAction,
       keyboardType: widget.inputType,
       textCapitalization: widget.capitalization,
       enabled: widget.isEnabled,
       autofocus: false,
-      autofillHints: widget.inputType == TextInputType.name
-          ? [AutofillHints.name]
-          : widget.inputType == TextInputType.emailAddress
-              ? [AutofillHints.email]
-              : widget.inputType == TextInputType.phone
-                  ? [AutofillHints.telephoneNumber]
-                  : widget.inputType == TextInputType.streetAddress
-                      ? [AutofillHints.fullStreetAddress]
-                      : widget.inputType == TextInputType.url
-                          ? [AutofillHints.url]
-                          : widget.inputType == TextInputType.visiblePassword
-                              ? [AutofillHints.password]
-                              : null,
+      autofillHints: AutoFillType.getHintType(widget.inputType),
       obscureText: widget.isPassword ? _obscureText : false,
       inputFormatters: widget.inputType == TextInputType.phone
-          ? <TextInputFormatter>[
-              FilteringTextInputFormatter.allow(RegExp(r'[0-9+]'))
-            ]
-          : [
-              ...?widget.inputFormatters,
-              if (widget.inputType != TextInputType.emailAddress &&
-                  !widget.isPassword)
-                UpperCaseTextFormatter()
-            ],
+          ? <TextInputFormatter>[PhoneNumberInputFormatter()]
+          : null,
       decoration: InputDecoration(
-          labelText: widget.showLabelText ? widget.labelText : null,
+          labelText: widget.labelText,
           hintText: widget.hintText,
           prefixIcon: widget.prefixIcon != null
-              ? Container(
-                  key: Key("Prefix Icon Container Key ${widget.key}"),
-                  width: widget.prefixHeight,
-                  padding: const EdgeInsets.all(1),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(widget.borderRadius),
-                          bottomLeft: Radius.circular(widget.borderRadius))),
-                  child: Center(
-                      key: Key("Prefix Icon Center Key ${widget.key}"),
-                      child: Icon(
-                          key: Key("Prefix Icon Key ${widget.key}"),
-                          widget.prefixIcon!)))
+              ? Icon(
+                  key: Key("Prefix Icon Key ${widget.key}"), widget.prefixIcon!)
               : null,
           suffixIcon: widget.isPassword
               ? IconButton(
                   key: Key("Suffix Icon Button Key ${widget.key}"),
                   icon: Icon(
                     key: Key("Suffix Icon Key ${widget.key}"),
-                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                    _obscureText
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
                   ),
                   onPressed: _toggle)
               : widget.suffixIcon != null
@@ -149,7 +106,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   : null),
       onFieldSubmitted: (text) => widget.nextFocus != null
           ? FocusScope.of(context).requestFocus(widget.nextFocus)
-          : null,
+          : widget.onFieldSubmitted,
       onChanged: widget.onChanged,
     );
   }
@@ -161,18 +118,40 @@ class _CustomTextFieldState extends State<CustomTextField> {
   }
 }
 
-class UpperCaseTextFormatter extends TextInputFormatter {
+final class PhoneNumberInputFormatter extends TextInputFormatter {
+  final RegExp _allowedRegex = RegExp(r'[0-9+]');
+
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
+    final newText = newValue.text.replaceAll(
+      _allowedRegex,
+      '',
+    );
     return TextEditingValue(
-      text: capitalize(newValue.text),
-      selection: newValue.selection,
+      text: newText,
+      selection: TextSelection.collapsed(offset: newText.length),
     );
   }
 }
 
-String capitalize(String value) {
-  if (value.trim().isEmpty) return "";
-  return "${value[0].toUpperCase()}${value.substring(1).toLowerCase()}";
+abstract class AutoFillType {
+  static Iterable<String>? getHintType(TextInputType inputType) {
+    switch (inputType) {
+      case TextInputType.name:
+        return [AutofillHints.name];
+      case TextInputType.emailAddress:
+        return [AutofillHints.email];
+      case TextInputType.phone:
+        return [AutofillHints.telephoneNumber];
+      case TextInputType.streetAddress:
+        return [AutofillHints.fullStreetAddress];
+      case TextInputType.url:
+        return [AutofillHints.url];
+      case TextInputType.visiblePassword:
+        return [AutofillHints.password];
+      default:
+        return null;
+    }
+  }
 }

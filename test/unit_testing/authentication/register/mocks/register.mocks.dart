@@ -3,6 +3,7 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
 part of 'register.dart';
 
 // ignore_for_file: type=lint
@@ -62,4 +63,54 @@ class MockFirebaseAuthFailureTest extends Mock
           Invocation.getter(#errorMessage),
         ),
       ) as String);
+}
+
+/// A class which mocks [RegisterRepositoryTest].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRegisterRepositoryTest extends Mock
+    implements RegisterRepositoryTest {
+  MockRegisterRepositoryTest() {
+    throwOnMissingStub(this);
+  }
+
+  @override
+  Future<DataResponse> userRegister(RegisterParameters parameters) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #userRegister,
+          [parameters],
+        ),
+        returnValue: Future<DataResponse>.value(dummyValue<DataResponse>(
+          this,
+          Invocation.method(
+            #userRegister,
+            [parameters],
+          ),
+        )),
+      ) as Future<DataResponse>);
+}
+
+/// A class which mocks [RegisterUseCaseTest].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRegisterUseCaseTest extends Mock implements RegisterUseCaseTest {
+  MockRegisterUseCaseTest() {
+    throwOnMissingStub(this);
+  }
+
+  @override
+  Future<DataResponse> call(Parameters? p) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [p],
+        ),
+        returnValue: Future<DataResponse>.value(dummyValue<DataResponse>(
+          this,
+          Invocation.method(
+            #call,
+            [p],
+          ),
+        )),
+      ) as Future<DataResponse>);
 }

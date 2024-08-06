@@ -1,5 +1,6 @@
 import 'package:mockito/mockito.dart';
 import 'package:movie_hub/core/usable_functions/firebase/firebase_handling.dart';
+import 'package:movie_hub/core/utils/api_utils/data_response.dart';
 import 'package:movie_hub/features/authentication/register/parameters/register_parameters.dart';
 import 'package:test/test.dart';
 
@@ -18,16 +19,31 @@ void main() async {
       firstName: 'shehab',
       lastName: 'ehab',
       password: '12345678');
+
+  final SuccessFirebaseAuthResponse firebaseAuthSuccessResponse =
+      SuccessFirebaseAuthResponse(userCredential);
+
+  final FailureFirebaseAuthResponse firebaseAuthFailureResponse =
+      FailureFirebaseAuthResponse(failure);
+
+  final SuccessDataResponse<FirebaseAuthResponse> successDataResponse =
+      SuccessDataResponse<FirebaseAuthResponse>(firebaseAuthSuccessResponse);
+
+  final FailureDataResponse<FirebaseAuthResponse> failureDataResponse =
+      FailureDataResponse<FirebaseAuthResponse>(firebaseAuthFailureResponse);
+
+  final MockRegisterRepositoryTest repository = MockRegisterRepositoryTest();
+
   setUpAll(() {
-    provideDummy<FirebaseAuthResponse>(
-        SuccessFirebaseAuthResponse(userCredential));
-    provideDummy<FirebaseAuthResponse>(FailureFirebaseAuthResponse(failure));
+    provideDummy<FirebaseAuthResponse>(firebaseAuthSuccessResponse);
+    provideDummy<FirebaseAuthResponse>(firebaseAuthFailureResponse);
+    provideDummy<DataResponse>(successDataResponse);
+    provideDummy<DataResponse>(failureDataResponse);
   });
 
-  group('Register Remote Data Source', () {
-    test('Test User Register on successful', () async {
-      FirebaseAuthResponse response =
-          SuccessFirebaseAuthResponse(userCredential);
+  group('Remote Data Source', () {
+    test('Test User Register Data Source on successful', () async {
+      FirebaseAuthResponse response = firebaseAuthSuccessResponse;
       when(dataSource.userRegister(params)).thenAnswer((_) async => response);
       final res = await dataSource.userRegister(params);
 
@@ -35,13 +51,34 @@ void main() async {
       expect(res, response);
     });
 
-    test('Test User Register on Failed', () async {
+    test('Test User Register Data Source on Failed', () async {
       FirebaseAuthResponse response = FailureFirebaseAuthResponse(failure);
 
       when(dataSource.userRegister(params)).thenAnswer((_) async => response);
       final res = await dataSource.userRegister(params);
 
       expect(res, isA<FirebaseAuthResponse>());
+      expect(res, response);
+    });
+  });
+
+  group('Repository Interface', () {
+    test('Test User Register Repository Interface on successful', () async {
+      DataResponse response = successDataResponse;
+      when(repository.userRegister(params)).thenAnswer((_) async => response);
+
+      final res = await repository.userRegister(params);
+
+      expect(res, isA<SuccessDataResponse>());
+      expect(res, response);
+    });
+
+    test('Test User Register Repository Interface on Failed', () async {
+      DataResponse response = failureDataResponse;
+      when(repository.userRegister(params)).thenAnswer((_) async => response);
+      final res = await repository.userRegister(params);
+
+      expect(res, isA<FailureDataResponse>());
       expect(res, response);
     });
   });

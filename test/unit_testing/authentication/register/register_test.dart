@@ -10,16 +10,21 @@ import 'mocks/register.dart';
 
 void main() async {
   setupFirebaseMocks();
+
+  //#region Mocks
   final MockRegisterRemoteDataSourceTest dataSource =
       MockRegisterRemoteDataSourceTest();
-  final MockUserCredentialTest userCredential = MockUserCredentialTest();
-  final MockFirebaseAuthFailureTest failure = MockFirebaseAuthFailureTest();
-  const RegisterParameters params = RegisterParameters(
-      email: 'shehabehab1029@gmail.com',
-      firstName: 'shehab',
-      lastName: 'ehab',
-      password: '12345678');
 
+  final MockUserCredentialTest userCredential = MockUserCredentialTest();
+
+  final MockFirebaseAuthFailureTest failure = MockFirebaseAuthFailureTest();
+
+  final MockRegisterRepositoryTest repository = MockRegisterRepositoryTest();
+
+  final MockRegisterUseCaseTest useCase = MockRegisterUseCaseTest();
+  //#endregion
+
+  //#region Responses
   final SuccessFirebaseAuthResponse firebaseAuthSuccessResponse =
       SuccessFirebaseAuthResponse(userCredential);
 
@@ -32,7 +37,12 @@ void main() async {
   final FailureDataResponse<FirebaseAuthResponse> failureDataResponse =
       FailureDataResponse<FirebaseAuthResponse>(firebaseAuthFailureResponse);
 
-  final MockRegisterRepositoryTest repository = MockRegisterRepositoryTest();
+  //#endregion
+
+  //#region Parameters
+  const RegisterParameters params =
+      RegisterParameters(email: '', firstName: '', lastName: '', password: '');
+  //#endregion
 
   setUpAll(() {
     provideDummy<FirebaseAuthResponse>(firebaseAuthSuccessResponse);
@@ -77,6 +87,26 @@ void main() async {
       DataResponse response = failureDataResponse;
       when(repository.userRegister(params)).thenAnswer((_) async => response);
       final res = await repository.userRegister(params);
+
+      expect(res, isA<FailureDataResponse>());
+      expect(res, response);
+    });
+  });
+
+  group('Use Case', () {
+    test('Test User Register Use Case on Successful', () async {
+      DataResponse response = successDataResponse;
+      when(useCase.call(params)).thenAnswer((_) async => response);
+      final res = await useCase.call(params);
+
+      expect(res, isA<SuccessDataResponse>());
+      expect(res, response);
+    });
+
+    test('Test User Register Use Case  on Failed', () async {
+      DataResponse response = failureDataResponse;
+      when(useCase.call(params)).thenAnswer((_) async => response);
+      final res = await useCase.call(params);
 
       expect(res, isA<FailureDataResponse>());
       expect(res, response);

@@ -1,6 +1,6 @@
 part of 'firebase_handling.dart';
 
-final class FirebaseAuthFailure {
+class FirebaseAuthFailure {
   final String errorMessage;
 
   const FirebaseAuthFailure(this.errorMessage);
